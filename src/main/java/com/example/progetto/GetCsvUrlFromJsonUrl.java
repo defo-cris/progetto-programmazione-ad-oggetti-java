@@ -35,23 +35,18 @@ class GetCsvUrlFromJsonUrl
 
         JSONObject readJsonFromUrl(String url) throws IOException, JSONException
         {
-            System.out.println("1");
             HttpURLConnection httpcon = (HttpURLConnection) new URL(url).openConnection();
             httpcon.addRequestProperty("User-Agent", "Mozilla/5.0");
             InputStream is = httpcon.getInputStream();
-            System.out.println("2");
             try
             {
                 BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
-                System.out.println("3");
                 String jsonText = readAll(rd);
-                System.out.println("4");
                 return new JSONObject(jsonText);
             }
             finally
             {
                 is.close();
-                System.out.println("3");
             }
         }
     }
@@ -62,8 +57,7 @@ class GetCsvUrlFromJsonUrl
 
         String getLink(JSONObject json) throws JSONException
         {
-            return (String) json.getJSONObject("result")
-                    .getJSONArray("resources").getJSONObject(0).get("url");
+            return (String) json.getJSONObject("result").getJSONArray("resources").getJSONObject(0).get("url");
         }
 
 

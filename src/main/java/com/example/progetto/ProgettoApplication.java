@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.zip.DataFormatException;
 
 @SpringBootApplication
 public class ProgettoApplication
@@ -23,6 +24,8 @@ public class ProgettoApplication
 
         String url = "http://data.europa.eu/euodp/data/api/3/action/package_show?id=eu-results-projects";
         //url = "https://www.dati.gov.it/api/3/action/package_show?id=3c68b286-09fd-447a-b8e3-1b8430f70969";
+        url = "http://data.europa.eu/euodp/data/api/3/action/package_show?id=eu-cohesion-policy-historic-eu-payments-regionalised-and-modelled";
+
         try
         {
             GetCsvUrlFromJsonUrl csvUrlFromJsonUrl = new GetCsvUrlFromJsonUrl();
@@ -32,14 +35,47 @@ public class ProgettoApplication
             GetCsvDataFromUrl csv = new GetCsvDataFromUrl(link);
 
             String firstline = csv.getFirstLine();
-            System.out.println(firstline);
+            //System.out.println(firstline);
 
-            String[] columns = firstline.split(",");
+            String line = csv.getLine();
 
-            for (String s: columns)
+            String[] commonSeparator = {";", ",", "|", "^"};
+
+            String sep = "";
+
+            String[] columns = {};
+            String[] data = {};
+
+            for(String s: commonSeparator)
             {
-                System.out.println(s);
+                columns = firstline.split(s);
+
+                //PrintStringArray.print(columns);
+
+                data = line.split(s + "(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
+
+                //PrintStringArray.print(data);
+
+                if ((columns.length == data.length) && (columns.length != 1))
+                {
+                    sep = s;
+                    break;
+                }
             }
+
+            if (sep.equals(""))
+            {
+                throw new DataFormatException("impossibile parsare il csv");
+            }
+
+            for (int i = 0; i < data.length; i++)
+            {
+                System.out.println(columns[i] + " -> " + data[i]);
+            }
+
+
+
+
 
 
 
@@ -62,11 +98,15 @@ public class ProgettoApplication
         }
         catch (IOException e)
         {
-            System.out.println("IOException");
+            System.out.println("IOException -> " + e);
         }
         catch (JSONException e)
         {
-            System.out.println("JSONException");
+            System.out.println("JSONException -> " + e);
+        }
+        catch (DataFormatException e)
+        {
+            System.out.println("DataFormatException -> " + e);
         }
 
 
