@@ -4,6 +4,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.*;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.Charset;
 
@@ -34,16 +35,23 @@ class GetCsvUrlFromJsonUrl
 
         JSONObject readJsonFromUrl(String url) throws IOException, JSONException
         {
-            InputStream is = new URL(url).openStream();
+            System.out.println("1");
+            HttpURLConnection httpcon = (HttpURLConnection) new URL(url).openConnection();
+            httpcon.addRequestProperty("User-Agent", "Mozilla/5.0");
+            InputStream is = httpcon.getInputStream();
+            System.out.println("2");
             try
             {
                 BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+                System.out.println("3");
                 String jsonText = readAll(rd);
+                System.out.println("4");
                 return new JSONObject(jsonText);
             }
             finally
             {
                 is.close();
+                System.out.println("3");
             }
         }
     }

@@ -22,6 +22,7 @@ public class ProgettoApplication
         SpringApplication.run(ProgettoApplication.class, args);
 
         String url = "http://data.europa.eu/euodp/data/api/3/action/package_show?id=eu-results-projects";
+        //url = "https://www.dati.gov.it/api/3/action/package_show?id=3c68b286-09fd-447a-b8e3-1b8430f70969";
         try
         {
             GetCsvUrlFromJsonUrl csvUrlFromJsonUrl = new GetCsvUrlFromJsonUrl();
@@ -30,8 +31,20 @@ public class ProgettoApplication
 
             GetCsvDataFromUrl csv = new GetCsvDataFromUrl(link);
 
-            System.out.println(csv.getFirstLine());
+            String firstline = csv.getFirstLine();
+            System.out.println(firstline);
 
+            String[] columns = firstline.split(",");
+
+            for (String s: columns)
+            {
+                System.out.println(s);
+            }
+
+
+
+
+            /*
             try
             {
                 while (true)
@@ -43,7 +56,7 @@ public class ProgettoApplication
             {
                 System.out.println("end of file");
             }
-
+            */
 
 
         }
