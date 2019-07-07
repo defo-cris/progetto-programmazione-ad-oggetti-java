@@ -7,10 +7,10 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class GetCsvDataFromUrl
+class GetCsvDataFromUrl
 {
     private String url;
-    BufferedReader br;
+    private BufferedReader br;
 
     GetCsvDataFromUrl(String url)
     {
@@ -21,14 +21,11 @@ public class GetCsvDataFromUrl
     String getFirstLine() throws IOException
     {
         URL urlCSV = new URL(url);
-        // ...
-        // establish connection to file in URL
+
         URLConnection urlConn = urlCSV.openConnection();
 
-        // ...
-        InputStreamReader inputCSV = new InputStreamReader(
-                ((URLConnection) urlConn).getInputStream());
-        // ...
+        InputStreamReader inputCSV = new InputStreamReader(urlConn.getInputStream());
+
         br = new BufferedReader(inputCSV);
 
         String line;

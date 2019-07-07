@@ -7,7 +7,7 @@ import java.io.*;
 import java.net.URL;
 import java.nio.charset.Charset;
 
-public class GetCsvUrlFromJsonUrl
+class GetCsvUrlFromJsonUrl
 {
 
 
@@ -32,7 +32,7 @@ public class GetCsvUrlFromJsonUrl
             return sb.toString();
         }
 
-        public JSONObject readJsonFromUrl(String url) throws IOException, JSONException
+        JSONObject readJsonFromUrl(String url) throws IOException, JSONException
         {
             InputStream is = new URL(url).openStream();
             try
@@ -54,9 +54,8 @@ public class GetCsvUrlFromJsonUrl
 
         String getLink(JSONObject json) throws JSONException
         {
-            String link = (String) json.getJSONObject("result")
+            return (String) json.getJSONObject("result")
                     .getJSONArray("resources").getJSONObject(0).get("url");
-            return link;
         }
 
 
