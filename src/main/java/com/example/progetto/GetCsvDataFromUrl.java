@@ -34,10 +34,12 @@ class GetCsvDataFromUrl
 
         br = new BufferedReader(inputCSV);
 
+
         String line;
 
         if ((line = br.readLine()) != null)
         {
+            br.mark(999);
             return line;
         }
         throw new IOException("file ended too early");
@@ -59,7 +61,6 @@ class GetCsvDataFromUrl
 
     void resetPosition() throws IOException
     {
-        br.mark(0);
         br.reset();
     }
 

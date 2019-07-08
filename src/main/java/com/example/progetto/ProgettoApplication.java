@@ -35,66 +35,14 @@ public class ProgettoApplication
 
             GetCsvDataFromUrl csv = new GetCsvDataFromUrl(link);
 
-            String firstline = csv.getFirstLine();
-            //System.out.println(firstline);
+            CsvSplitter splitter = new CsvSplitter(csv);
 
-            String line = csv.getLine();
+            splitter.guessDelimiter();
 
-            String[] commonSeparator = {";", ",", "|", "^"};
-
-            String sep = "";
-
-            String[] columns = {};
-            String[] data = {};
-
-            for(String s: commonSeparator)
+            while (true)
             {
-                columns = firstline.split(s);
-
-                //PrintStringArray.print(columns);
-
-                data = line.split(s + "(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
-
-                //PrintStringArray.print(data);
-
-                if ((columns.length == data.length) && (columns.length != 1))
-                {
-                    sep = s;
-                    break;
-                }
+                PrintStringArray.printFormatted(splitter.getFirstLine(), splitter.splitLine());
             }
-
-            if (sep.equals(""))
-            {
-                throw new DataFormatException("impossibile parsare il csv");
-            }
-
-            for (int i = 0; i < data.length; i++)
-            {
-                System.out.println(columns[i] + " -> " + data[i]);
-            }
-
-            csv.resetPosition();
-
-            System.out.println(csv.getFirstLine());
-
-            System.out.println(csv.getLine());
-
-            System.out.println(csv.getLine());
-
-            /*
-            try
-            {
-                while (true)
-                {
-                    System.out.println(csv.getLine());
-                }
-            }
-            catch (EOFException e)
-            {
-                System.out.println("end of file");
-            }
-            */
 
 
         }
