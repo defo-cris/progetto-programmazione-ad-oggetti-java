@@ -61,7 +61,10 @@ public class CsvSplitter
     String[] splitLine() throws IOException
     {
         if (sep.equals("")) throw new IllegalStateException("you need to set or guess the separator first");
-        return csv.getLine().split(sep + "(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
+        System.out.println(sep);
+        String[] split = csv.getLine().split(sep + "(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
+        PrintStringArray.print(split);
+        return split;
     }
 
 }
