@@ -74,12 +74,13 @@ public class ProgettoApplication
                 System.out.println(columns[i] + " -> " + data[i]);
             }
 
+            csv.resetPosition();
 
+            System.out.println(csv.getFirstLine());
 
+            System.out.println(csv.getLine());
 
-
-
-
+            System.out.println(csv.getLine());
 
             /*
             try

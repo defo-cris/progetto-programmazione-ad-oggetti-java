@@ -18,6 +18,12 @@ class GetCsvDataFromUrl
     }
 
 
+    /**
+     *
+     *
+     * @return
+     * @throws IOException
+     */
     String getFirstLine() throws IOException
     {
         URL urlCSV = new URL(url);
@@ -49,6 +55,12 @@ class GetCsvDataFromUrl
             return line;
         }
         throw new EOFException("file reached the end");
+    }
+
+    void resetPosition() throws IOException
+    {
+        br.mark(0);
+        br.reset();
     }
 
 }
