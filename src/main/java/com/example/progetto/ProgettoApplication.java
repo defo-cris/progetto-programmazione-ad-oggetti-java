@@ -43,7 +43,7 @@ public class ProgettoApplication
             {
                 PrintStringArray.printFormatted(splitter.getFirstLine(), splitter.splitLine());
             }
-            //afgfgh
+            //artjm
 
         }
         catch (IOException e)
