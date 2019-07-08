@@ -6,11 +6,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
 
 class GetCsvDataFromUrl
 {
     private String url;
-    private BufferedReader br;
+    private NewBufferedReader br;
 
     GetCsvDataFromUrl(String url)
     {
@@ -30,9 +31,9 @@ class GetCsvDataFromUrl
 
         URLConnection urlConn = urlCSV.openConnection();
 
-        InputStreamReader inputCSV = new InputStreamReader(urlConn.getInputStream());
+        InputStreamReader inputCSV = new InputStreamReader(urlConn.getInputStream(), StandardCharsets.UTF_8);
 
-        br = new BufferedReader(inputCSV);
+        br = new NewBufferedReader(inputCSV);
 
 
         String line;
@@ -52,7 +53,7 @@ class GetCsvDataFromUrl
             throw new IllegalStateException("you need to read the first line first");
         }
         String line;
-        if ((line = br.readLine()) != null)
+        if ((line = br.newReadLine()) != null)
         {
             return line;
         }

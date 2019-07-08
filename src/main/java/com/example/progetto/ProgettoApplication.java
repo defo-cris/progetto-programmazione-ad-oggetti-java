@@ -41,9 +41,10 @@ public class ProgettoApplication
 
             while (true)
             {
-                PrintStringArray.printFormatted(splitter.getFirstLine(), splitter.splitLine());
+                String[] line = splitter.splitLine();
+                System.out.println("line ----->>> " + line[0]);
+                PrintStringArray.printFormatted(splitter.splitFirstLine(), line);
             }
-            //artjm
 
         }
         catch (IOException e)

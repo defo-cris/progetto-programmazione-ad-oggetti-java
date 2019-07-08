@@ -37,16 +37,11 @@ class GetCsvUrlFromJsonUrl
         {
             HttpURLConnection httpcon = (HttpURLConnection) new URL(url).openConnection();
             httpcon.addRequestProperty("User-Agent", "Mozilla/5.0");
-            InputStream is = httpcon.getInputStream();
-            try
+            try (InputStream is = httpcon.getInputStream())
             {
                 BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
                 String jsonText = readAll(rd);
                 return new JSONObject(jsonText);
-            }
-            finally
-            {
-                is.close();
             }
         }
     }
