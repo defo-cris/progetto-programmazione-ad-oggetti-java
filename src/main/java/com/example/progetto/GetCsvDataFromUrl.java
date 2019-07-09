@@ -11,7 +11,8 @@ import java.nio.charset.StandardCharsets;
 class GetCsvDataFromUrl
 {
     private String url;
-    private NewBufferedReader br;
+    //private NewBufferedReader br;
+    private ReadLineFromBufferedReader br;
 
     GetCsvDataFromUrl(String url)
     {
@@ -31,9 +32,7 @@ class GetCsvDataFromUrl
 
         URLConnection urlConn = urlCSV.openConnection();
 
-        InputStreamReader inputCSV = new InputStreamReader(urlConn.getInputStream(), StandardCharsets.UTF_8);
-
-        br = new NewBufferedReader(inputCSV);
+        br = new ReadLineFromBufferedReader(new InputStreamReader(urlConn.getInputStream(), StandardCharsets.UTF_8));
 
 
         String line;
@@ -53,7 +52,7 @@ class GetCsvDataFromUrl
             throw new IllegalStateException("you need to read the first line first");
         }
         String line;
-        if ((line = br.newReadLine()) != null)
+        if ((line = br.readLine()) != null)
         {
             return line;
         }
