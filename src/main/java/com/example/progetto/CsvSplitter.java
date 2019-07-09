@@ -49,8 +49,9 @@ public class CsvSplitter
         commonSeparator.add(sep);
     }
 
-    void setSep(String sep)
+    void setDelimiter(String sep) throws IOException
     {
+        firstline = csv.getFirstLine();
         this.sep = sep;
     }
 
@@ -61,12 +62,8 @@ public class CsvSplitter
 
     String[] splitLine() throws IOException
     {
-        final AtomicInteger commacounter = new AtomicInteger();
-
 
         if (sep.equals("")) throw new IllegalStateException("you need to set or guess the separator first");
-        String[] split;
-        String tmp = csv.getLine();
 
         String otherThanQuote = " [^\"] ";
         String quotedString = String.format(" \" %s* \" ", otherThanQuote);
@@ -82,8 +79,7 @@ public class CsvSplitter
                         ")                         ", // stop positive look ahead
                 otherThanQuote, quotedString, otherThanQuote);
 
-        split = tmp.split(regex);
-        return split;
+        return csv.getLine().split(regex);
     }
 
 }

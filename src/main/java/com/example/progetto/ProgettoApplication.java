@@ -22,20 +22,19 @@ public class ProgettoApplication
         try
         {
             GetCsvUrlFromJsonUrl csvUrlFromJsonUrl = new GetCsvUrlFromJsonUrl();
-            String link = csvUrlFromJsonUrl.getLink(url);
+            String link = csvUrlFromJsonUrl.getLink(url, 0);
             System.out.println(link);
 
             GetCsvDataFromUrl csv = new GetCsvDataFromUrl(link);
 
             CsvSplitter splitter = new CsvSplitter(csv);
 
-            splitter.guessDelimiter();
+            //splitter.guessDelimiter();
+            splitter.setDelimiter(",");
 
             while (true)
             {
                 String[] line = splitter.splitLine();
-                System.out.println("line ----->>> " + line[0]);
-                System.out.println("\n");
                 PrintStringArray.printFormatted(splitter.splitFirstLine(), line);
             }
 
@@ -48,10 +47,10 @@ public class ProgettoApplication
         {
             System.out.println("JSONException -> " + e);
         }
-        catch (DataFormatException e)
+        /*catch (DataFormatException e)
         {
             System.out.println("DataFormatException -> " + e);
-        }
+        }*/
 
 
     }

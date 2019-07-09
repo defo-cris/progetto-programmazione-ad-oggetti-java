@@ -1,5 +1,7 @@
 package com.example.progetto;
 
+import java.util.Arrays;
+
 public class dataCsvRow
 {
     int id;
@@ -31,6 +33,79 @@ public class dataCsvRow
     long Total_project_budget;
     String Author;
     String Language;
+
+
+
+
+    public dataCsvRow(int id, int nid, int original_ID, String name, String project_acronym, String visual, String project_description, String results, String[] coordinators, String[] partners, String[] project_address_es, String project_postal_code_s, String project_town_s, String[] project_country_ies, float[] project_location_latitude, float[] project_location_longitude, String link_to_a_video, String timeframe_start, String timeframe_end, String project_webpage, String related_links, String EU_Budget_MFF_heading, String programme_name, String funding_area, String EC_s_priorities, long EU_Budget_contribution, long total_project_budget, String author, String language)
+    {
+        this.id = id;
+        Nid = nid;
+        Original_ID = original_ID;
+        Name = name;
+        Project_acronym = project_acronym;
+        Visual = visual;
+        Project_description = project_description;
+        Results = results;
+        Coordinators = coordinators;
+        Partners = partners;
+        Project_address_es = project_address_es;
+        Project_postal_code_s = project_postal_code_s;
+        Project_town_s = project_town_s;
+        Project_country_ies = project_country_ies;
+        Project_location_latitude = project_location_latitude;
+        Project_location_longitude = project_location_longitude;
+        Link_to_a_video = link_to_a_video;
+        Timeframe_start = timeframe_start;
+        Timeframe_end = timeframe_end;
+        Project_webpage = project_webpage;
+        Related_links = related_links;
+        this.EU_Budget_MFF_heading = EU_Budget_MFF_heading;
+        Programme_name = programme_name;
+        Funding_area = funding_area;
+        this.EC_s_priorities = EC_s_priorities;
+        this.EU_Budget_contribution = EU_Budget_contribution;
+        Total_project_budget = total_project_budget;
+        Author = author;
+        Language = language;
+    }
+
+
+    @Override
+    public String toString()
+    {
+        return "dataCsvRow{" +
+                "id=" + id +
+                ", Nid=" + Nid +
+                ", Original_ID=" + Original_ID +
+                ", Name='" + Name + '\'' +
+                ", Project_acronym='" + Project_acronym + '\'' +
+                ", Visual='" + Visual + '\'' +
+                ", Project_description='" + Project_description + '\'' +
+                ", Results='" + Results + '\'' +
+                ", Coordinators=" + Arrays.toString(Coordinators) +
+                ", Partners=" + Arrays.toString(Partners) +
+                ", Project_address_es=" + Arrays.toString(Project_address_es) +
+                ", Project_postal_code_s='" + Project_postal_code_s + '\'' +
+                ", Project_town_s='" + Project_town_s + '\'' +
+                ", Project_country_ies=" + Arrays.toString(Project_country_ies) +
+                ", Project_location_latitude=" + Arrays.toString(Project_location_latitude) +
+                ", Project_location_longitude=" + Arrays.toString(Project_location_longitude) +
+                ", Link_to_a_video='" + Link_to_a_video + '\'' +
+                ", Timeframe_start='" + Timeframe_start + '\'' +
+                ", Timeframe_end='" + Timeframe_end + '\'' +
+                ", Project_webpage='" + Project_webpage + '\'' +
+                ", Related_links='" + Related_links + '\'' +
+                ", EU_Budget_MFF_heading='" + EU_Budget_MFF_heading + '\'' +
+                ", Programme_name='" + Programme_name + '\'' +
+                ", Funding_area='" + Funding_area + '\'' +
+                ", EC_s_priorities='" + EC_s_priorities + '\'' +
+                ", EU_Budget_contribution=" + EU_Budget_contribution +
+                ", Total_project_budget=" + Total_project_budget +
+                ", Author='" + Author + '\'' +
+                ", Language='" + Language + '\'' +
+                '}';
+    }
 
     public int getId()
     {

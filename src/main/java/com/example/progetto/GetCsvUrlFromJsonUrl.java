@@ -12,12 +12,12 @@ class GetCsvUrlFromJsonUrl
 {
 
 
-    String getLink(String url) throws IOException, JSONException
+    String getLink(String url, int numCsv) throws IOException, JSONException
     {
         GetJsonFromUrl jsonFromUrl = new GetJsonFromUrl();
         JSONObject json = jsonFromUrl.readJsonFromUrl(url);
         GetCsvLinkFromJson csvLinkFromJson = new GetCsvLinkFromJson();
-        return csvLinkFromJson.getLink(json);
+        return csvLinkFromJson.getLink(json, numCsv);
     }
 
     class GetJsonFromUrl
@@ -50,9 +50,9 @@ class GetCsvUrlFromJsonUrl
     class GetCsvLinkFromJson
     {
 
-        String getLink(JSONObject json) throws JSONException
+        String getLink(JSONObject json, int number) throws JSONException
         {
-            return (String) json.getJSONObject("result").getJSONArray("resources").getJSONObject(0).get("url");
+            return (String) json.getJSONObject("result").getJSONArray("resources").getJSONObject(number).get("url");
         }
 
 
