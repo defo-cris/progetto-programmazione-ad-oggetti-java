@@ -9,7 +9,6 @@ public class PrintStringArray
 
     static void printFormatted(String[] col, String[] row)
     {
-        System.out.println("\n\n");
         System.out.println("col.length -> " + col.length);
         System.out.println("row.length -> " + row.length);
         System.out.println("\n");
@@ -17,7 +16,7 @@ public class PrintStringArray
         {
             System.out.println(col[i] + " -> " + row[i]);
         }
-        System.out.println("\n\n");
+        System.out.println("\n");
     }
 
     static void print(String[] arr)

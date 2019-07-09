@@ -65,33 +65,8 @@ public class CsvSplitter
 
 
         if (sep.equals("")) throw new IllegalStateException("you need to set or guess the separator first");
-        System.out.println(sep);
         String[] split;
         String tmp = csv.getLine();
-
-
-
-        char[] tmp1 = tmp.toCharArray();
-
-        for (char a: tmp1)
-        {
-            if (a == '"')
-            {
-                commacounter.incrementAndGet();
-            }
-        }
-
-        if ((tmp1[0] == '1') && (tmp1[1] == '0') && (tmp1[2] == '7'))
-        {
-            System.out.println("\n" + tmp + "\n");
-
-            for (char a: tmp1)
-            {
-                System.out.println(a + " -> " + (int)(a));
-            }
-
-            System.out.println("there was " + commacounter.get() + " \"");
-        }
 
         String otherThanQuote = " [^\"] ";
         String quotedString = String.format(" \" %s* \" ", otherThanQuote);

@@ -1,17 +1,9 @@
 package com.example.progetto;
 
-import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.io.BufferedReader;
-import java.io.EOFException;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.zip.DataFormatException;
 
 @SpringBootApplication
@@ -43,6 +35,7 @@ public class ProgettoApplication
             {
                 String[] line = splitter.splitLine();
                 System.out.println("line ----->>> " + line[0]);
+                System.out.println("\n");
                 PrintStringArray.printFormatted(splitter.splitFirstLine(), line);
             }
 
