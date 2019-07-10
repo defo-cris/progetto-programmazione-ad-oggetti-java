@@ -4,6 +4,9 @@ import org.json.JSONException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.zip.DataFormatException;
 
 @SpringBootApplication
@@ -32,11 +35,19 @@ public class ProgettoApplication
             //splitter.guessDelimiter();
             splitter.setDelimiter(",");
 
+            /*
+            ArrayList<String> col = new ArrayList<>(Arrays.asList(splitter.splitFirstLine()));
+            ColumnDictionaryHandle handler = new ColumnDictionaryHandle("dictionary");
+
+            handler.writeDictionary(col, col);
+            */
+
             while (true)
             {
                 String[] line = splitter.splitLine();
                 PrintStringArray.printFormatted(splitter.splitFirstLine(), line);
             }
+
 
         }
         catch (IOException e)

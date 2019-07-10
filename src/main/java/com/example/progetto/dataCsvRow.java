@@ -35,8 +35,6 @@ public class dataCsvRow
     String Language;
 
 
-
-
     public dataCsvRow(int id, int nid, int original_ID, String name, String project_acronym, String visual, String project_description, String results, String[] coordinators, String[] partners, String[] project_address_es, String project_postal_code_s, String project_town_s, String[] project_country_ies, float[] project_location_latitude, float[] project_location_longitude, String link_to_a_video, String timeframe_start, String timeframe_end, String project_webpage, String related_links, String EU_Budget_MFF_heading, String programme_name, String funding_area, String EC_s_priorities, long EU_Budget_contribution, long total_project_budget, String author, String language)
     {
         this.id = id;

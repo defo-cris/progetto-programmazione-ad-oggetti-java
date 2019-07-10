@@ -33,7 +33,7 @@ public class ReadLineFromBufferedReader
     * read before this point and return che correspondent string. if the EOL don't match the size of the array
     * used to read we will need to store the exceeded chars in a CharBuffer (or something like that) and concatenate
     * that with the reading of the new readLine.
-    * 
+    *
     * the effect must reflect the readLine() of BufferedReader
     *
     * */
@@ -56,6 +56,7 @@ public class ReadLineFromBufferedReader
                 break buffIter;
             }
         }
+        return null;
 
     }
 
