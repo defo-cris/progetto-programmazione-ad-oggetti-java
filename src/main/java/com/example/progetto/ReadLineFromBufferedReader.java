@@ -1,22 +1,31 @@
 package com.example.progetto;
 
+import org.apache.commons.collections.buffer.CircularFifoBuffer;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Queue;
+import java.util.stream.Collectors;
 
 public class ReadLineFromBufferedReader
 {
     private BufferedReader br;
     private String endOfLineDelimiter;
     private int maxLineLength;
+    CircularFifoBuffer buffer;
+
 
 
     public ReadLineFromBufferedReader(Reader in, String endOfLineDelimiter, int maxLineLength)
     {
         br = new BufferedReader(in);
         this.endOfLineDelimiter = endOfLineDelimiter;
+
         this.maxLineLength = maxLineLength;
+        buffer = new CircularFifoBuffer(endOfLineDelimiter.length());
     }
 
 
@@ -25,7 +34,7 @@ public class ReadLineFromBufferedReader
         br = new BufferedReader(in);
         this.endOfLineDelimiter = endOfLineDelimiter;
         maxLineLength = 4096;
-
+        buffer = new CircularFifoBuffer(endOfLineDelimiter.length());
     }
 
 
@@ -45,14 +54,34 @@ public class ReadLineFromBufferedReader
             {
                 tmp = 63;
             }
-            char c = (char)tmp;
-            if ((c != '\n') && (tmp != -1))
+            if (tmp != -1)
             {
-                str.append(c);
+                char c = (char)tmp;
+                buffer.add(c);
+
+                boolean flag = true;
+                Object[] buff = buffer.toArray();
+                char[] eol = endOfLineDelimiter.toCharArray();
+
+                for (int i = 0; i < buff.length; i++)
+                {
+                    if ((char)buff[i] != eol[i])
+                    {
+                        flag = false;
+                    }
+                }
+
+                if (!flag)
+                {
+                    str.append(c);
+                }
+                else
+                {
+                    return str.toString();
+                }
             }
             else
             {
-                System.out.println("str.length() --->> " + str.length());
                 return str.toString();
             }
         }
