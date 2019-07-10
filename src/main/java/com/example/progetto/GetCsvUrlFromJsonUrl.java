@@ -35,9 +35,9 @@ class GetCsvUrlFromJsonUrl
 
         JSONObject readJsonFromUrl(String url) throws IOException, JSONException
         {
-            HttpURLConnection httpcon = (HttpURLConnection) new URL(url).openConnection();
-            httpcon.addRequestProperty("User-Agent", "Mozilla/5.0");
-            try (InputStream is = httpcon.getInputStream())
+            HttpURLConnection httpCon = (HttpURLConnection) new URL(url).openConnection();
+            httpCon.addRequestProperty("User-Agent", "Mozilla/5.0");
+            try (InputStream is = httpCon.getInputStream())
             {
                 BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
                 String jsonText = readAll(rd);
