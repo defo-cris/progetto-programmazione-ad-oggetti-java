@@ -63,10 +63,6 @@ public class ReadLineFromBufferedReader
 
                 if (!flag)
                 {
-                    if (str.length() > maxLineLength - 2)
-                    {
-                        throw new IndexOutOfBoundsException("max line length too short");
-                    }
                     str.append(c);
                 }
                 else
@@ -79,8 +75,15 @@ public class ReadLineFromBufferedReader
                 break;
             }
         }
+
         String s = str.toString();
-        return s.substring(0, s.length() - endOfLineDelimiter.length() + 1);
+        if (s.length() < endOfLineDelimiter.length() - 1)
+        {
+            return "";
+        }
+        s = s.substring(0, s.length() - endOfLineDelimiter.length() + 1);
+        return s;
+
     }
 
     public void mark(int i) throws IOException
