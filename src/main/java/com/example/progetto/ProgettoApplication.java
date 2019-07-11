@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Vector;
 import java.util.zip.DataFormatException;
 
 @SpringBootApplication
@@ -36,15 +37,16 @@ public class ProgettoApplication
             splitter.setDelimiter(",");
 
 
-            for (int i = 0; i < 15; i++)
+          /*  for (int i = 0; i < 15; i++)
             {
                 String[] line = splitter.splitLine();
                 PrintStringArray.printFormatted(splitter.splitFirstLine(), line);
-            }
+            }*/
 
-
+            Vector<String> v = new Vector<>(Arrays.asList(splitter.splitFirstLine()));
           ColumnDictionaryHandler dichan = new ColumnDictionaryHandler("dictionary");
           dichan.readerDictionary();
+          dichan.appendWriteDictionary(v,v);
         }
         catch (IOException e)
         {

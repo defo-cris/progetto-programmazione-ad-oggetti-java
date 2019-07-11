@@ -30,9 +30,9 @@ public class ColumnDictionaryHandler
     {
         try(FileWriter fileWriter = new FileWriter(fileName, append))
         {
-            for (int i = 0; i < columns.capacity(); i++)
+            for (int i = 0; i < columns.size(); i++)
             {
-                fileWriter.write(columns.elementAt(i) + "," + dataTypes.elementAt(i) + "\n");
+                fileWriter.write(columns.get(i) + "," + dataTypes.get(i) + "\n");
             }
         }
     }
@@ -47,7 +47,22 @@ public class ColumnDictionaryHandler
 
     public void appendWriteDictionary(Vector<String> columns, Vector<String> dataTypes) throws IOException
     {
-        writeDictionary(columns, dataTypes, true);
+        Vector<String> col = new Vector<>();
+        Vector<String> data = new Vector<>();
+
+        for (int i = 0; i < columns.size(); i++)
+        {
+            if(isPresent(columns.get(i),dataTypes.get(i)))
+            {
+                System.out.println("The element "+columns.get(i)+" is already present in the dictionary");
+            }
+            else
+            {
+                col.add(columns.get(i));
+                data.add(dataTypes.get(i));
+            }
+        }
+        writeDictionary(col, data, true);
     }
 
     public void readerDictionary() throws IOException
@@ -66,7 +81,7 @@ public class ColumnDictionaryHandler
 
     private boolean isPresent(String col, String data)
     {
-        int index = -1;
+        int index;
         if ((index = columns.indexOf(col)) == -1)
         {
             return false;
