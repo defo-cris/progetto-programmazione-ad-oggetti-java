@@ -1,9 +1,8 @@
 package com.example.progetto;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.io.*;
+import java.util.Arrays;
+import java.util.Vector;
 
 public class ColumnDictionaryHandler
 {
@@ -16,34 +15,67 @@ public class ColumnDictionaryHandler
     * */
 
     private String fileName;
+    private Vector<String> columns;
+    private Vector<String> dataTypes;
 
 
     public ColumnDictionaryHandler(String fileName)
     {
         this.fileName = fileName + ".csv";
+        columns = new Vector<>();
+        dataTypes = new Vector<>();
     }
 
-
-    /*
-    * now work in write mode, it should work in append mode
-    * */
-    public void writeDictionary(ArrayList<String> columns, ArrayList<String> dataTypes) throws IOException
+    private void writeDictionary(Vector<String> columns, Vector<String> dataTypes, boolean append) throws IOException
     {
-        if (columns.size() != dataTypes.size()) throw new IllegalArgumentException("the two arrays must have the same size");
-
-        try(FileWriter fileWriter = new FileWriter(fileName))
+        try(FileWriter fileWriter = new FileWriter(fileName, append))
         {
-            Iterator colIter = columns.iterator();
-            Iterator datIter = dataTypes.iterator();
-            do
+            for (int i = 0; i < columns.capacity(); i++)
             {
-                String c = (String) colIter.next();
-                String d = (String) datIter.next();
-
-                fileWriter.write(c + "," + d + "\n");
+                fileWriter.write(columns.elementAt(i) + "," + dataTypes.elementAt(i) + "\n");
             }
-            while ((colIter.hasNext()) && (datIter.hasNext()));
         }
+    }
+
+    public void overWriteDictionary(Vector<String> columns, Vector<String> dataTypes) throws IOException
+    {
+        if (columns.capacity() != dataTypes.capacity()) throw new IllegalArgumentException("the two arrays must have the same size");
+        this.columns = columns;
+        this.dataTypes = dataTypes;
+        writeDictionary(columns, dataTypes, false);
+    }
+
+    public void appendWriteDictionary(Vector<String> columns, Vector<String> dataTypes) throws IOException
+    {
+        writeDictionary(columns, dataTypes, true);
+    }
+
+    public void readerDictionary() throws IOException
+    {
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))){
+            String sCurrentLine;
+            while ((sCurrentLine = br.readLine()) != null) {
+                String[] split = sCurrentLine.split(",",2);
+                String col = split[0];
+                String data = split[1];
+                columns.add(col);
+                dataTypes.add(data);
+            }
+        }
+    }
+
+    private boolean isPresent(String col, String data)
+    {
+        int index = -1;
+        if ((index = columns.indexOf(col)) == -1)
+        {
+            return false;
+        }
+        if (dataTypes.get(index).equals(data))
+        {
+            return true;
+        }
+        throw new IllegalArgumentException("the column already exist but with a different data type");
     }
 
 }

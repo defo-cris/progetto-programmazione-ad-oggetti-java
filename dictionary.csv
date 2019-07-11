@@ -26,3 +26,14 @@ EU Budget contribution,EU Budget contribution
 Total project budget,Total project budget
 Author,Author
 Language,Language
+Country,Country
+NUTS1_ID,NUTS1_ID
+NUTS2_ID,NUTS2_ID
+NUTS2_name,NUTS2_name
+Fund,Fund
+Year,Year
+Programming_Period,Programming_Period
+EU_Payment_annual,EU_Payment_annual
+Modelled_annual_expenditure,Modelled_annual_expenditure
+Standard_Deviation_of_annual_expenditure,Standard_Deviation_of_annual_expenditure
+Standard_Error_of_modelled_annual_expenditure,Standard_Error_of_modelled_annual_expenditure

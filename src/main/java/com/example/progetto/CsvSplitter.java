@@ -57,7 +57,7 @@ public class CsvSplitter
 
     String[] splitFirstLine()
     {
-        return firstline.split(sep + "(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
+        return firstline.split(sep + "(?=([^\"]*\"[^\"]*\")*[^\"]*$)",-1);
     }
 
     String[] splitLine() throws IOException

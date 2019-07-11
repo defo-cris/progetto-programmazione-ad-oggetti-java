@@ -36,13 +36,15 @@ public class ProgettoApplication
             splitter.setDelimiter(",");
 
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 15; i++)
             {
                 String[] line = splitter.splitLine();
                 PrintStringArray.printFormatted(splitter.splitFirstLine(), line);
             }
 
 
+          ColumnDictionaryHandler dichan = new ColumnDictionaryHandler("dictionary");
+          dichan.readerDictionary();
         }
         catch (IOException e)
         {

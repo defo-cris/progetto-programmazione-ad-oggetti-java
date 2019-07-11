@@ -19,6 +19,7 @@ public class ReadLineFromBufferedReader
 
 
 
+
     public ReadLineFromBufferedReader(Reader in, String endOfLineDelimiter, int maxLineLength)
     {
         br = new BufferedReader(in);
@@ -77,7 +78,8 @@ public class ReadLineFromBufferedReader
                 }
                 else
                 {
-                    return str.toString();
+                    String s = str.toString();
+                    return s.substring(0, s.length() - endOfLineDelimiter.length() + 1);
                 }
             }
             else
