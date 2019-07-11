@@ -6,7 +6,6 @@ import java.net.URL;
 
 public class CsvValidator
 {
-
     private static int validateInt(String s, int defaultValue)
     {
         try
