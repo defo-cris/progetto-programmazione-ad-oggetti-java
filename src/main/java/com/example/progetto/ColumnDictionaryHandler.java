@@ -4,19 +4,14 @@ import java.io.*;
 import java.util.Arrays;
 import java.util.Vector;
 
+@Deprecated
 public class ColumnDictionaryHandler
 {
-    /*
-    * TODO
-    *  make a method to append columns/data type on the go
-    *  make a method to read the csv back into some data type
-    *  make a verifier to check if some pair of columns/data type are duplicate
-    *  make a method to remove a pair from the file (read the file, remove the line, rewrite the file)
-    * */
 
     private String fileName;
     private Vector<String> columns;
     private Vector<String> dataTypes;
+    private Vector<String> dataClass;
 
 
     public ColumnDictionaryHandler(String fileName)
@@ -24,57 +19,59 @@ public class ColumnDictionaryHandler
         this.fileName = fileName + ".csv";
         columns = new Vector<>();
         dataTypes = new Vector<>();
+        dataClass = new Vector<>();
     }
 
-    private void writeDictionary(Vector<String> columns, Vector<String> dataTypes, boolean append) throws IOException
+    private void writeDictionary(Vector<String> columns, Vector<String> dataTypes, Vector<String> dataClass, boolean append) throws IOException
     {
-        try(FileWriter fileWriter = new FileWriter(fileName, append))
+        try (FileWriter fileWriter = new FileWriter(fileName, append))
         {
             for (int i = 0; i < columns.size(); i++)
             {
-                fileWriter.write(columns.get(i) + "," + dataTypes.get(i) + "\n");
+                fileWriter.write(columns.get(i) + "," + dataTypes.get(i) + "," + dataClass.get(i) + "\n");
             }
         }
     }
 
-    public void overWriteDictionary(Vector<String> columns, Vector<String> dataTypes) throws IOException
+    public void overWriteDictionary(Vector<String> columns, Vector<String> dataTypes, Vector<String> dataClass) throws IOException
     {
-        if (columns.capacity() != dataTypes.capacity()) throw new IllegalArgumentException("the two arrays must have the same size");
+        if (columns.capacity() != dataTypes.capacity())
+            throw new IllegalArgumentException("the two arrays must have the same size");
         this.columns = columns;
         this.dataTypes = dataTypes;
-        writeDictionary(columns, dataTypes, false);
+        this.dataClass = dataClass;
+        writeDictionary(columns, dataTypes, dataClass, false);
     }
 
-    public void appendWriteDictionary(Vector<String> columns, Vector<String> dataTypes) throws IOException
+    public void appendWriteDictionary(Vector<String> columns, Vector<String> dataTypes, Vector<String> dataClass) throws IOException
     {
         Vector<String> col = new Vector<>();
         Vector<String> data = new Vector<>();
+        Vector<String> classes = new Vector<>();
 
         for (int i = 0; i < columns.size(); i++)
         {
-            if(isPresent(columns.get(i),dataTypes.get(i)))
-            {
-                System.out.println("The element "+columns.get(i)+" is already present in the dictionary");
-            }
-            else
+            if (!isPresent(columns.get(i), dataTypes.get(i)))
             {
                 col.add(columns.get(i));
                 data.add(dataTypes.get(i));
+                classes.add(dataClass.get(i));
             }
         }
-        writeDictionary(col, data, true);
+        writeDictionary(col, data, classes, true);
     }
 
     public void readerDictionary() throws IOException
     {
-        try (BufferedReader br = new BufferedReader(new FileReader(fileName))){
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName)))
+        {
             String sCurrentLine;
-            while ((sCurrentLine = br.readLine()) != null) {
-                String[] split = sCurrentLine.split(",",2);
-                String col = split[0];
-                String data = split[1];
-                columns.add(col);
-                dataTypes.add(data);
+            while ((sCurrentLine = br.readLine()) != null)
+            {
+                String[] split = sCurrentLine.split(",", 3);
+                columns.add(split[0]);
+                dataTypes.add(split[1]);
+                dataClass.add(split[2]);
             }
         }
     }
@@ -98,9 +95,19 @@ public class ColumnDictionaryHandler
         int index;
         if ((index = columns.indexOf(columnName)) == -1)
         {
-            throw new IllegalArgumentException("");
+            throw new IllegalArgumentException("column not present");
         }
         return dataTypes.get(index);
+    }
+
+    public String getDataClass(String columnName)
+    {
+        int index;
+        if ((index = columns.indexOf(columnName)) == -1)
+        {
+            throw new IllegalArgumentException("column not present");
+        }
+        return dataClass.get(index);
     }
 
 }

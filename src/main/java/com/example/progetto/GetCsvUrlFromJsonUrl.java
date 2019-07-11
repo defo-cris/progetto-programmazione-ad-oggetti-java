@@ -49,13 +49,10 @@ class GetCsvUrlFromJsonUrl
 
     class GetCsvLinkFromJson
     {
-
         String getLink(JSONObject json, int number) throws JSONException
         {
             return (String) json.getJSONObject("result").getJSONArray("resources").getJSONObject(number).get("url");
         }
-
-
     }
 
 }

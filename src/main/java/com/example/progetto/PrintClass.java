@@ -1,16 +1,16 @@
 package com.example.progetto;
 
-public class PrintStringArray
+import java.util.ArrayList;
+
+public class PrintClass
 {
-    PrintStringArray()
+    PrintClass()
     {
 
     }
 
     static void printFormatted(String[] col, String[] row)
     {
-        //System.out.println("col.length -> " + col.length);
-        //System.out.println("row.length -> " + row.length);
         System.out.println("\n");
         for (int i = 0; i < col.length; i++)
         {
@@ -24,6 +24,14 @@ public class PrintStringArray
         for (String a: arr)
         {
             System.out.println(a);
+        }
+    }
+
+    static void printArrayList(ArrayList a)
+    {
+        for (Object elem: a)
+        {
+            System.out.println(elem + "\n");
         }
     }
 }

@@ -61,7 +61,7 @@ public class CsvSplitter
         return firstline.split(sep + "(?=([^\"]*\"[^\"]*\")*[^\"]*$)",-1);
     }
 
-    String[] splitLine() throws IOException
+    String[] splitLine()
     {
 
         if (sep.equals("")) throw new IllegalStateException("you need to set or guess the separator first");
@@ -80,7 +80,15 @@ public class CsvSplitter
                         ")                         ", // stop positive look ahead
                 otherThanQuote, quotedString, otherThanQuote);
 
-        return csv.getLine().split(regex);
+        try
+        {
+            return csv.getLine().split(regex);
+        }
+        catch (IOException e)
+        {
+            System.out.println("IOException --> " + e);
+            return null;
+        }
     }
 
 }

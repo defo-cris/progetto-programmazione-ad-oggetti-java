@@ -53,7 +53,7 @@ public class CsvValidator
         return s;
     }
 
-    private static String[] validateStringArray(String s, String sep)
+    private static StringArray validateStringArray(String s, String sep)
     {
         /*
         * TODO
@@ -61,15 +61,15 @@ public class CsvValidator
         *  --> Maritime House, 25 Marine Parade, null,
         * */
         s = validateString(s);
-        return s.split(sep);
+        return new StringArray(s.split(sep));
     }
 
-    public static String[] validateStringArrayCommaSeparated(String s)
+    public static StringArray validateStringArrayCommaSeparated(String s)
     {
         return validateStringArray(s, ",");
     }
 
-    public static String[] validateStringArraySemicolonSeparated(String s)
+    public static StringArray validateStringArraySemicolonSeparated(String s)
     {
         return validateStringArray(s, ";");
     }
@@ -86,7 +86,7 @@ public class CsvValidator
         }
     }
 
-    public static float[] validateFloatArraySemicolonSeparated(String s)
+    public static FloatArray validateFloatArraySemicolonSeparated(String s)
     {
         String[] tmp = s.split(";");
         float[] floats = new float[tmp.length];
@@ -95,10 +95,10 @@ public class CsvValidator
         {
             floats[i] = validateFloat(tmp[i]);
         }
-        return floats;
+        return new FloatArray(floats);
     }
 
-    public static String[] validateUrlArraySemicolonSeparated(String s)
+    public static StringArray validateUrlArraySemicolonSeparated(String s)
     {
         String[] tmp = s.split(";");
 
@@ -107,7 +107,7 @@ public class CsvValidator
             tmp[i] = validateUrl(tmp[i]);
         }
 
-        return tmp;
+        return new StringArray(tmp);
     }
 
 }

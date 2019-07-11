@@ -19,6 +19,7 @@ public class ReadLineFromBufferedReader
 
 
 
+
     public ReadLineFromBufferedReader(Reader in, String endOfLineDelimiter, int maxLineLength)
     {
         br = new BufferedReader(in);
@@ -46,7 +47,7 @@ public class ReadLineFromBufferedReader
             int tmp = br.read();
             if (tmp != -1)
             {
-                char c = (char) tmp;
+                char c = (char)tmp;
                 buffer.add(c);
 
                 boolean flag = true;
@@ -55,7 +56,7 @@ public class ReadLineFromBufferedReader
 
                 for (int i = 0; i < buff.length; i++)
                 {
-                    if ((char) buff[i] != eol[i])
+                    if ((char)buff[i] != eol[i])
                     {
                         flag = false;
                     }
