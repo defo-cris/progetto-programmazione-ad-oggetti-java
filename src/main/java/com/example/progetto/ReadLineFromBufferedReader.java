@@ -19,7 +19,6 @@ public class ReadLineFromBufferedReader
 
 
 
-
     public ReadLineFromBufferedReader(Reader in, String endOfLineDelimiter, int maxLineLength)
     {
         br = new BufferedReader(in);
@@ -39,25 +38,15 @@ public class ReadLineFromBufferedReader
     }
 
 
-    /* TODO fix this shit and make it to work
-    *
-    * Abstract:
-    *
-    *
-    * */
     public String readLine() throws IOException
     {
         StringBuilder str = new StringBuilder(maxLineLength);
         while (true)
         {
             int tmp = br.read();
-            if (tmp > 255)
-            {
-                tmp = 63;
-            }
             if (tmp != -1)
             {
-                char c = (char)tmp;
+                char c = (char) tmp;
                 buffer.add(c);
 
                 boolean flag = true;
@@ -66,7 +55,7 @@ public class ReadLineFromBufferedReader
 
                 for (int i = 0; i < buff.length; i++)
                 {
-                    if ((char)buff[i] != eol[i])
+                    if ((char) buff[i] != eol[i])
                     {
                         flag = false;
                     }
@@ -74,20 +63,24 @@ public class ReadLineFromBufferedReader
 
                 if (!flag)
                 {
+                    if (str.length() > maxLineLength - 2)
+                    {
+                        throw new IndexOutOfBoundsException("max line length too short");
+                    }
                     str.append(c);
                 }
                 else
                 {
-                    String s = str.toString();
-                    return s.substring(0, s.length() - endOfLineDelimiter.length() + 1);
+                    break;
                 }
             }
             else
             {
-                return str.toString();
+                break;
             }
         }
-
+        String s = str.toString();
+        return s.substring(0, s.length() - endOfLineDelimiter.length() + 1);
     }
 
     public void mark(int i) throws IOException

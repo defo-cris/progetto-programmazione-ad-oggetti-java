@@ -9,7 +9,7 @@ import java.util.zip.DataFormatException;
 public class CsvSplitter
 {
     private GetCsvDataFromUrl csv;
-    private ArrayList<String> commonSeparator = new ArrayList<>(Arrays.asList(";", ",", "|", "^"));
+    private ArrayList<String> commonSeparator;
     private String sep;
     private String firstline;
 
@@ -17,6 +17,7 @@ public class CsvSplitter
     {
         this.csv = csv;
         sep = "";
+        commonSeparator = new ArrayList<>(Arrays.asList(";", ",", "|", "^"));
     }
 
     void guessDelimiter() throws IOException, DataFormatException

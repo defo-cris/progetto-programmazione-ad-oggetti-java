@@ -93,4 +93,14 @@ public class ColumnDictionaryHandler
         throw new IllegalArgumentException("the column already exist but with a different data type");
     }
 
+    public String getDataType(String columnName)
+    {
+        int index;
+        if ((index = columns.indexOf(columnName)) == -1)
+        {
+            throw new IllegalArgumentException("");
+        }
+        return dataTypes.get(index);
+    }
+
 }

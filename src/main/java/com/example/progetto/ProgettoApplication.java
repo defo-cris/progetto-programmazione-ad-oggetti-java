@@ -44,9 +44,9 @@ public class ProgettoApplication
             }*/
 
             Vector<String> v = new Vector<>(Arrays.asList(splitter.splitFirstLine()));
-          ColumnDictionaryHandler dichan = new ColumnDictionaryHandler("dictionary");
-          dichan.readerDictionary();
-          dichan.appendWriteDictionary(v,v);
+            ColumnDictionaryHandler dichan = new ColumnDictionaryHandler("dictionary");
+            dichan.readerDictionary();
+            dichan.appendWriteDictionary(v,v);
         }
         catch (IOException e)
         {

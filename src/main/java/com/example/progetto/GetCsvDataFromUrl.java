@@ -10,7 +10,6 @@ import java.nio.charset.StandardCharsets;
 class GetCsvDataFromUrl
 {
     private String url;
-    //private NewBufferedReader br;
     private ReadLineFromBufferedReader br;
 
     GetCsvDataFromUrl(String url)
@@ -31,8 +30,8 @@ class GetCsvDataFromUrl
 
         URLConnection urlConn = urlCSV.openConnection();
 
-        br = new ReadLineFromBufferedReader(new InputStreamReader(urlConn.getInputStream(), StandardCharsets.UTF_8), "\r\n", 4096);
-
+        br = new ReadLineFromBufferedReader(new InputStreamReader(urlConn.getInputStream(), StandardCharsets.UTF_8),
+                "\r\n", 4096);
 
         String line;
 
