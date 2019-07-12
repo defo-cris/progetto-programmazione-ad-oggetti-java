@@ -1,4 +1,4 @@
-package com.example.progetto;
+package csvClasses;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -8,11 +8,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.Charset;
 
-class GetCsvUrlFromJsonUrl
+public class GetCsvUrlFromJsonUrl
 {
 
 
-    String getLink(String url, int numCsv) throws IOException, JSONException
+    public String getLink(String url, int numCsv) throws IOException, JSONException
     {
         GetJsonFromUrl jsonFromUrl = new GetJsonFromUrl();
         JSONObject json = jsonFromUrl.readJsonFromUrl(url);

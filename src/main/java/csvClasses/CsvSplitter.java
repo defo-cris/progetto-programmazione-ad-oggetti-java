@@ -1,9 +1,8 @@
-package com.example.progetto;
+package csvClasses;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.zip.DataFormatException;
 
 public class CsvSplitter
@@ -50,7 +49,7 @@ public class CsvSplitter
         commonSeparator.add(sep);
     }
 
-    void setDelimiter(String sep) throws IOException
+    public void setDelimiter(String sep) throws IOException
     {
         firstline = csv.getFirstLine();
         this.sep = sep;
@@ -86,6 +85,7 @@ public class CsvSplitter
         }
         catch (IOException e)
         {
+            /*TODO delete this println*/
             System.out.println("IOException --> " + e);
             return null;
         }

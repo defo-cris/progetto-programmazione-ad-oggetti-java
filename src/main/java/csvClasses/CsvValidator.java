@@ -1,4 +1,7 @@
-package com.example.progetto;
+package csvClasses;
+
+import csvClasses.dataType.FloatArray;
+import csvClasses.dataType.StringArray;
 
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
@@ -35,6 +38,7 @@ public class CsvValidator
             s = "NULL";
         }
         s = s.replaceAll("<.*?>","");
+        s = s.replaceAll("\"","");
         return s;
     }
 
@@ -65,7 +69,7 @@ public class CsvValidator
 
     public static StringArray validateStringArrayCommaSeparated(String s)
     {
-        return validateStringArray(s, ",");
+        return validateStringArray(s, ", ");
     }
 
     public static StringArray validateStringArraySemicolonSeparated(String s)

@@ -1,4 +1,7 @@
-package com.example.progetto;
+package csvClasses;
+
+import csvClasses.dataType.FloatArray;
+import csvClasses.dataType.StringArray;
 
 import java.util.Arrays;
 

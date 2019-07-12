@@ -1,14 +1,11 @@
-package com.example.progetto;
+package csvClasses;
 
 import org.apache.commons.collections.buffer.CircularFifoBuffer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Queue;
-import java.util.stream.Collectors;
+
 
 public class ReadLineFromBufferedReader
 {
@@ -16,8 +13,6 @@ public class ReadLineFromBufferedReader
     private String endOfLineDelimiter;
     private int maxLineLength;
     CircularFifoBuffer buffer;
-
-
 
 
     public ReadLineFromBufferedReader(Reader in, String endOfLineDelimiter, int maxLineLength)
@@ -34,7 +29,7 @@ public class ReadLineFromBufferedReader
     {
         br = new BufferedReader(in);
         this.endOfLineDelimiter = endOfLineDelimiter;
-        maxLineLength = 4096;
+        maxLineLength = 8192;
         buffer = new CircularFifoBuffer(endOfLineDelimiter.length());
     }
 

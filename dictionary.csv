@@ -6,7 +6,7 @@ Visual,Url
 Project description,String
 Results,String
 Coordinators,String
-Partners,StringArray
+Partners,StringArraySemicolonSeparated
 Project address(es),StringArrayCommaSeparated
 Project postal code(s),StringArraySemicolonSeparated
 Project town(s),StringArraySemicolonSeparated

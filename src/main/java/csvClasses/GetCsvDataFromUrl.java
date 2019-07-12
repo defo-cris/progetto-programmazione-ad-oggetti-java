@@ -1,4 +1,4 @@
-package com.example.progetto;
+package csvClasses;
 
 import java.io.EOFException;
 import java.io.IOException;
@@ -7,12 +7,12 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 
-class GetCsvDataFromUrl
+public class GetCsvDataFromUrl
 {
     private String url;
     private ReadLineFromBufferedReader br;
 
-    GetCsvDataFromUrl(String url)
+    public GetCsvDataFromUrl(String url)
     {
         this.url = url;
     }
@@ -24,14 +24,14 @@ class GetCsvDataFromUrl
      * @return
      * @throws IOException
      */
-    String getFirstLine() throws IOException
+    public String getFirstLine() throws IOException
     {
         URL urlCSV = new URL(url);
 
         URLConnection urlConn = urlCSV.openConnection();
 
         br = new ReadLineFromBufferedReader(new InputStreamReader(urlConn.getInputStream(), StandardCharsets.UTF_8),
-                "\r\n", 4096);
+                "\r\n");
 
         String line;
 
@@ -43,7 +43,7 @@ class GetCsvDataFromUrl
         throw new IOException("file ended too early");
     }
 
-    String getLine() throws IOException
+    public String getLine() throws IOException
     {
         if (br == null)
         {
@@ -57,7 +57,7 @@ class GetCsvDataFromUrl
         throw new EOFException("file reached the end");
     }
 
-    void resetPosition() throws IOException
+    public void resetPosition() throws IOException
     {
         br.reset();
     }

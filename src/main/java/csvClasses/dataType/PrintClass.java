@@ -1,6 +1,7 @@
-package com.example.progetto;
+package csvClasses.dataType;
 
 import java.util.ArrayList;
+import java.util.Vector;
 
 public class PrintClass
 {
@@ -28,6 +29,14 @@ public class PrintClass
     }
 
     static void printArrayList(ArrayList a)
+    {
+        for (Object elem: a)
+        {
+            System.out.println(elem + "\n");
+        }
+    }
+
+    static void printVector(Vector a)
     {
         for (Object elem: a)
         {
