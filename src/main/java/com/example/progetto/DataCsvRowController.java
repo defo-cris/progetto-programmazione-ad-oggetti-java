@@ -1,4 +1,4 @@
-package controller;
+package com.example.progetto;
 
 import csvClasses.dataType.Metadata;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,13 +20,19 @@ public class DataCsvRowController
     @GetMapping("/data")
     public Vector<DataCsvRow> retrieveData()
     {
-        return DataCsvRowServices.getCsvData();
+        return dataServices.getCsvData();
     }
 
     @GetMapping("/metadata")
     public Vector<Metadata> retrieveMetadata()
     {
-        return DataCsvRowServices.getMetadata();
+        return dataServices.getMetadata();
+    }
+
+    @GetMapping("/test")
+    public String retrieveTest()
+    {
+        return "test";
     }
 
 }

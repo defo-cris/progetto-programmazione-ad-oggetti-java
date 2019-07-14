@@ -12,13 +12,13 @@ public class ProgettoApplication
 
     public static void main(String[] args)
     {
+        SpringApplication.run(ProgettoApplication.class, args);
+
         DataCsv data = new DataCsv();
 
         data.readAndStore();
 
         data.setServicesData();
-
-        SpringApplication.run(ProgettoApplication.class, args);
     }
 
 }

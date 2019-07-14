@@ -1,4 +1,4 @@
-package controller;
+package com.example.progetto;
 
 import csvClasses.dataType.Metadata;
 import org.springframework.stereotype.Component;
@@ -12,7 +12,7 @@ public class DataCsvRowServices
     static private Vector<DataCsvRow> csvData;
 
 
-    public static Vector<Metadata> getMetadata()
+    public Vector<Metadata> getMetadata()
     {
         return metadata;
     }
@@ -22,7 +22,7 @@ public class DataCsvRowServices
         DataCsvRowServices.metadata = metadata;
     }
 
-    public static Vector<DataCsvRow> getCsvData()
+    public Vector<DataCsvRow> getCsvData()
     {
         return csvData;
     }

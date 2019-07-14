@@ -44,7 +44,7 @@ title __PROGETTO's Class Diagram__\n
     }
 
     namespace svClasses {
-      class controller.DataCsvRow {
+      class com.example.progetto.DataCsvRow {
       }
     }
 

@@ -1,12 +1,12 @@
 package csvClasses;
 
 
-import controller.DataCsvRowServices;
+import com.example.progetto.DataCsvRowServices;
 import csvClasses.csvRetrieve.CsvSplitter;
 import csvClasses.csvRetrieve.CsvValidator;
 import csvClasses.csvRetrieve.GetCsvDataFromUrl;
 import csvClasses.csvRetrieve.GetCsvUrlFromJsonUrl;
-import controller.DataCsvRow;
+import com.example.progetto.DataCsvRow;
 import csvClasses.dataType.Metadata;
 import org.json.JSONException;
 

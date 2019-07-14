@@ -47,7 +47,7 @@ title __CSVCLASSES's Class Diagram__\n
     }
 
     namespace svClasses {
-      class controller.DataCsvRow {
+      class com.example.progetto.DataCsvRow {
           - author : String
           - coordinators : String
           - ecsPriorities : String[]
