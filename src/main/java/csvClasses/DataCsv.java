@@ -1,6 +1,13 @@
 package csvClasses;
 
-import com.example.progetto.*;
+
+import controller.DataCsvRowServices;
+import csvClasses.csvRetrieve.CsvSplitter;
+import csvClasses.csvRetrieve.CsvValidator;
+import csvClasses.csvRetrieve.GetCsvDataFromUrl;
+import csvClasses.csvRetrieve.GetCsvUrlFromJsonUrl;
+import controller.DataCsvRow;
+import csvClasses.dataType.Metadata;
 import org.json.JSONException;
 
 import java.io.IOException;
@@ -25,6 +32,11 @@ public class DataCsv
 
     private String[] firstLine;
 
+    public DataCsv()
+    {
+        csvData = new Vector<>();
+        metadata = new Vector<>();
+    }
 
     public void readAndStore()
     {
@@ -45,7 +57,7 @@ public class DataCsv
             firstLine = splitter.splitFirstLine();
 
             String[] line;
-            csvData = new Vector<>();
+
 
             while ((line = splitter.splitLine()) != null)
             {
@@ -64,6 +76,10 @@ public class DataCsv
 
             System.out.println("csv loaded!");
 
+            createMetadata();
+
+            System.out.println("metadata ok!");
+
         }
         catch (IOException | JSONException | NoSuchMethodException | ClassNotFoundException | IllegalAccessException | InvocationTargetException e)
         {
@@ -73,13 +89,13 @@ public class DataCsv
 
     }
 
-    public void createMetadata()
+    private void createMetadata()
     {
-        DataCsvRow pharmacyobj = new DataCsvRow();
-        Class<?> pharmacy = pharmacyobj.getClass();
+        DataCsvRow dataCsvRow = new DataCsvRow();
+        Class<?> data = dataCsvRow.getClass();
 
         int i = 0;
-        for (Field field: pharmacy.getDeclaredFields())
+        for (Field field: data.getDeclaredFields())
         {
             try
             {
@@ -91,6 +107,12 @@ public class DataCsv
                 System.out.println("Index out of bound");
             }
         }
+    }
+
+    public void setServicesData()
+    {
+        DataCsvRowServices.setCsvData(csvData);
+        DataCsvRowServices.setMetadata(metadata);
     }
 
 }

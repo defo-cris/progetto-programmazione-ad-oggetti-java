@@ -16,6 +16,7 @@ public class ProgettoApplication
 
         data.readAndStore();
 
+        data.setServicesData();
 
         SpringApplication.run(ProgettoApplication.class, args);
     }

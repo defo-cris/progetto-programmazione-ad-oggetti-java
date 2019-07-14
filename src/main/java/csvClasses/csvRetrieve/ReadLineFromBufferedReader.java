@@ -1,4 +1,4 @@
-package csvClasses;
+package csvClasses.csvRetrieve;
 
 import org.apache.commons.collections.buffer.CircularFifoBuffer;
 

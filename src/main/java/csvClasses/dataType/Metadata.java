@@ -1,4 +1,4 @@
-package com.example.progetto;
+package csvClasses.dataType;
 
 public class Metadata
 {

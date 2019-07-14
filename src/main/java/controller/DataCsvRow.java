@@ -1,4 +1,4 @@
-package csvClasses;
+package controller;
 
 import csvClasses.dataType.FloatArray;
 import csvClasses.dataType.StringArray;

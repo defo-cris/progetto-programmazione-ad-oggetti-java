@@ -1,4 +1,4 @@
-package csvClasses;
+package csvClasses.csvRetrieve;
 
 import csvClasses.dataType.FloatArray;
 import csvClasses.dataType.StringArray;

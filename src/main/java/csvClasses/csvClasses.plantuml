@@ -1,0 +1,198 @@
+@startuml
+
+title __CSVCLASSES's Class Diagram__\n
+
+    namespace svClasses {
+      class csvClasses.csvRetrieve.CsvSplitter {
+          - commonSeparator : ArrayList<String>
+          - firstline : String
+          - sep : String
+          + setDelimiter()
+          ~ CsvSplitter()
+          ~ addCommonSeparator()
+          ~ guessDelimiter()
+          ~ splitFirstLine()
+          ~ splitLine()
+      }
+    }
+
+    namespace svClasses {
+      class csvClasses.csvRetrieve.CsvValidator {
+          {static} + validateCurrency()
+          {static} + validateFloat()
+          {static} + validateFloatArraySemicolonSeparated()
+          {static} + validateID()
+          {static} + validateString()
+          {static} + validateStringArrayCommaSeparated()
+          {static} + validateStringArraySemicolonSeparated()
+          {static} + validateUrl()
+          {static} + validateUrlArraySemicolonSeparated()
+          {static} - validateInt()
+          {static} - validateStringArray()
+      }
+    }
+
+    namespace svClasses {
+      class csvClasses.DataCsv {
+          - colNames : String[]
+          - csvData : Vector<DataCsvRow>
+          - dataNames : String[]
+          - dataType : String[]
+          - firstLine : String[]
+          - metadata : Vector<Metadata>
+          - url : String
+          + createMetadata()
+          + readAndStore()
+      }
+    }
+
+    namespace svClasses {
+      class controller.DataCsvRow {
+          - author : String
+          - coordinators : String
+          - ecsPriorities : String[]
+          - euBudgetContribution : int
+          - euBudgetMffHeading : String
+          - fundingArea : String[]
+          - language : String
+          - linkToAVideo : String
+          - name : String
+          - nid : int
+          - originalId : String
+          - partners : String[]
+          - programmeName : String
+          - projectAcronym : String
+          - projectAddresses : String[]
+          - projectCountryies : String[]
+          - projectDescription : String
+          - projectLocationLatitude : float[]
+          - projectLocationLongitude : float[]
+          - projectPostalCodes : String[]
+          - projectTowns : String[]
+          - projectWebpage : String
+          - relatedLinks : String[]
+          - results : String
+          - timeframeEnd : String
+          - timeframeStart : String
+          - totalProjectBudget : int
+          - visual : String
+          + getAuthor()
+          + getCoordinators()
+          + getEcsPriorities()
+          + getEuBudgetContribution()
+          + getEuBudgetMffHeading()
+          + getFundingArea()
+          + getLanguage()
+          + getLinkToAVideo()
+          + getName()
+          + getNid()
+          + getOriginalId()
+          + getPartners()
+          + getProgrammeName()
+          + getProjectAcronym()
+          + getProjectAddresses()
+          + getProjectCountryies()
+          + getProjectDescription()
+          + getProjectLocationLatitude()
+          + getProjectLocationLongitude()
+          + getProjectPostalCodes()
+          + getProjectTowns()
+          + getProjectWebpage()
+          + getRelatedLinks()
+          + getResults()
+          + getTimeframeEnd()
+          + getTimeframeStart()
+          + getTotalProjectBudget()
+          + getVisual()
+          + setAuthor()
+          + setCoordinators()
+          + setEcsPriorities()
+          + setEuBudgetContribution()
+          + setEuBudgetMffHeading()
+          + setFundingArea()
+          + setLanguage()
+          + setLinkToAVideo()
+          + setName()
+          + setNid()
+          + setOriginalId()
+          + setPartners()
+          + setProgrammeName()
+          + setProjectAcronym()
+          + setProjectAddresses()
+          + setProjectCountryies()
+          + setProjectDescription()
+          + setProjectLocationLatitude()
+          + setProjectLocationLongitude()
+          + setProjectPostalCodes()
+          + setProjectTowns()
+          + setProjectWebpage()
+          + setRelatedLinks()
+          + setResults()
+          + setTimeframeEnd()
+          + setTimeframeStart()
+          + setTotalProjectBudget()
+          + setVisual()
+          + toString()
+      }
+    }
+
+
+    namespace svClasses {
+      class csvClasses.csvRetrieve.GetCsvDataFromUrl {
+          - url : String
+          + GetCsvDataFromUrl()
+          + getFirstLine()
+          + getLine()
+          + resetPosition()
+      }
+    }
+
+    namespace svClasses {
+      class csvClasses.csvRetrieve.GetCsvUrlFromJsonUrl {
+          + getLink()
+      }
+    }
+
+    namespace svClasses {
+      class csvClasses.csvRetrieve.GetCsvUrlFromJsonUrl.GetCsvLinkFromJson {
+          ~ getLink()
+      }
+    }
+
+    namespace svClasses {
+      class csvClasses.csvRetrieve.GetCsvUrlFromJsonUrl.GetJsonFromUrl {
+          ~ readJsonFromUrl()
+          - readAll()
+      }
+    }
+
+    namespace svClasses {
+      class csvClasses.csvRetrieve.ReadLineFromBufferedReader {
+          ~ buffer : CircularFifoBuffer
+          - br : BufferedReader
+          - endOfLineDelimiter : String
+          - maxLineLength : int
+          + ReadLineFromBufferedReader()
+          + ReadLineFromBufferedReader()
+          + mark()
+          + readLine()
+          + reset()
+      }
+    }
+
+  
+
+  csvClasses.csvRetrieve.CsvSplitter o-- csvClasses.csvRetrieve.GetCsvDataFromUrl : csv
+  csvClasses.csvRetrieve.GetCsvDataFromUrl o-- csvClasses.csvRetrieve.ReadLineFromBufferedReader : br
+  csvClasses.csvRetrieve.GetCsvUrlFromJsonUrl +-down- csvClasses.csvRetrieve.GetCsvUrlFromJsonUrl.GetCsvLinkFromJson
+  csvClasses.csvRetrieve.GetCsvUrlFromJsonUrl +-down- csvClasses.csvRetrieve.GetCsvUrlFromJsonUrl.GetJsonFromUrl
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

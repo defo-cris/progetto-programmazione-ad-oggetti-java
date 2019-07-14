@@ -1,4 +1,4 @@
-package csvClasses;
+package csvClasses.csvRetrieve;
 
 import org.json.JSONException;
 import org.json.JSONObject;

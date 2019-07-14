@@ -1,4 +1,6 @@
-package csvClasses;
+package csvClasses.csvRetrieve;
+
+import csvClasses.csvRetrieve.GetCsvDataFromUrl;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,7 +14,7 @@ public class CsvSplitter
     private String sep;
     private String firstline;
 
-    CsvSplitter(GetCsvDataFromUrl csv)
+    public CsvSplitter(GetCsvDataFromUrl csv)
     {
         this.csv = csv;
         sep = "";
@@ -55,12 +57,12 @@ public class CsvSplitter
         this.sep = sep;
     }
 
-    String[] splitFirstLine()
+    public String[] splitFirstLine()
     {
         return firstline.split(sep + "(?=([^\"]*\"[^\"]*\")*[^\"]*$)",-1);
     }
 
-    String[] splitLine()
+    public String[] splitLine()
     {
 
         if (sep.equals("")) throw new IllegalStateException("you need to set or guess the separator first");

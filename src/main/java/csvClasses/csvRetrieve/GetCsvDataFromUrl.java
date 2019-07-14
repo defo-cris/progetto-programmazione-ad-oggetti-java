@@ -1,4 +1,4 @@
-package csvClasses;
+package csvClasses.csvRetrieve;
 
 import java.io.EOFException;
 import java.io.IOException;
