@@ -1,7 +1,7 @@
 package csvClasses.csvRetrieve;
 
-import csvClasses.dataType.FloatArray;
-import csvClasses.dataType.StringArray;
+import csvClasses.dataType.ObjArray;
+import csvClasses.dataType.UrlWithDescription;
 
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
@@ -37,8 +37,9 @@ public class CsvValidator
         {
             s = "NULL";
         }
-        s = s.replaceAll("<.*?>","");
-        s = s.replaceAll("\"","");
+        s = s.replaceAll("<.*?>", "");
+        s = s.replaceAll("\"", "");
+        s = s.trim();
         return s;
     }
 
@@ -56,26 +57,47 @@ public class CsvValidator
         return s;
     }
 
-    private static StringArray validateStringArray(String s, String sep)
+    public static String validateCounty(String s)
     {
-        /*
-        * TODO
-        *  handle
-        *  --> Maritime House, 25 Marine Parade, null,
-        * */
         s = validateString(s);
-        return new StringArray(s.split(sep));
+        s = s.toUpperCase();
+        return s;
     }
 
-    public static StringArray validateStringArrayCommaSeparated(String s)
+
+
+    private static ObjArray<String> validateStringArray(String s, String sep)
+    {
+        /*
+         * TODO
+         *  handle
+         *  --> Maritime House, 25 Marine Parade, null,
+         * */
+        s = validateString(s);
+        return new ObjArray<>(s.split(sep));
+    }
+
+    public static ObjArray<String> validateStringArrayCommaSeparated(String s)
     {
         return validateStringArray(s, ", ");
     }
 
-    public static StringArray validateStringArraySemicolonSeparated(String s)
+    public static ObjArray<String> validateStringArraySemicolonSeparated(String s)
     {
         return validateStringArray(s, ";");
     }
+
+    public static ObjArray<String> validateCountryArraySemicolonSeparated(String s)
+    {
+        String[] split = validateStringArray(s, ";").getData();
+        String[] fin = new String[split.length];
+        for (int i = 0; i < split.length; i++)
+        {
+            fin[i] = validateCounty(split[i]);
+        }
+        return new ObjArray<>(fin);
+    }
+
 
     public static float validateFloat(String s)
     {
@@ -89,28 +111,39 @@ public class CsvValidator
         }
     }
 
-    public static FloatArray validateFloatArraySemicolonSeparated(String s)
+    public static ObjArray<Float> validateFloatArraySemicolonSeparated(String s)
     {
         String[] tmp = s.split(";");
-        float[] floats = new float[tmp.length];
+        Float[] floats = new Float[tmp.length];
 
         for (int i = 0; i < tmp.length; i++)
         {
             floats[i] = validateFloat(tmp[i]);
         }
-        return new FloatArray(floats);
+        return new ObjArray<>(floats);
     }
 
-    public static StringArray validateUrlArraySemicolonSeparated(String s)
+    public static ObjArray<UrlWithDescription> validateUrlArraySemicolonSeparated(String s)
     {
         String[] tmp = s.split(";");
 
+        UrlWithDescription[] urls = new UrlWithDescription[tmp.length];
+
         for (int i = 0; i < tmp.length; i++)
         {
-            tmp[i] = validateUrl(tmp[i]);
+            urls[i] = new UrlWithDescription();
+            urls[i].setDescription(validateString(tmp[i]));
+            try
+            {
+                urls[i].setUrl(tmp[i].replace("\"<a href=\"", "").replace("<a href=\"", "").split("\"")[1]);
+            }
+            catch (Exception e)
+            {
+                urls[i].setUrl("NULL");
+            }
         }
 
-        return new StringArray(tmp);
+        return new ObjArray<>(urls);
     }
 
 }

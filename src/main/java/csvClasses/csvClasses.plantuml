@@ -47,7 +47,7 @@ title __CSVCLASSES's Class Diagram__\n
     }
 
     namespace svClasses {
-      class com.example.progetto.DataCsvRow {
+      class com.example.progetto.Spring.DataCsvRow {
           - author : String
           - coordinators : String
           - ecsPriorities : String[]

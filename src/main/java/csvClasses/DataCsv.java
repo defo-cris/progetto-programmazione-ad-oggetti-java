@@ -1,12 +1,12 @@
 package csvClasses;
 
 
-import com.example.progetto.DataCsvRowServices;
+import com.example.progetto.Spring.DataCsvRowServices;
 import csvClasses.csvRetrieve.CsvSplitter;
 import csvClasses.csvRetrieve.CsvValidator;
 import csvClasses.csvRetrieve.GetCsvDataFromUrl;
 import csvClasses.csvRetrieve.GetCsvUrlFromJsonUrl;
-import com.example.progetto.DataCsvRow;
+import com.example.progetto.Spring.DataCsvRow;
 import csvClasses.dataType.Metadata;
 import org.json.JSONException;
 
@@ -18,9 +18,9 @@ import java.util.Vector;
 
 public class DataCsv
 {
-    private String[] dataNames = {"ID", "String", "String", "String", "Url", "String", "String", "String", "StringArraySemicolonSeparated", "StringArrayCommaSeparated", "StringArraySemicolonSeparated", "StringArraySemicolonSeparated", "StringArraySemicolonSeparated", "FloatArraySemicolonSeparated", "FloatArraySemicolonSeparated", "Url", "String", "String", "Url", "UrlArraySemicolonSeparated", "String", "String", "StringArraySemicolonSeparated", "StringArraySemicolonSeparated", "Currency", "Currency", "String", "String"};
-    private String[] colNames = {"Nid", "OriginalId", "Name", "ProjectAcronym", "Visual", "ProjectDescription", "Results", "Coordinators", "Partners", "ProjectAddresses", "ProjectPostalCodes", "ProjectTowns", "ProjectCountryies", "ProjectLocationLatitude", "ProjectLocationLongitude", "LinkToAVideo", "TimeframeStart", "TimeframeEnd", "ProjectWebpage", "RelatedLinks", "EuBudgetMffHeading", "ProgrammeName", "FundingArea", "EcsPriorities", "EuBudgetContribution", "TotalProjectBudget", "Author", "Language"};
-    private String[] dataType = {"java.lang.Integer", "java.lang.String", "java.lang.String", "java.lang.String", "java.lang.String", "java.lang.String", "java.lang.String", "java.lang.String", "csvClasses.dataType.StringArray", "csvClasses.dataType.StringArray", "csvClasses.dataType.StringArray", "csvClasses.dataType.StringArray", "csvClasses.dataType.StringArray", "csvClasses.dataType.FloatArray", "csvClasses.dataType.FloatArray", "java.lang.String", "java.lang.String", "java.lang.String", "java.lang.String", "csvClasses.dataType.StringArray", "java.lang.String", "java.lang.String", "csvClasses.dataType.StringArray", "csvClasses.dataType.StringArray", "java.lang.Integer", "java.lang.Integer", "java.lang.String", "java.lang.String"};
+    public static final String[] dataNames = {"ID", "String", "String", "String", "Url", "String", "String", "String", "StringArraySemicolonSeparated", "StringArrayCommaSeparated", "StringArraySemicolonSeparated", "StringArraySemicolonSeparated", "CountryArraySemicolonSeparated", "FloatArraySemicolonSeparated", "FloatArraySemicolonSeparated", "Url", "String", "String", "Url", "UrlArraySemicolonSeparated", "String", "String", "StringArraySemicolonSeparated", "StringArraySemicolonSeparated", "Currency", "Currency", "String", "String"};
+    public static final String[] colNames = {"Nid", "OriginalId", "Name", "ProjectAcronym", "Visual", "ProjectDescription", "Results", "Coordinators", "Partners", "ProjectAddresses", "ProjectPostalCodes", "ProjectTowns", "ProjectCountryies", "ProjectLocationLatitude", "ProjectLocationLongitude", "LinkToAVideo", "TimeframeStart", "TimeframeEnd", "ProjectWebpage", "RelatedLinks", "EuBudgetMffHeading", "ProgrammeName", "FundingArea", "EcsPriorities", "EuBudgetContribution", "TotalProjectBudget", "Author", "Language"};
+    public static final String[] dataType = {"java.lang.Integer", "java.lang.String", "java.lang.String", "java.lang.String", "java.lang.String", "java.lang.String", "java.lang.String", "java.lang.String", "csvClasses.dataType.ObjArray", "csvClasses.dataType.ObjArray", "csvClasses.dataType.ObjArray", "csvClasses.dataType.ObjArray", "csvClasses.dataType.ObjArray", "csvClasses.dataType.ObjArray", "csvClasses.dataType.ObjArray", "java.lang.String", "java.lang.String", "java.lang.String", "java.lang.String", "csvClasses.dataType.ObjArray", "java.lang.String", "java.lang.String", "csvClasses.dataType.ObjArray", "csvClasses.dataType.ObjArray", "java.lang.Integer", "java.lang.Integer", "java.lang.String", "java.lang.String"};
 
     private String url = "http://data.europa.eu/euodp/data/api/3/action/package_show?id=eu-results-projects";
     //url = "https://www.dati.gov.it/api/3/action/package_show?id=3c68b286-09fd-447a-b8e3-1b8430f70969";

@@ -2,21 +2,21 @@ package csvClasses.dataType;
 
 import java.util.Arrays;
 
-public class StringArray
+public class ObjArray<T>
 {
-    private String[] data;
+    private T[] data;
 
-    public StringArray(String[] data)
+    public ObjArray(T[] data)
     {
         this.data = data;
     }
 
-    public String[] getData()
+    public T[] getData()
     {
         return data;
     }
 
-    public void setData(String[] data)
+    public void setData(T[] data)
     {
         this.data = data;
     }
@@ -24,7 +24,7 @@ public class StringArray
     @Override
     public String toString()
     {
-        return "StringArray{" +
+        return "ObjArray{" +
                 "data=" + Arrays.toString(data) +
                 '}';
     }

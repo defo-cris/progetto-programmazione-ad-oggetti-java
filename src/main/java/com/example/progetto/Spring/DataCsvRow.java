@@ -1,9 +1,8 @@
-package com.example.progetto;
+package com.example.progetto.Spring;
 
-import csvClasses.dataType.FloatArray;
-import csvClasses.dataType.StringArray;
+import csvClasses.dataType.ObjArray;
+import csvClasses.dataType.UrlWithDescription;
 
-import java.util.Arrays;
 
 public class DataCsvRow
 {
@@ -15,22 +14,22 @@ public class DataCsvRow
     private String projectDescription;
     private String results;
     private String coordinators;
-    private String[] partners;
-    private String[] projectAddresses;
-    private String[] projectPostalCodes;
-    private String[] projectTowns;
-    private String[] projectCountryies;
-    private float[] projectLocationLatitude;
-    private float[] projectLocationLongitude;
+    private ObjArray<String> partners;
+    private ObjArray<String> projectAddresses;
+    private ObjArray<String> projectPostalCodes;
+    private ObjArray<String> projectTowns;
+    private ObjArray<String> projectCountryies;
+    private ObjArray<Float> projectLocationLatitude;
+    private ObjArray<Float> projectLocationLongitude;
     private String linkToAVideo;
     private String timeframeStart;
     private String timeframeEnd;
     private String projectWebpage;
-    private String[] relatedLinks;
+    private ObjArray<UrlWithDescription> relatedLinks;
     private String euBudgetMffHeading;
     private String programmeName;
-    private String[] fundingArea;
-    private String[] ecsPriorities;
+    private ObjArray<String> fundingArea;
+    private ObjArray<String> ecsPriorities;
     private int euBudgetContribution;
     private int totalProjectBudget;
     private String author;
@@ -48,22 +47,22 @@ public class DataCsvRow
                 ", projectDescription='" + projectDescription + '\'' +
                 ", results='" + results + '\'' +
                 ", coordinators='" + coordinators + '\'' +
-                ", partners=" + Arrays.toString(partners) +
-                ", projectAddresses=" + Arrays.toString(projectAddresses) +
-                ", projectPostalCodes=" + Arrays.toString(projectPostalCodes) +
-                ", projectTowns=" + Arrays.toString(projectTowns) +
-                ", projectCountryies=" + Arrays.toString(projectCountryies) +
-                ", projectLocationLatitude=" + Arrays.toString(projectLocationLatitude) +
-                ", projectLocationLongitude=" + Arrays.toString(projectLocationLongitude) +
+                ", partners=" + partners +
+                ", projectAddresses=" + projectAddresses +
+                ", projectPostalCodes=" + projectPostalCodes +
+                ", projectTowns=" + projectTowns +
+                ", projectCountryies=" + projectCountryies +
+                ", projectLocationLatitude=" + projectLocationLatitude +
+                ", projectLocationLongitude=" + projectLocationLongitude +
                 ", linkToAVideo='" + linkToAVideo + '\'' +
                 ", timeframeStart='" + timeframeStart + '\'' +
                 ", timeframeEnd='" + timeframeEnd + '\'' +
                 ", projectWebpage='" + projectWebpage + '\'' +
-                ", relatedLinks=" + Arrays.toString(relatedLinks) +
+                ", relatedLinks=" + relatedLinks +
                 ", euBudgetMffHeading='" + euBudgetMffHeading + '\'' +
                 ", programmeName='" + programmeName + '\'' +
-                ", fundingArea=" + Arrays.toString(fundingArea) +
-                ", ecsPriorities=" + Arrays.toString(ecsPriorities) +
+                ", fundingArea=" + fundingArea +
+                ", ecsPriorities=" + ecsPriorities +
                 ", euBudgetContribution=" + euBudgetContribution +
                 ", totalProjectBudget=" + totalProjectBudget +
                 ", author='" + author + '\'' +
@@ -153,72 +152,72 @@ public class DataCsvRow
 
     public String[] getPartners()
     {
-        return partners;
+        return partners.getData();
     }
 
-    public void setPartners(StringArray partners)
+    public void setPartners(ObjArray<String> partners)
     {
-        this.partners = partners.getData();
+        this.partners = partners;
     }
 
     public String[] getProjectAddresses()
     {
-        return projectAddresses;
+        return projectAddresses.getData();
     }
 
-    public void setProjectAddresses(StringArray projectAddresses)
+    public void setProjectAddresses(ObjArray<String> projectAddresses)
     {
-        this.projectAddresses = projectAddresses.getData();
+        this.projectAddresses = projectAddresses;
     }
 
     public String[] getProjectPostalCodes()
     {
-        return projectPostalCodes;
+        return projectPostalCodes.getData();
     }
 
-    public void setProjectPostalCodes(StringArray projectPostalCodes)
+    public void setProjectPostalCodes(ObjArray<String> projectPostalCodes)
     {
-        this.projectPostalCodes = projectPostalCodes.getData();
+        this.projectPostalCodes = projectPostalCodes;
     }
 
     public String[] getProjectTowns()
     {
-        return projectTowns;
+        return projectTowns.getData();
     }
 
-    public void setProjectTowns(StringArray projectTowns)
+    public void setProjectTowns(ObjArray<String> projectTowns)
     {
-        this.projectTowns = projectTowns.getData();
+        this.projectTowns = projectTowns;
     }
 
     public String[] getProjectCountryies()
     {
-        return projectCountryies;
+        return projectCountryies.getData();
     }
 
-    public void setProjectCountryies(StringArray projectCountryies)
+    public void setProjectCountryies(ObjArray<String> projectCountryies)
     {
-        this.projectCountryies = projectCountryies.getData();
+        this.projectCountryies = projectCountryies;
     }
 
-    public float[] getProjectLocationLatitude()
+    public ObjArray<Float> getProjectLocationLatitude()
     {
         return projectLocationLatitude;
     }
 
-    public void setProjectLocationLatitude(FloatArray projectLocationLatitude)
+    public void setProjectLocationLatitude(ObjArray<Float> projectLocationLatitude)
     {
-        this.projectLocationLatitude = projectLocationLatitude.getData();
+        this.projectLocationLatitude = projectLocationLatitude;
     }
 
-    public float[] getProjectLocationLongitude()
+    public ObjArray<Float> getProjectLocationLongitude()
     {
         return projectLocationLongitude;
     }
 
-    public void setProjectLocationLongitude(FloatArray projectLocationLongitude)
+    public void setProjectLocationLongitude(ObjArray<Float> projectLocationLongitude)
     {
-        this.projectLocationLongitude = projectLocationLongitude.getData();
+        this.projectLocationLongitude = projectLocationLongitude;
     }
 
     public String getLinkToAVideo()
@@ -261,14 +260,14 @@ public class DataCsvRow
         this.projectWebpage = projectWebpage;
     }
 
-    public String[] getRelatedLinks()
+    public UrlWithDescription[] getRelatedLinks()
     {
-        return relatedLinks;
+        return relatedLinks.getData();
     }
 
-    public void setRelatedLinks(StringArray relatedLinks)
+    public void setRelatedLinks(ObjArray<UrlWithDescription> relatedLinks)
     {
-        this.relatedLinks = relatedLinks.getData();
+        this.relatedLinks = relatedLinks;
     }
 
     public String getEuBudgetMffHeading()
@@ -293,22 +292,22 @@ public class DataCsvRow
 
     public String[] getFundingArea()
     {
-        return fundingArea;
+        return fundingArea.getData();
     }
 
-    public void setFundingArea(StringArray fundingArea)
+    public void setFundingArea(ObjArray<String> fundingArea)
     {
-        this.fundingArea = fundingArea.getData();
+        this.fundingArea = fundingArea;
     }
 
     public String[] getEcsPriorities()
     {
-        return ecsPriorities;
+        return ecsPriorities.getData();
     }
 
-    public void setEcsPriorities(StringArray ecsPriorities)
+    public void setEcsPriorities(ObjArray<String> ecsPriorities)
     {
-        this.ecsPriorities = ecsPriorities.getData();
+        this.ecsPriorities = ecsPriorities;
     }
 
     public int getEuBudgetContribution()

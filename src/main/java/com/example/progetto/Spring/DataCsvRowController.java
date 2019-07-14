@@ -1,7 +1,8 @@
-package com.example.progetto;
+package com.example.progetto.Spring;
 
 import csvClasses.dataType.Metadata;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -29,10 +30,10 @@ public class DataCsvRowController
         return dataServices.getMetadata();
     }
 
-    @GetMapping("/test")
-    public String retrieveTest()
+    @GetMapping("/data/{colName}")
+    public Vector<Object> retrieveDataColumn(@PathVariable String colName)
     {
-        return "test";
+        return DataCsvRowServices.retrieveColumn(colName);
     }
 
 }
