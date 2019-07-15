@@ -1,5 +1,10 @@
 package csvClasses.dataType;
 
+
+/**
+ * class used in {@link DataCsv} class to generate the information of every element; 
+ * that information contain the alias of the element, the sourceField and the type of the element 
+ */
 public class Metadata
 {
     private String alias;
@@ -7,9 +12,9 @@ public class Metadata
     private String type;
 
     /**
-     * @param alias
-     * @param sourceField
-     * @param type
+     * @param alias param's name used in the DataCsvRow class
+     * @param sourceField is the param where to pass the element's name from the csv
+     * @param type is the param where we pass the type of the element
      */
     public Metadata(String alias, String sourceField, String type)
     {
@@ -49,7 +54,7 @@ public class Metadata
     }
 
     /**
-     * @return
+     * @return the information of the metadata of the element in form of a string
      */
     @Override
     public String toString()

@@ -1,7 +1,8 @@
 package csvClasses.dataType;
 
 /**
- * 
+ * class used in {@link DataCsvRow} passed how a type of the class ObjArray, 
+ * so that every link passed how an element of the array contain its description
  */
 public class UrlWithDescription
 {
@@ -9,8 +10,8 @@ public class UrlWithDescription
     private String description;
 
     /**
-     * @param url
-     * @param description
+     * @param url is the string that contain the url 
+     * @param description is the string that is contained between the html tag <a> </a>
      */
     public UrlWithDescription(String url, String description)
     {
@@ -21,7 +22,7 @@ public class UrlWithDescription
     /**
      *
      */
-    public UrlWithDescription()
+    public UrlWithDescription() 
     {
 
     }
@@ -47,7 +48,7 @@ public class UrlWithDescription
     }
 
     /**
-     * @return
+     * @return method used to return the string formatted with the description detached from the url
      */
     @Override
     public String toString()

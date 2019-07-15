@@ -8,7 +8,7 @@ import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 
 /**
- *
+ * class used to retrieve the data of the csv
  */
 public class GetCsvDataFromUrl
 {
@@ -22,7 +22,9 @@ public class GetCsvDataFromUrl
 
 
     /**
-     * @return
+	 * method used to catch the first line of the csv
+	 *
+     * @return the first line
      * @throws IOException
      */
     public String getFirstLine() throws IOException

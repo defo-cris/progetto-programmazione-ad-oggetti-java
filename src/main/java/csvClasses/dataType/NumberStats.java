@@ -2,7 +2,7 @@ package csvClasses.dataType;
 
 
 /**
- *
+ * class used in {@link DataCsvRowServices} for numerical statistic of a column
  */
 public class NumberStats
 {
@@ -13,11 +13,11 @@ public class NumberStats
     private long sum;
 
     /**
-     * @param avg
-     * @param min
-     * @param max
-     * @param std
-     * @param sum
+     * @param avg is the param where we calculate the average value of the column
+     * @param min is the param where we insert the minimum value in the column
+     * @param max is the param where we insert the maximum value in the column
+     * @param std is the param where we calculate the standard deviation value of the column
+     * @param sum is the param where we calculate the sum value of the column
      */
     public NumberStats(double avg, int min, int max, double std, long sum) {
         this.avg = avg;

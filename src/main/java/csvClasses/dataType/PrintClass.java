@@ -3,6 +3,9 @@ package csvClasses.dataType;
 import java.util.ArrayList;
 import java.util.Vector;
 
+/**
+ * class used to print in the console the formatted csv, a vector, an array list or an array
+ */
 public class PrintClass
 {
     PrintClass()

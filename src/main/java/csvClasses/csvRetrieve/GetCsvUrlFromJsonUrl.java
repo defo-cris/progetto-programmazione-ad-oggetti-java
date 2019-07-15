@@ -9,18 +9,18 @@ import java.net.URL;
 import java.nio.charset.Charset;
 
 /**
- *
+ * class that from the url of the json retrieve the link of the url of csv
  */
 public class GetCsvUrlFromJsonUrl
 {
 
 
     /**
-     * @param url
-     * @param numCsv
-     * @return
-     * @throws IOException
-     * @throws JSONException
+     * @param url param where we pass the link of the Json
+     * @param numCsv param used to indicate the number of the element in the Json
+     * @return the link of the csv to download from the Json
+     * @throws IOException exception that occur in the case of an I/O error
+     * @throws JSONException exception that occur in the case of an Json error
      */
     public String getLink(String url, int numCsv) throws IOException, JSONException
     {
@@ -31,14 +31,14 @@ public class GetCsvUrlFromJsonUrl
     }
 
     /**
-     *
+     * class that from the url format the page how a string
      */
     class GetJsonFromUrl
     {
         /**
-         * @param rd
-         * @return
-         * @throws IOException
+         * @param rd param used in a reader of character stream
+         * @return the Json in the string format
+         * @throws IOException 
          */
         private String readAll(Reader rd) throws IOException
         {
@@ -52,8 +52,8 @@ public class GetCsvUrlFromJsonUrl
         }
 
         /**
-         * @param url
-         * @return
+         * @param url contain the Json url
+         * @return the Json string with a casting of a JSONObject
          * @throws IOException
          * @throws JSONException
          */
@@ -72,15 +72,15 @@ public class GetCsvUrlFromJsonUrl
 
 
     /**
-     *
+     * class used to retrieve the link of the csv from the Json 
      */
     class GetCsvLinkFromJson
     {
         /**
-         * @param json
-         * @param number
-         * @return
-         * @throws JSONException
+         * @param json JSONObject of the Json casting of the json url
+         * @param number number of the element of the Json
+         * @return the string of the link of the csv
+         * @throws JSONException in the case of an error in the Json
          */
         String getLink(JSONObject json, int number) throws JSONException
         {
