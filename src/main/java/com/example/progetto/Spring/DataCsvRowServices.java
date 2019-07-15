@@ -179,10 +179,37 @@ public class DataCsvRowServices
         }
         catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e)
         {
-            e.printStackTrace();
+            /* TODO da sistemare */
+            System.out.println("errrrrore");
         }
         return out;
     }
 
+
+    public static Vector<DataCsvRow> and(Vector<DataCsvRow> a, Vector<DataCsvRow> b)
+    {
+        Vector<DataCsvRow> c = new Vector<>();
+
+        for (DataCsvRow d: a)
+        {
+            if (b.contains(d))
+            {
+                c.add(d);
+            }
+        }
+        return c;
+    }
+
+    public static Vector<DataCsvRow> or(Vector<DataCsvRow> a, Vector<DataCsvRow> b)
+    {
+        for (DataCsvRow d: a)
+        {
+            if (!b.contains(d))
+            {
+                b.add(d);
+            }
+        }
+        return b;
+    }
 
 }

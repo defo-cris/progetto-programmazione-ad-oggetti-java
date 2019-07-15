@@ -51,21 +51,13 @@ public class FilterParameter
         this.value = value;
     }
 
-    public void readFields(JSONObject body)
+    public void readFields(JSONObject body) throws JSONException
     {
-        try
-        {
-            colName = (String) body.get("fieldName");
-            operator = (String) body.get("operator");
-            value = body.get("value");
-        }
-        catch (JSONException e)
-        {
-            /* TODO mettere un throw che fa cose */
-            colName = "";
-            operator = "";
-            value = null;
-        }
+
+        colName = (String) body.get("fieldName");
+        operator = (String) body.get("operator");
+        value = body.get("value");
+
     }
 
     @Override
