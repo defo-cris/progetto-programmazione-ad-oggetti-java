@@ -7,6 +7,9 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 
+/**
+ *
+ */
 public class GetCsvDataFromUrl
 {
     private String url;
@@ -19,8 +22,6 @@ public class GetCsvDataFromUrl
 
 
     /**
-     *
-     *
      * @return
      * @throws IOException
      */
@@ -43,6 +44,10 @@ public class GetCsvDataFromUrl
         throw new IOException("file ended too early");
     }
 
+    /**
+     * @return
+     * @throws IOException
+     */
     public String getLine() throws IOException
     {
         if (br == null)
@@ -57,6 +62,9 @@ public class GetCsvDataFromUrl
         throw new EOFException("file reached the end");
     }
 
+    /**
+     * @throws IOException
+     */
     public void resetPosition() throws IOException
     {
         br.reset();

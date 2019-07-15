@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.zip.DataFormatException;
 
+/**
+ *
+ */
 public class CsvSplitter
 {
     private GetCsvDataFromUrl csv;
@@ -14,6 +17,9 @@ public class CsvSplitter
     private String sep;
     private String firstline;
 
+    /**
+     * @param csv
+     */
     public CsvSplitter(GetCsvDataFromUrl csv)
     {
         this.csv = csv;
@@ -21,6 +27,10 @@ public class CsvSplitter
         commonSeparator = new ArrayList<>(Arrays.asList(";", ",", "|", "^"));
     }
 
+    /**
+     * @throws IOException
+     * @throws DataFormatException
+     */
     void guessDelimiter() throws IOException, DataFormatException
     {
         firstline = csv.getFirstLine();
@@ -46,22 +56,35 @@ public class CsvSplitter
         throw new DataFormatException("impossible to guess the delimiter of the csv");
     }
 
+    /**
+     * @param sep
+     */
     void addCommonSeparator(String sep)
     {
         commonSeparator.add(sep);
     }
 
+    /**
+     * @param sep
+     * @throws IOException
+     */
     public void setDelimiter(String sep) throws IOException
     {
         firstline = csv.getFirstLine();
         this.sep = sep;
     }
 
+    /**
+     * @return
+     */
     public String[] splitFirstLine()
     {
         return firstline.split(sep + "(?=([^\"]*\"[^\"]*\")*[^\"]*$)",-1);
     }
 
+    /**
+     * @return
+     */
     public String[] splitLine()
     {
 

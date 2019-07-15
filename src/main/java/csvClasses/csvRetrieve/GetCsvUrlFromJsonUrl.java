@@ -8,10 +8,20 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.Charset;
 
+/**
+ *
+ */
 public class GetCsvUrlFromJsonUrl
 {
 
 
+    /**
+     * @param url
+     * @param numCsv
+     * @return
+     * @throws IOException
+     * @throws JSONException
+     */
     public String getLink(String url, int numCsv) throws IOException, JSONException
     {
         GetJsonFromUrl jsonFromUrl = new GetJsonFromUrl();
@@ -20,8 +30,16 @@ public class GetCsvUrlFromJsonUrl
         return csvLinkFromJson.getLink(json, numCsv);
     }
 
+    /**
+     *
+     */
     class GetJsonFromUrl
     {
+        /**
+         * @param rd
+         * @return
+         * @throws IOException
+         */
         private String readAll(Reader rd) throws IOException
         {
             StringBuilder sb = new StringBuilder();
@@ -33,6 +51,12 @@ public class GetCsvUrlFromJsonUrl
             return sb.toString();
         }
 
+        /**
+         * @param url
+         * @return
+         * @throws IOException
+         * @throws JSONException
+         */
         JSONObject readJsonFromUrl(String url) throws IOException, JSONException
         {
             HttpURLConnection httpCon = (HttpURLConnection) new URL(url).openConnection();
@@ -47,8 +71,17 @@ public class GetCsvUrlFromJsonUrl
     }
 
 
+    /**
+     *
+     */
     class GetCsvLinkFromJson
     {
+        /**
+         * @param json
+         * @param number
+         * @return
+         * @throws JSONException
+         */
         String getLink(JSONObject json, int number) throws JSONException
         {
             return (String) json.getJSONObject("result").getJSONArray("resources").getJSONObject(number).get("url");

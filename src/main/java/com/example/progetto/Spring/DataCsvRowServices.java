@@ -2,10 +2,14 @@ package com.example.progetto.Spring;
 
 import csvClasses.DataCsv;
 import csvClasses.dataType.Metadata;
+import csvClasses.dataType.NumberStats;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.Vector;
 
 @Component
@@ -15,7 +19,7 @@ public class DataCsvRowServices
     static private Vector<DataCsvRow> csvData;
 
 
-    public Vector<Metadata> getMetadata()
+    public static Vector<Metadata> getMetadata()
     {
         return metadata;
     }
@@ -25,7 +29,7 @@ public class DataCsvRowServices
         DataCsvRowServices.metadata = metadata;
     }
 
-    public Vector<DataCsvRow> getCsvData()
+    public static Vector<DataCsvRow> getCsvData()
     {
         return csvData;
     }
@@ -35,21 +39,27 @@ public class DataCsvRowServices
         DataCsvRowServices.csvData = csvData;
     }
 
-    public static Vector<Object> retrieveColumn(String name)
+    private static String checkColName(String name)
     {
         name = name.toLowerCase();
-        for (String n: DataCsv.colNames)
+        for (String n : DataCsv.colNames)
         {
             if (n.toLowerCase().equals(name))
             {
-                name = n;
-                break;
+                return n;
             }
         }
+        return "NULL"; // ce sta da inventasse qualcosa nel caso non trova il nome
+    }
+
+    public static Vector<Object> retrieveColumn(String name)
+    {
+        name = checkColName(name);
+
         Vector<Object> col = new Vector<>();
         try
         {
-            for (DataCsvRow row: csvData)
+            for (DataCsvRow row : csvData)
             {
                 Method getterMethod = row.getClass().getMethod("get" + name);
                 col.add(getterMethod.invoke(row));
@@ -57,9 +67,65 @@ public class DataCsvRowServices
         }
         catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e)
         {
-            /// display error message
+            /* TODO cambiare messaggio di errore */
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "nome colonna non valido, scrivi uno di questi: " + Arrays.toString(DataCsv.colNames));
         }
         return col;
+    }
+
+
+    /**
+     * @param fieldName
+     * @return
+     */
+    public static NumberStats stats(String fieldName)
+    {
+        fieldName = checkColName(fieldName);
+
+        int count;
+
+        double avg = 0;
+        int min = 0;
+        int max = 0;
+        double std = 0;
+        long sum = 0;
+
+        count = csvData.size();
+
+        int[] tmp = new int[count];
+        int i = 0;
+        try
+        {
+            for (DataCsvRow item : csvData)
+            {
+                Method m = item.getClass().getMethod("get" + fieldName);
+                int data = (int) m.invoke(item);
+
+                min = (min < data ? min : data);
+                max = (max > data ? max : data);
+
+                sum += data;
+
+                System.out.println("sum  = " + sum);
+                System.out.println("i  = " + i);
+
+                tmp[i++] = data;
+            }
+
+            avg = sum / count;
+
+            for (int xi: tmp)
+            {
+                std += Math.pow(xi-avg, 2);
+            }
+
+            std = Math.sqrt(std/count);
+        }
+        catch (IllegalAccessException | NoSuchMethodException | SecurityException | ClassCastException | InvocationTargetException e)
+        {
+            System.out.println("cazzo di errore"); /* TODO da sistemare il messaggio*/
+        }
+        return new NumberStats(avg, min, max, std, sum);
     }
 
 }

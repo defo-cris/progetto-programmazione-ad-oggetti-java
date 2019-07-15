@@ -10,6 +10,10 @@ public class PrintClass
 
     }
 
+    /**
+     * @param col
+     * @param row
+     */
     static void printFormatted(String[] col, String[] row)
     {
         System.out.println("\n");
@@ -20,6 +24,9 @@ public class PrintClass
         System.out.println("\n");
     }
 
+    /**
+     * @param arr
+     */
     static void print(String[] arr)
     {
         for (String a: arr)
@@ -28,6 +35,9 @@ public class PrintClass
         }
     }
 
+    /**
+     * @param a
+     */
     static void printArrayList(ArrayList a)
     {
         for (Object elem: a)
@@ -36,6 +46,9 @@ public class PrintClass
         }
     }
 
+    /**
+     * @param a
+     */
     static void printVector(Vector a)
     {
         for (Object elem: a)

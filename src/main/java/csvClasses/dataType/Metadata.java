@@ -6,6 +6,11 @@ public class Metadata
     private String sourceField;
     private String type;
 
+    /**
+     * @param alias
+     * @param sourceField
+     * @param type
+     */
     public Metadata(String alias, String sourceField, String type)
     {
         this.alias = alias;
@@ -43,6 +48,9 @@ public class Metadata
         this.type = type;
     }
 
+    /**
+     * @return
+     */
     @Override
     public String toString()
     {

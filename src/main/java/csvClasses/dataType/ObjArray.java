@@ -2,6 +2,9 @@ package csvClasses.dataType;
 
 import java.util.Arrays;
 
+/**
+ * @param <T>
+ */
 public class ObjArray<T>
 {
     private T[] data;

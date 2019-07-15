@@ -7,8 +7,16 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 
+/**
+ *
+ */
 public class CsvValidator
 {
+    /**
+     * @param s
+     * @param defaultValue
+     * @return
+     */
     private static int validateInt(String s, int defaultValue)
     {
         try
@@ -21,16 +29,28 @@ public class CsvValidator
         }
     }
 
+    /**
+     * @param s
+     * @return
+     */
     public static int validateID(String s)
     {
         return validateInt(s, -1);
     }
 
+    /**
+     * @param s
+     * @return
+     */
     public static int validateCurrency(String s)
     {
         return validateInt(s, 0);
     }
 
+    /**
+     * @param s
+     * @return
+     */
     public static String validateString(String s)
     {
         if (s.equals(""))
@@ -43,6 +63,10 @@ public class CsvValidator
         return s;
     }
 
+    /**
+     * @param s
+     * @return
+     */
     public static String validateUrl(String s)
     {
         s = s.replaceAll(" ", "");
@@ -57,6 +81,10 @@ public class CsvValidator
         return s;
     }
 
+    /**
+     * @param s
+     * @return
+     */
     public static String validateCounty(String s)
     {
         s = validateString(s);
@@ -65,7 +93,11 @@ public class CsvValidator
     }
 
 
-
+    /**
+     * @param s
+     * @param sep
+     * @return
+     */
     private static ObjArray<String> validateStringArray(String s, String sep)
     {
         /*
@@ -77,16 +109,28 @@ public class CsvValidator
         return new ObjArray<>(s.split(sep));
     }
 
+    /**
+     * @param s
+     * @return
+     */
     public static ObjArray<String> validateStringArrayCommaSeparated(String s)
     {
         return validateStringArray(s, ", ");
     }
 
+    /**
+     * @param s
+     * @return
+     */
     public static ObjArray<String> validateStringArraySemicolonSeparated(String s)
     {
         return validateStringArray(s, ";");
     }
 
+    /**
+     * @param s
+     * @return
+     */
     public static ObjArray<String> validateCountryArraySemicolonSeparated(String s)
     {
         String[] split = validateStringArray(s, ";").getData();
@@ -99,6 +143,10 @@ public class CsvValidator
     }
 
 
+    /**
+     * @param s
+     * @return
+     */
     public static float validateFloat(String s)
     {
         try
@@ -111,6 +159,10 @@ public class CsvValidator
         }
     }
 
+    /**
+     * @param s
+     * @return
+     */
     public static ObjArray<Float> validateFloatArraySemicolonSeparated(String s)
     {
         String[] tmp = s.split(";");
@@ -123,6 +175,10 @@ public class CsvValidator
         return new ObjArray<>(floats);
     }
 
+    /**
+     * @param s
+     * @return
+     */
     public static ObjArray<UrlWithDescription> validateUrlArraySemicolonSeparated(String s)
     {
         String[] tmp = s.split(";");

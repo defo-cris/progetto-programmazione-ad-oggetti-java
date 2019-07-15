@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.io.Reader;
 
 
+/**
+ *
+ */
 public class ReadLineFromBufferedReader
 {
     private BufferedReader br;
@@ -15,6 +18,11 @@ public class ReadLineFromBufferedReader
     CircularFifoBuffer buffer;
 
 
+    /**
+     * @param in
+     * @param endOfLineDelimiter
+     * @param maxLineLength
+     */
     public ReadLineFromBufferedReader(Reader in, String endOfLineDelimiter, int maxLineLength)
     {
         br = new BufferedReader(in);
@@ -25,6 +33,10 @@ public class ReadLineFromBufferedReader
     }
 
 
+    /**
+     * @param in
+     * @param endOfLineDelimiter
+     */
     public ReadLineFromBufferedReader(Reader in, String endOfLineDelimiter)
     {
         br = new BufferedReader(in);
@@ -34,6 +46,10 @@ public class ReadLineFromBufferedReader
     }
 
 
+    /**
+     * @return
+     * @throws IOException
+     */
     public String readLine() throws IOException
     {
         StringBuilder str = new StringBuilder(maxLineLength);
@@ -82,11 +98,18 @@ public class ReadLineFromBufferedReader
 
     }
 
+    /**
+     * @param i
+     * @throws IOException
+     */
     public void mark(int i) throws IOException
     {
         br.mark(i);
     }
 
+    /**
+     * @throws IOException
+     */
     public void reset() throws IOException
     {
         br.reset();

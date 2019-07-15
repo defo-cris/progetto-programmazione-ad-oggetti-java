@@ -1,16 +1,26 @@
 package csvClasses.dataType;
 
+/**
+ * 
+ */
 public class UrlWithDescription
 {
     private String url;
     private String description;
 
+    /**
+     * @param url
+     * @param description
+     */
     public UrlWithDescription(String url, String description)
     {
         this.url = url;
         this.description = description;
     }
 
+    /**
+     *
+     */
     public UrlWithDescription()
     {
 
@@ -36,6 +46,9 @@ public class UrlWithDescription
         this.description = description;
     }
 
+    /**
+     * @return
+     */
     @Override
     public String toString()
     {

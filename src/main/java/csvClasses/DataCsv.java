@@ -16,6 +16,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Vector;
 
+/**
+ *
+ */
 public class DataCsv
 {
     public static final String[] dataNames = {"ID", "String", "String", "String", "Url", "String", "String", "String", "StringArraySemicolonSeparated", "StringArrayCommaSeparated", "StringArraySemicolonSeparated", "StringArraySemicolonSeparated", "CountryArraySemicolonSeparated", "FloatArraySemicolonSeparated", "FloatArraySemicolonSeparated", "Url", "String", "String", "Url", "UrlArraySemicolonSeparated", "String", "String", "StringArraySemicolonSeparated", "StringArraySemicolonSeparated", "Currency", "Currency", "String", "String"};
@@ -32,12 +35,18 @@ public class DataCsv
 
     private String[] firstLine;
 
+    /**
+     *
+     */
     public DataCsv()
     {
         csvData = new Vector<>();
         metadata = new Vector<>();
     }
 
+    /**
+     *
+     */
     public void readAndStore()
     {
 
@@ -89,6 +98,9 @@ public class DataCsv
 
     }
 
+    /**
+     *
+     */
     private void createMetadata()
     {
         DataCsvRow dataCsvRow = new DataCsvRow();
@@ -109,6 +121,9 @@ public class DataCsv
         }
     }
 
+    /**
+     *
+     */
     public void setServicesData()
     {
         DataCsvRowServices.setCsvData(csvData);
