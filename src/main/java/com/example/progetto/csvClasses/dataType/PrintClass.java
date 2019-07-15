@@ -1,4 +1,4 @@
-package csvClasses.dataType;
+package com.example.progetto.csvClasses.dataType;
 
 import java.util.ArrayList;
 import java.util.Vector;

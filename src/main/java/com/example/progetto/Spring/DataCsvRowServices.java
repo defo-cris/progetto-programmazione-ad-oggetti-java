@@ -1,8 +1,7 @@
 package com.example.progetto.Spring;
 
-import csvClasses.DataCsv;
-import csvClasses.dataType.Metadata;
-import csvClasses.dataType.NumberStats;
+import com.example.progetto.csvClasses.*;
+import com.example.progetto.csvClasses.dataType.Metadata;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
@@ -127,5 +126,63 @@ public class DataCsvRowServices
         }
         return new NumberStats(avg, min, max, std, sum);
     }
+
+
+    private static boolean checkFilterValidity(Object leftValue, String operator, Object rightValue)
+    {
+        if (leftValue.getClass() == Integer.class)
+        {
+            rightValue = Integer.parseInt((String)rightValue);
+            switch (operator)
+            {
+                case "<":
+                    return (int)leftValue < (int)rightValue;
+                case "<=":
+                    return (int)leftValue <= (int)rightValue;
+                case ">":
+                    return (int)leftValue > (int)rightValue;
+                case ">=":
+                    return (int)leftValue >= (int)rightValue;
+                case "==":
+                    return (int)leftValue == (int)rightValue;
+            }
+        }
+        else if ((leftValue.getClass() == String.class) && (rightValue.getClass() == String.class))
+        {
+            if (operator.equals("=="))
+            {
+                return leftValue.equals(rightValue);
+            }
+            else
+            {
+                return false;
+            }
+        }
+        return false;
+    }
+
+    public static Vector<DataCsvRow> filter(FilterParameter parameter)
+    {
+        String colName = checkColName(parameter.getColName());
+        Vector<DataCsvRow> out = new Vector<>();
+        try
+        {
+            for (DataCsvRow row: csvData)
+            {
+                Method m = row.getClass().getMethod("get" + colName);
+                Object data = m.invoke(row);
+                if (checkFilterValidity(data, parameter.getOperator(), parameter.getValue()))
+                {
+                    out.add(row);
+                }
+            }
+        }
+        catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e)
+        {
+            e.printStackTrace();
+        }
+        return out;
+    }
+
 
 }

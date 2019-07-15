@@ -1,6 +1,4 @@
-package csvClasses.csvRetrieve;
-
-import csvClasses.csvRetrieve.GetCsvDataFromUrl;
+package com.example.progetto.csvClasses.csvRetrieve;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -5,7 +5,7 @@ title __DATATYPE's Class Diagram__\n
   namespace  {
     namespace svClasses {
       namespace dataType {
-        class csvClasses.dataType.FloatArray {
+        class com.example.progetto.csvClasses.dataType.FloatArray {
             - data : float[]
             + FloatArray()
             + getData()
@@ -20,7 +20,7 @@ title __DATATYPE's Class Diagram__\n
   namespace  {
     namespace svClasses {
       namespace dataType {
-        class csvClasses.dataType.PrintClass {
+        class com.example.progetto.csvClasses.dataType.PrintClass {
             ~ PrintClass()
             {static} ~ print()
             {static} ~ printArrayList()
@@ -35,7 +35,7 @@ title __DATATYPE's Class Diagram__\n
   namespace  {
     namespace svClasses {
       namespace dataType {
-        class csvClasses.dataType.StringArray {
+        class com.example.progetto.csvClasses.dataType.StringArray {
             - data : String[]
             + StringArray()
             + getData()

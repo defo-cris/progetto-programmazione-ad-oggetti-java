@@ -4,7 +4,7 @@ title __PROGETTO's Class Diagram__\n
 
 
     namespace com.example.progetto {
-      class csvClasses.dataType.Metadata {
+      class com.example.progetto.csvClasses.dataType.Metadata {
           - alias : String
           - sourceField : String
           - type : String

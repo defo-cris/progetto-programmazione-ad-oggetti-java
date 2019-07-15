@@ -1,13 +1,9 @@
 package com.example.progetto;
 
-import csvClasses.*;
+import com.example.progetto.csvClasses.*;
 
-import csvClasses.csvRetrieve.CsvValidator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 
 @SpringBootApplication
