@@ -9,7 +9,6 @@ import csvClasses.csvRetrieve.GetCsvUrlFromJsonUrl;
 import com.example.progetto.Spring.DataCsvRow;
 import csvClasses.dataType.Metadata;
 import org.json.JSONException;
-
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
