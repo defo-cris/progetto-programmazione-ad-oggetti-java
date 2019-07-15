@@ -1,7 +1,7 @@
 package com.example.progetto.Spring;
 
-import csvClasses.dataType.ObjArray;
-import csvClasses.dataType.UrlWithDescription;
+import com.example.progetto.csvClasses.dataType.ObjArray;
+import com.example.progetto.csvClasses.dataType.UrlWithDescription;
 
 
 public class DataCsvRow

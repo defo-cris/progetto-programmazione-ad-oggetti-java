@@ -1,7 +1,7 @@
-package csvClasses.csvRetrieve;
+package com.example.progetto.csvClasses.csvRetrieve;
 
-import csvClasses.dataType.ObjArray;
-import csvClasses.dataType.UrlWithDescription;
+import com.example.progetto.csvClasses.dataType.ObjArray;
+import com.example.progetto.csvClasses.dataType.UrlWithDescription;
 
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;

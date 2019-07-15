@@ -9,7 +9,7 @@ title __PROGETTO's Class Diagram__\n
 
 
     namespace om.example.progetto {
-      class csvClasses.dataType.Metadata {
+      class com.example.progetto.csvClasses.dataType.Metadata {
       }
     }
 
@@ -29,17 +29,17 @@ title __PROGETTO's Class Diagram__\n
     }
 
     namespace svClasses {
-      class csvClasses.csvRetrieve.CsvSplitter {
+      class com.example.progetto.csvClasses.csvRetrieve.CsvSplitter {
       }
     }
 
     namespace svClasses {
-      class csvClasses.csvRetrieve.CsvValidator {
+      class com.example.progetto.csvClasses.csvRetrieve.CsvValidator {
       }
     }
 
     namespace svClasses {
-      class csvClasses.DataCsv {
+      class com.example.progetto.csvClasses.DataCsv {
       }
     }
 
@@ -49,45 +49,45 @@ title __PROGETTO's Class Diagram__\n
     }
 
     namespace svClasses {
-      class csvClasses.csvRetrieve.GetCsvDataFromUrl {
+      class com.example.progetto.csvClasses.csvRetrieve.GetCsvDataFromUrl {
       }
     }
 
     namespace svClasses {
-      class csvClasses.csvRetrieve.GetCsvUrlFromJsonUrl {
+      class com.example.progetto.csvClasses.csvRetrieve.GetCsvUrlFromJsonUrl {
       }
     }
 
     namespace svClasses {
-      class csvClasses.csvRetrieve.ReadLineFromBufferedReader {
+      class com.example.progetto.csvClasses.csvRetrieve.ReadLineFromBufferedReader {
       }
     }
 
     namespace svClasses {
       namespace dataType {
-        class csvClasses.dataType.FloatArray {
+        class com.example.progetto.csvClasses.dataType.FloatArray {
         }
       }
     }
 
     namespace svClasses {
       namespace dataType {
-        class csvClasses.dataType.PrintClass {
+        class com.example.progetto.csvClasses.dataType.PrintClass {
         }
       }
     }
 
     namespace svClasses {
       namespace dataType {
-        class csvClasses.dataType.StringArray {
+        class com.example.progetto.csvClasses.dataType.StringArray {
         }
       }
     }
 
   
 
-  csvClasses.csvRetrieve.CsvSplitter o-- csvClasses.csvRetrieve.GetCsvDataFromUrl : csv
-  csvClasses.csvRetrieve.GetCsvDataFromUrl o-- csvClasses.csvRetrieve.ReadLineFromBufferedReader : br
+  com.example.progetto.csvClasses.csvRetrieve.CsvSplitter o-- com.example.progetto.csvClasses.csvRetrieve.GetCsvDataFromUrl : csv
+  com.example.progetto.csvClasses.csvRetrieve.GetCsvDataFromUrl o-- com.example.progetto.csvClasses.csvRetrieve.ReadLineFromBufferedReader : br
 
 
 right footer
