@@ -2,7 +2,7 @@ package com.example.progetto.csvClasses.dataType;
 
 
 /**
- * class used in { DataCsv} class to generate the information of every element;
+ * class used in DataCsv class to generate the information of every element;
  * that information contain the alias of the element, the sourceField and the type of the element 
  */
 public class Metadata

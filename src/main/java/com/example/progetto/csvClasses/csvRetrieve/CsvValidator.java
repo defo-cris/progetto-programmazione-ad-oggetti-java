@@ -13,9 +13,9 @@ import java.net.URL;
 public class CsvValidator
 {
     /**
-     * @param s
-     * @param defaultValue
-     * @return
+     * @param s string to pass at the parseInt method to return the integer
+     * @param defaultValue value to assign in the case of a null string
+     * @return or the integer value of the string or the default value in case of a null string
      */
     private static int validateInt(String s, int defaultValue)
     {
@@ -30,8 +30,9 @@ public class CsvValidator
     }
 
     /**
-     * @param s
-     * @return
+     * @param s is the string of the Nid column
+     * @return the result of the validateInt method where the string is the {@param s}
+     * and the default value is -1.
      */
     public static int validateID(String s)
     {
@@ -39,8 +40,9 @@ public class CsvValidator
     }
 
     /**
-     * @param s
-     * @return
+     * @param s is the string of the euBudgetContribution or the totalProjectBudget column
+     * @return the result of the validateInt method where the string is {@param s}
+     * and the default value is 0.
      */
     public static int validateCurrency(String s)
     {
@@ -48,8 +50,8 @@ public class CsvValidator
     }
 
     /**
-     * @param s
-     * @return
+     * @param s is the string to pass at the method from every string type column
+     * @return the string with some replacement to eliminate strange character, or NULL in case of a null string
      */
     public static String validateString(String s)
     {
@@ -64,8 +66,8 @@ public class CsvValidator
     }
 
     /**
-     * @param s
-     * @return
+     * @param s is the string of the Visual column
+     * @return the url if the string is an url or NULL
      */
     public static String validateUrl(String s)
     {
@@ -82,8 +84,8 @@ public class CsvValidator
     }
 
     /**
-     * @param s
-     * @return
+     * @param s is the string to pass at the validate method
+     * @return the result of the validateString method of string s
      */
     public static String validateCounty(String s)
     {
@@ -94,9 +96,9 @@ public class CsvValidator
 
 
     /**
-     * @param s
-     * @param sep
-     * @return
+     * @param s is the string to pass at the validate method to obtain how result a String array
+     * @param sep indicate the string to apply how separator of the split method
+     * @return the String array where the element will be the split string
      */
     private static ObjArray<String> validateStringArray(String s, String sep)
     {
@@ -110,8 +112,8 @@ public class CsvValidator
     }
 
     /**
-     * @param s
-     * @return
+     * @param s string where the separator inside is the ","
+     * @return the String array of the split string.
      */
     public static ObjArray<String> validateStringArrayCommaSeparated(String s)
     {
@@ -119,7 +121,7 @@ public class CsvValidator
     }
 
     /**
-     * @param s
+     * @param s string where the separator inside is the ";"
      * @return
      */
     public static ObjArray<String> validateStringArraySemicolonSeparated(String s)

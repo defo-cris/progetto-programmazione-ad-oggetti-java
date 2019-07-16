@@ -8,7 +8,7 @@ import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 
 /**
- * class used to retrieve the data of the csv
+ * class used to retrieve the data of the csv from the url obtained from the {@link GetCsvUrlFromJsonUrl} class
  */
 public class GetCsvDataFromUrl
 {
@@ -22,10 +22,10 @@ public class GetCsvDataFromUrl
 
 
     /**
-	 * method used to catch the first line of the csv
+	 * method used to catch the first line of the csv from the {@link ReadLineFromBufferedReader} class
 	 *
-     * @return the first line
-     * @throws IOException
+     * @return the first line of the csv
+     * @throws IOException in case the file ended too early
      */
     public String getFirstLine() throws IOException
     {
@@ -47,8 +47,9 @@ public class GetCsvDataFromUrl
     }
 
     /**
-     * @return
-     * @throws IOException
+     * @return all the csv line apart of the first that we read in previous method
+     * @throws IOException in case we attempt to read the rest of the csv before e read the first line,
+     * or in case we reach the the end of the file.
      */
     public String getLine() throws IOException
     {
@@ -65,7 +66,9 @@ public class GetCsvDataFromUrl
     }
 
     /**
-     * @throws IOException
+     * reset the position of the BufferReader
+     *
+     * @throws IOException in case of an error
      */
     public void resetPosition() throws IOException
     {

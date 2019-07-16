@@ -16,7 +16,8 @@ import java.lang.reflect.Method;
 import java.util.Vector;
 
 /**
- *
+ * Class used to read, validate and store all the row of the csv in a vector;
+ * and from every field of the row with the method createMetadata we retrieve the class type of every element.
  */
 public class DataCsv
 {
@@ -35,7 +36,7 @@ public class DataCsv
     private String[] firstLine;
 
     /**
-     *
+     * In this method we instance the two vectors where we pass the Csv Data and the metadata of every csv element
      */
     public DataCsv()
     {
@@ -44,7 +45,9 @@ public class DataCsv
     }
 
     /**
-     *
+     * In this method form the json url we retrieve the csv url, we read it and download in ram it.
+     * From the Csv data we read and split the first line, and for every row of the Csv we read, validate
+     * and set the element of every column.
      */
     public void readAndStore()
     {
@@ -98,7 +101,7 @@ public class DataCsv
     }
 
     /**
-     *
+     * In this method, from the data of every field of the row, we retrieve the type of the element
      */
     private void createMetadata()
     {
@@ -121,7 +124,8 @@ public class DataCsv
     }
 
     /**
-     *
+     * In this method we set the data and the metadata in the {@link DataCsvRowServices} class
+     * with the vector used in this class
      */
     public void setServicesData()
     {

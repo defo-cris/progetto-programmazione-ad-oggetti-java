@@ -8,7 +8,8 @@ import java.io.Reader;
 
 
 /**
- *
+ * Class implemented because we couldn't use the method readline of the BufferedReader
+ * because in some of the row in some field we had the character \n in the field.
  */
 public class ReadLineFromBufferedReader
 {
@@ -19,9 +20,9 @@ public class ReadLineFromBufferedReader
 
 
     /**
-     * @param in
-     * @param endOfLineDelimiter
-     * @param maxLineLength
+     * @param in is the param to pass at the reader for the character stream
+     * @param endOfLineDelimiter is a string to identify the end of the line of a row
+     * @param maxLineLength int used in the StringBuilder to identify the dimension of the String
      */
     public ReadLineFromBufferedReader(Reader in, String endOfLineDelimiter, int maxLineLength)
     {
@@ -34,8 +35,8 @@ public class ReadLineFromBufferedReader
 
 
     /**
-     * @param in
-     * @param endOfLineDelimiter
+     * @param in streamer of character passed at the Reader
+     * @param endOfLineDelimiter character that identify the end of the line
      */
     public ReadLineFromBufferedReader(Reader in, String endOfLineDelimiter)
     {
@@ -47,8 +48,8 @@ public class ReadLineFromBufferedReader
 
 
     /**
-     * @return
-     * @throws IOException
+     * @return the line in string format
+     * @throws IOException in case of error
      */
     public String readLine() throws IOException
     {
@@ -99,8 +100,8 @@ public class ReadLineFromBufferedReader
     }
 
     /**
-     * @param i
-     * @throws IOException
+     * @param i parameter to assign at the mark
+     * @throws IOException in case of error
      */
     public void mark(int i) throws IOException
     {
@@ -108,7 +109,7 @@ public class ReadLineFromBufferedReader
     }
 
     /**
-     * @throws IOException
+     * @throws IOException in case of error
      */
     public void reset() throws IOException
     {

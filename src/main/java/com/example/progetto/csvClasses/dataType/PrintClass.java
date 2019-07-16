@@ -14,8 +14,8 @@ public class PrintClass
     }
 
     /**
-     * @param col
-     * @param row
+     * @param col is the param used to stamp the field name of the csv
+     * @param row is the param used to stamp the value of the field for that row of the csv
      */
     static void printFormatted(String[] col, String[] row)
     {
@@ -28,7 +28,7 @@ public class PrintClass
     }
 
     /**
-     * @param arr
+     * @param arr used to print in the console an array of data
      */
     static void print(String[] arr)
     {
@@ -39,7 +39,7 @@ public class PrintClass
     }
 
     /**
-     * @param a
+     * @param a used to stamp an ArrayList in the console
      */
     static void printArrayList(ArrayList a)
     {
@@ -50,7 +50,7 @@ public class PrintClass
     }
 
     /**
-     * @param a
+     * @param a used to stamp a Vector in the console
      */
     static void printVector(Vector a)
     {
