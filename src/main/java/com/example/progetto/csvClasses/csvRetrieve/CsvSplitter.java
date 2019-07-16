@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.zip.DataFormatException;
 
 /**
- *
+ * Class used to split all the row of the csv and to get all the data of the fields from the rows
  */
 public class CsvSplitter
 {
@@ -16,6 +16,8 @@ public class CsvSplitter
     private String firstline;
 
     /**
+	 * Constructor of the class CsvSplitter
+	 *
      * @param csv
      */
     public CsvSplitter(GetCsvDataFromUrl csv)
@@ -26,8 +28,10 @@ public class CsvSplitter
     }
 
     /**
+	 * method used to guess the delimiter of the csv's fields
+	 *
      * @throws IOException
-     * @throws DataFormatException
+     * @throws DataFormatException in case the csv have a delimiter that are not in commonSeparator
      */
     void guessDelimiter() throws IOException, DataFormatException
     {
@@ -55,7 +59,7 @@ public class CsvSplitter
     }
 
     /**
-     * @param sep
+     * @param sep parameter to add at the array with all the elements used to separator
      */
     void addCommonSeparator(String sep)
     {
@@ -63,8 +67,10 @@ public class CsvSplitter
     }
 
     /**
-     * @param sep
-     * @throws IOException
+	 * method used to get the first line and to ste the separator 
+	 *
+     * @param sep separator to use how a split of the line
+     * @throws IOException in case of error of I/O
      */
     public void setDelimiter(String sep) throws IOException
     {
@@ -73,7 +79,9 @@ public class CsvSplitter
     }
 
     /**
-     * @return
+	 *method used to split the first line with the separator
+	 *
+     * @return the line how an array where all the element are obtained from the split of the string
      */
     public String[] splitFirstLine()
     {
@@ -81,7 +89,9 @@ public class CsvSplitter
     }
 
     /**
-     * @return
+	 * method used to splitthe line of the csv other than the first line
+	 *
+     * @return the array where every element will be field of the row
      */
     public String[] splitLine()
     {

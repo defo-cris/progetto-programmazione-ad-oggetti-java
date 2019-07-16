@@ -8,7 +8,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 
 /**
- *
+ * class used to validate all the data obtained in the csv
  */
 public class CsvValidator
 {
@@ -107,7 +107,7 @@ public class CsvValidator
          *  handle
          *  --> Maritime House, 25 Marine Parade, null,
          * */
-        s = validateString(s);
+        s = validateString(s);that information contain the alias of the element, the sourceField 
         return new ObjArray<>(s.split(sep));
     }
 
@@ -122,7 +122,7 @@ public class CsvValidator
 
     /**
      * @param s string where the separator inside is the ";"
-     * @return
+     * @return the String array of tthe split string
      */
     public static ObjArray<String> validateStringArraySemicolonSeparated(String s)
     {
@@ -130,8 +130,8 @@ public class CsvValidator
     }
 
     /**
-     * @param s
-     * @return
+     * @param s string that contain all the countries and that are separated with ";"
+     * @return the String array of the split string
      */
     public static ObjArray<String> validateCountryArraySemicolonSeparated(String s)
     {
@@ -146,8 +146,8 @@ public class CsvValidator
 
 
     /**
-     * @param s
-     * @return
+     * @param s string used to obtain how result a float
+     * @return in case of a correct number the float, or a NaN in case of bad format exception
      */
     public static float validateFloat(String s)
     {
@@ -162,8 +162,8 @@ public class CsvValidator
     }
 
     /**
-     * @param s
-     * @return
+     * @param s string that is used to obtain how result an array of float
+     * @return the array of float or NaN  
      */
     public static ObjArray<Float> validateFloatArraySemicolonSeparated(String s)
     {
@@ -178,8 +178,8 @@ public class CsvValidator
     }
 
     /**
-     * @param s
-     * @return
+     * @param s string that contain the url with the anchor of the link
+     * @return an array with two element, the url and the description
      */
     public static ObjArray<UrlWithDescription> validateUrlArraySemicolonSeparated(String s)
     {

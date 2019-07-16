@@ -2,8 +2,9 @@ package com.example.progetto.Spring;
 
 import com.example.progetto.csvClasses.dataType.ObjArray;
 import com.example.progetto.csvClasses.dataType.UrlWithDescription;
-
-
+/**
+ * Class used to transform the csv ddata in an object where every element have is own type data
+ */
 public class DataCsvRow
 {
     private int nid;
