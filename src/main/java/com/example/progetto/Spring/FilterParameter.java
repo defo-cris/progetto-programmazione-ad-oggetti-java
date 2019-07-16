@@ -3,6 +3,7 @@ package com.example.progetto.Spring;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
 /**
  * Class used to describe the element used for the description of the parameters used in the filter
  */
@@ -72,9 +73,11 @@ public class FilterParameter
      */
     public void readFields(JSONObject body) throws JSONException
     {
+
         colName = (String) body.get("fieldName");
         operator = (String) body.get("operator");
         value = body.get("value");
+
     }
 
     @Override
@@ -87,4 +90,3 @@ public class FilterParameter
                 '}';
     }
 }
-

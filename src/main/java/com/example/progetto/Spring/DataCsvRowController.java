@@ -56,11 +56,26 @@ public class DataCsvRowController
     @GetMapping("/data/{colName}")
     public Vector<Object> retrieveDataColumn(@PathVariable String colName)
     {
-        return DataCsvRowServices.retrieveColumn(colName);
+        return DataCsvRowServices.retrieveColumn(colName, false);
     }
 
+    @GetMapping("/data/{colName}/{param}")
+    public Vector<Object> retrieveDataColumn(@PathVariable String colName, @PathVariable String param)
+    {
+        boolean excludeNull = false;
+        if (param.equals("excludeNull"))
+        {
+            excludeNull = true;
+        }
+        else
+        {
+            ///// errrrooreee /* TODO */
+        }
 
-    @GetMapping("/count/{fieldName}")
+        return DataCsvRowServices.retrieveColumn(colName, excludeNull);
+    }
+
+    @GetMapping(value = "/count/{fieldName}", produces = "application/json")
     public String count(@PathVariable String fieldName, @RequestParam(value = "value") String value)
     {
         FilterParameter filter = new FilterParameter(fieldName, "==", value);
@@ -68,12 +83,17 @@ public class DataCsvRowController
         return "{ \"count\": " + count + "}";
     }
 
+    @GetMapping(value = "/search", produces = "application/json")
+    public String search(@RequestParam(value = "value") String value)
+    {
+        DataCsvRowServices.search(value);
+        return null;
+    }
 
     @PostMapping(value = "/filter")
-    public Vector<Vector<DataCsvRow>> filter(@RequestBody String param)
+    public Vector<DataCsvRow> filter(@RequestBody String param)
     {
-        Vector<Vector<DataCsvRow>> finalData = new Vector<>();
-        JSONObject obj = null;
+        JSONObject obj;
         FilterParameter filter = new FilterParameter();
         try
         {
@@ -81,65 +101,54 @@ public class DataCsvRowController
         }
         catch (JSONException e)
         {
-            /* TODO inserire errore */
+            /* TODO inserire errore json formattato male */
             return null;
         }
 
+        // caso senza operatori
         try
         {
             filter.readFields(obj);
-            finalData.add(DataCsvRowServices.filter(filter));
-            return finalData;
+            return DataCsvRowServices.filter(filter);
         }
-        catch (JSONException e)
+        catch (JSONException ignored) { }
+
+        try
         {
-            try
-            {
+            Iterator iterator = obj.keys();
 
-                Iterator iterator = obj.keys();
-                while (iterator.hasNext())
+            Vector<DataCsvRow> tmp = null;
+
+            String operator = iterator.next().toString();
+
+            JSONArray filters = (JSONArray) obj.get(operator);
+            for (int i = 0; i < filters.length(); i++)
+            {
+                JSONObject objin = filters.getJSONObject(i);
+                filter.readFields(objin);
+
+                if (operator.equals("$or"))
                 {
-                    Vector<Vector<DataCsvRow>> partialFilteredData = new Vector<>();
-                    String operator = iterator.next().toString();
-                    JSONArray filters = (JSONArray) obj.get(operator);
-
-                    for (int i = 0; i < filters.length(); i++)
-                    {
-                        JSONObject objin = filters.getJSONObject(i);
-                        filter.readFields(objin);
-                        partialFilteredData.add(DataCsvRowServices.filter(filter));
-                    }
-
-                    if (operator.equals("$or"))
-                    {
-                        Vector<DataCsvRow> tmp = new Vector<>();
-                        for (Vector<DataCsvRow> v: partialFilteredData)
-                        {
-                            tmp = DataCsvRowServices.or(tmp, v);
-                        }
-                        finalData.add(tmp);
-                    }
-                    else if (operator.equals("$and"))
-                    {
-                        Vector<DataCsvRow> tmp = DataCsvRowServices.getCsvData();
-                        for (Vector<DataCsvRow> v: partialFilteredData)
-                        {
-                            tmp = DataCsvRowServices.and(tmp, v);
-                        }
-                        finalData.add(tmp);
-                    }
-
+                    tmp = (tmp==null?(new Vector<>()):tmp);
+                    tmp = DataCsvRowServices.or(tmp, DataCsvRowServices.filter(filter));
                 }
-                return finalData;
+                else if (operator.equals("$and"))
+                {
+                    tmp = (tmp==null?DataCsvRowServices.getCsvData():tmp);
+                    tmp = DataCsvRowServices.and(tmp, DataCsvRowServices.filter(filter));
+                }
             }
-            catch (JSONException ex)
-            {
-                /* TODO da sistemare*/
-                System.out.println("wrooooong");
-            }
+
+            return tmp;
 
         }
+        catch (JSONException ignored) { }
+
         return null;
     }
+
+
+
+
 
 }

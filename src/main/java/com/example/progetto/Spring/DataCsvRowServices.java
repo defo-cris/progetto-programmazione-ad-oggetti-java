@@ -2,10 +2,12 @@ package com.example.progetto.Spring;
 
 import com.example.progetto.csvClasses.*;
 import com.example.progetto.csvClasses.dataType.Metadata;
+import com.example.progetto.csvClasses.dataType.ObjArray;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
@@ -51,7 +53,7 @@ public class DataCsvRowServices
         return "NULL"; // ce sta da inventasse qualcosa nel caso non trova il nome
     }
 
-    public static Vector<Object> retrieveColumn(String name)
+    public static Vector<Object> retrieveColumn(String name, boolean excludeNull)
     {
         name = checkColName(name);
 
@@ -61,7 +63,19 @@ public class DataCsvRowServices
             for (DataCsvRow row : csvData)
             {
                 Method getterMethod = row.getClass().getMethod("get" + name);
-                col.add(getterMethod.invoke(row));
+                Object data = getterMethod.invoke(row);
+                if (data.getClass() == String.class)
+                {
+                    if (!data.equals("NULL") || !excludeNull)
+                    {
+                        col.add(data);
+                    }
+                }
+                else
+                {
+                    col.add(data);
+                }
+
             }
         }
         catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e)
@@ -210,6 +224,38 @@ public class DataCsvRowServices
             }
         }
         return b;
+    }
+
+
+    public static Vector<DataCsvRow> search(String value)
+    {
+        System.out.println("aaaa");
+        for (DataCsvRow row: csvData)
+        {
+            for (String fieldName: DataCsv.dataNames)
+            {
+                try
+                {
+                    Method m = row.getClass().getMethod("get" + fieldName);
+                    Object data = m.invoke(row);
+
+                    if (data.getClass() == String.class)
+                    {
+
+                    }
+                    else if (data.getClass() == ObjArray.class)
+                    {
+                        Method getData = data.getClass().getMethod("getData");
+                        Object d = m.invoke(getData);
+
+                        System.out.println(d.getClass().toString());
+                    }
+
+                }
+                catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException ignored) { }
+            }
+        }
+        return null;
     }
 
 }

@@ -31,7 +31,7 @@ public class CsvValidator
 
     /**
      * @param s is the string of the Nid column
-     * @return the result of the validateInt method where the string is the {@param s}
+     * @return the result of the validateInt method where the string is the
      * and the default value is -1.
      */
     public static int validateID(String s)
@@ -41,7 +41,7 @@ public class CsvValidator
 
     /**
      * @param s is the string of the euBudgetContribution or the totalProjectBudget column
-     * @return the result of the validateInt method where the string is {@param s}
+     * @return the result of the validateInt method where the string is s
      * and the default value is 0.
      */
     public static int validateCurrency(String s)
