@@ -87,7 +87,7 @@ public class CsvValidator
      * @param s is the string to pass at the validate method
      * @return the result of the validateString method of string s
      */
-    public static String validateCounty(String s)
+    private static String validateCounty(String s)
     {
         s = validateString(s);
         s = s.toUpperCase();
@@ -107,7 +107,7 @@ public class CsvValidator
          *  handle
          *  --> Maritime House, 25 Marine Parade, null,
          * */
-        s = validateString(s);that information contain the alias of the element, the sourceField 
+        s = validateString(s);
         return new ObjArray<>(s.split(sep));
     }
 
@@ -149,7 +149,7 @@ public class CsvValidator
      * @param s string used to obtain how result a float
      * @return in case of a correct number the float, or a NaN in case of bad format exception
      */
-    public static float validateFloat(String s)
+    private static float validateFloat(String s)
     {
         try
         {

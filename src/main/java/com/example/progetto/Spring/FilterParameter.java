@@ -20,7 +20,7 @@ public class FilterParameter
      * @param operator string used for the operation that the filter have to do, this may include "==", ">", "<", ecc.
      * @param value value used to compare all the data in the csv based on the operation to do
      */
-    public FilterParameter(String colName, String operator, Object value)
+    FilterParameter(String colName, String operator, Object value)
     {
         this.colName = colName;
         this.operator = operator;
@@ -28,50 +28,50 @@ public class FilterParameter
     }
 
     /**
-     * default contructor of the class, always used because the parameters are passed away postman
+     * default constructor of the class, always used because the parameters are passed away postman
      */
-    public FilterParameter()
+    FilterParameter()
     {
 
     }
 
-    public String getColName()
+    String getColName()
     {
         return colName;
     }
 
-    public void setColName(String colName)
+     void setColName(String colName)
     {
         this.colName = colName;
     }
 
-    public String getOperator()
+    String getOperator()
     {
         return operator;
     }
 
-    public void setOperator(String operator)
+     void setOperator(String operator)
     {
         this.operator = operator;
     }
 
-    public Object getValue()
+    Object getValue()
     {
         return value;
     }
 
-    public void setValue(Object value)
+     void setValue(Object value)
     {
         this.value = value;
     }
 
     /**
-	 * method used to restrieve the parameters from the body request of postman
+	 * method used to retrieve the parameters from the body request of postman
 	 *
      * @param body is a JSONObject that contain the parameters fieldName, operator e value, enclosed in a json
      * @throws JSONException in case the object obtained from postman isn't in JSON format
      */
-    public void readFields(JSONObject body) throws JSONException
+    void readFields(JSONObject body) throws JSONException
     {
 
         colName = (String) body.get("fieldName");

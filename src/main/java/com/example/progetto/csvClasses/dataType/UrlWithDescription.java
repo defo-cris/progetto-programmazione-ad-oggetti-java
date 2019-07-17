@@ -47,9 +47,7 @@ public class UrlWithDescription
         this.description = description;
     }
 
-    /**
-     * @return method used to return the string formatted with the description detached from the url
-     */
+
     @Override
     public String toString()
     {

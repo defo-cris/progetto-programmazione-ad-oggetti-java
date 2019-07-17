@@ -51,7 +51,7 @@ public class GetCsvDataFromUrl
      * @throws IOException in case we attempt to read the rest of the csv before e read the first line,
      * or in case we reach the the end of the file.
      */
-    public String getLine() throws IOException
+    String getLine() throws IOException
     {
         if (br == null)
         {
@@ -70,7 +70,7 @@ public class GetCsvDataFromUrl
      *
      * @throws IOException in case of an error
      */
-    public void resetPosition() throws IOException
+    void resetPosition() throws IOException
     {
         br.reset();
     }

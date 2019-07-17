@@ -21,18 +21,27 @@ public class DataCsvRowController
     {
     }
 
+    /**
+     * @return
+     */
     @GetMapping("/data")
     public Vector<DataCsvRow> retrieveData()
     {
         return DataCsvRowServices.getCsvData();
     }
 
+    /**
+     * @return
+     */
     @GetMapping("/metadata")
     public Vector<Metadata> retrieveMetadata()
     {
         return DataCsvRowServices.getMetadata();
     }
 
+    /**
+     * @return
+     */
     @GetMapping("/test")
     public String retrieveTest()
     {
@@ -53,28 +62,28 @@ public class DataCsvRowController
     }
 
 
+    /**
+     * @param colName
+     * @param value
+     * @return
+     */
     @GetMapping("/data/{colName}")
-    public Vector<Object> retrieveDataColumn(@PathVariable String colName)
-    {
-        return DataCsvRowServices.retrieveColumn(colName, false);
-    }
-
-    @GetMapping("/data/{colName}/{param}")
-    public Vector<Object> retrieveDataColumn(@PathVariable String colName, @PathVariable String param)
+    public Vector<Object> retrieveDataColumn(@PathVariable String colName, @RequestParam(value = "excludeNull", required = false) String value)
     {
         boolean excludeNull = false;
-        if (param.equals("excludeNull"))
+        if (value.replace("\"", "").equals("true"))
         {
             excludeNull = true;
         }
-        else
-        {
-            ///// errrrooreee /* TODO */
-        }
 
-        return DataCsvRowServices.retrieveColumn(colName, excludeNull);
+        return DataCsvRowServices.retrieveColumn(colName.replace("\"", ""), excludeNull);
     }
 
+    /**
+     * @param fieldName
+     * @param value
+     * @return
+     */
     @GetMapping(value = "/count/{fieldName}", produces = "application/json")
     public String count(@PathVariable String fieldName, @RequestParam(value = "value") String value)
     {
@@ -83,13 +92,29 @@ public class DataCsvRowController
         return "{ \"count\": " + count + "}";
     }
 
-    @GetMapping(value = "/search", produces = "application/json")
-    public String search(@RequestParam(value = "value") String value)
+    /**
+     * @param value
+     * @param bool
+     * @return
+     */
+    @GetMapping(value = "/search")
+    public Vector<DataCsvRow> search(@RequestParam(value = "value") String value, @RequestParam(value = "exactMatch", required = false) String bool)
     {
-        DataCsvRowServices.search(value);
-        return null;
+        String param = "contains";
+        Class type = CharSequence.class;
+        if (bool.replace("\"", "").equals("true"))
+        {
+            param = "equals";
+            type = Object.class;
+        }
+
+        return DataCsvRowServices.search(value.replace("\"", ""), param, type);
     }
 
+    /**
+     * @param param
+     * @return
+     */
     @PostMapping(value = "/filter")
     public Vector<DataCsvRow> filter(@RequestBody String param)
     {
@@ -111,7 +136,9 @@ public class DataCsvRowController
             filter.readFields(obj);
             return DataCsvRowServices.filter(filter);
         }
-        catch (JSONException ignored) { }
+        catch (JSONException ignored)
+        {
+        }
 
         try
         {
@@ -129,26 +156,28 @@ public class DataCsvRowController
 
                 if (operator.equals("$or"))
                 {
-                    tmp = (tmp==null?(new Vector<>()):tmp);
+                    tmp = (tmp == null ? (new Vector<>()) : tmp);
                     tmp = DataCsvRowServices.or(tmp, DataCsvRowServices.filter(filter));
-                }
-                else if (operator.equals("$and"))
+                } else if (operator.equals("$and"))
                 {
-                    tmp = (tmp==null?DataCsvRowServices.getCsvData():tmp);
+                    tmp = (tmp == null ? DataCsvRowServices.getCsvData() : tmp);
                     tmp = DataCsvRowServices.and(tmp, DataCsvRowServices.filter(filter));
+                } else
+                {
+                    /* TODO insert errrror */
+                    //// errore
                 }
             }
 
             return tmp;
 
         }
-        catch (JSONException ignored) { }
+        catch (JSONException ignored)
+        {
+        }
 
         return null;
     }
-
-
-
 
 
 }

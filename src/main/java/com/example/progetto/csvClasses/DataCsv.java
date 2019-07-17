@@ -94,7 +94,7 @@ public class DataCsv
         }
         catch (IOException | JSONException | NoSuchMethodException | ClassNotFoundException | IllegalAccessException | InvocationTargetException e)
         {
-            System.out.println(e.getCause().toString() + e.toString());
+            System.out.println(e.toString());
             e.printStackTrace();
         }
 

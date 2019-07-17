@@ -7,21 +7,21 @@ esempi filtri:
     "$or": [
     {
          "$and": [
-            {
-                "fieldName": "nid",
-                "operator": ">=",
-                "value": "100"
-            },
-            {
-                "fieldName": "totalProjectBudget",
-                "operator": "<",
-                "value": "5000"
-            },
-            {
-                "fieldName": "totalProjectBudget",
-                "operator": ">",
-                "value": "100"
-            }
+                         {
+                             "fieldName": "nid",
+                             "operator": ">=",
+                             "value": "100"
+                         },
+                         {
+                             "fieldName": "totalProjectBudget",
+                             "operator": "<",
+                             "value": "5000"
+                         },
+                         {
+                             "fieldName": "totalProjectBudget",
+                             "operator": ">",
+                             "value": "100"
+                         }
         ],
         "$or": [
             {
@@ -38,3 +38,4 @@ esempi filtri:
      }
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+

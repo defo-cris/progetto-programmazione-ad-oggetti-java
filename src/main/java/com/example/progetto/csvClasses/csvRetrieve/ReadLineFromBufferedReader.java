@@ -16,7 +16,7 @@ public class ReadLineFromBufferedReader
     private BufferedReader br;
     private String endOfLineDelimiter;
     private int maxLineLength;
-    CircularFifoBuffer buffer;
+    private CircularFifoBuffer buffer;
 
 
     /**
@@ -51,7 +51,7 @@ public class ReadLineFromBufferedReader
      * @return the line in string format
      * @throws IOException in case of error
      */
-    public String readLine() throws IOException
+    String readLine() throws IOException
     {
         StringBuilder str = new StringBuilder(maxLineLength);
         while (true)
@@ -103,7 +103,7 @@ public class ReadLineFromBufferedReader
      * @param i parameter to assign at the mark
      * @throws IOException in case of error
      */
-    public void mark(int i) throws IOException
+    void mark(int i) throws IOException
     {
         br.mark(i);
     }
@@ -111,7 +111,7 @@ public class ReadLineFromBufferedReader
     /**
      * @throws IOException in case of error
      */
-    public void reset() throws IOException
+    void reset() throws IOException
     {
         br.reset();
     }

@@ -2,17 +2,19 @@ package com.example.progetto.Spring;
 
 import com.example.progetto.csvClasses.*;
 import com.example.progetto.csvClasses.dataType.Metadata;
-import com.example.progetto.csvClasses.dataType.ObjArray;
+import com.example.progetto.csvClasses.dataType.UrlWithDescription;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Vector;
 
+/**
+ *
+ */
 @Component
 public class DataCsvRowServices
 {
@@ -20,7 +22,7 @@ public class DataCsvRowServices
     static private Vector<DataCsvRow> csvData;
 
 
-    public static Vector<Metadata> getMetadata()
+    static Vector<Metadata> getMetadata()
     {
         return metadata;
     }
@@ -30,7 +32,7 @@ public class DataCsvRowServices
         DataCsvRowServices.metadata = metadata;
     }
 
-    public static Vector<DataCsvRow> getCsvData()
+    static Vector<DataCsvRow> getCsvData()
     {
         return csvData;
     }
@@ -40,6 +42,10 @@ public class DataCsvRowServices
         DataCsvRowServices.csvData = csvData;
     }
 
+    /**
+     * @param name
+     * @return
+     */
     private static String checkColName(String name)
     {
         name = name.toLowerCase();
@@ -53,7 +59,12 @@ public class DataCsvRowServices
         return "NULL"; // ce sta da inventasse qualcosa nel caso non trova il nome
     }
 
-    public static Vector<Object> retrieveColumn(String name, boolean excludeNull)
+    /**
+     * @param name
+     * @param excludeNull
+     * @return
+     */
+    static Vector<Object> retrieveColumn(String name, boolean excludeNull)
     {
         name = checkColName(name);
 
@@ -70,8 +81,7 @@ public class DataCsvRowServices
                     {
                         col.add(data);
                     }
-                }
-                else
+                } else
                 {
                     col.add(data);
                 }
@@ -91,7 +101,7 @@ public class DataCsvRowServices
      * @param fieldName
      * @return
      */
-    public static NumberStats stats(String fieldName)
+    static NumberStats stats(String fieldName)
     {
         fieldName = checkColName(fieldName);
 
@@ -127,12 +137,12 @@ public class DataCsvRowServices
 
             avg = sum / count;
 
-            for (int xi: tmp)
+            for (int xi : tmp)
             {
-                std += Math.pow(xi-avg, 2);
+                std += Math.pow(xi - avg, 2);
             }
 
-            std = Math.sqrt(std/count);
+            std = Math.sqrt(std / count);
         }
         catch (IllegalAccessException | NoSuchMethodException | SecurityException | ClassCastException | InvocationTargetException e)
         {
@@ -142,46 +152,56 @@ public class DataCsvRowServices
     }
 
 
+    /**
+     * @param leftValue
+     * @param operator
+     * @param rightValue
+     * @return
+     */
     private static boolean checkFilterValidity(Object leftValue, String operator, Object rightValue)
     {
         if (leftValue.getClass() == Integer.class)
         {
-            rightValue = Integer.parseInt((String)rightValue);
+            rightValue = Integer.parseInt((String) rightValue);
             switch (operator)
             {
                 case "<":
-                    return (int)leftValue < (int)rightValue;
+                    return (int) leftValue < (int) rightValue;
                 case "<=":
-                    return (int)leftValue <= (int)rightValue;
+                    return (int) leftValue <= (int) rightValue;
                 case ">":
-                    return (int)leftValue > (int)rightValue;
+                    return (int) leftValue > (int) rightValue;
                 case ">=":
-                    return (int)leftValue >= (int)rightValue;
+                    return (int) leftValue >= (int) rightValue;
                 case "==":
-                    return (int)leftValue == (int)rightValue;
+                    return (int) leftValue == (int) rightValue;
+                case "!=":
+                    return (int) leftValue != (int) rightValue;
             }
-        }
-        else if ((leftValue.getClass() == String.class) && (rightValue.getClass() == String.class))
+        } else if ((leftValue.getClass() == String.class) && (rightValue.getClass() == String.class))
         {
             if (operator.equals("=="))
             {
                 return leftValue.equals(rightValue);
-            }
-            else
+            } else if (operator.equals("!="))
             {
-                return false;
+                return !leftValue.equals(rightValue);
             }
         }
         return false;
     }
 
-    public static Vector<DataCsvRow> filter(FilterParameter parameter)
+    /**
+     * @param parameter
+     * @return
+     */
+    static Vector<DataCsvRow> filter(FilterParameter parameter)
     {
         String colName = checkColName(parameter.getColName());
         Vector<DataCsvRow> out = new Vector<>();
         try
         {
-            for (DataCsvRow row: csvData)
+            for (DataCsvRow row : csvData)
             {
                 Method m = row.getClass().getMethod("get" + colName);
                 Object data = m.invoke(row);
@@ -200,11 +220,16 @@ public class DataCsvRowServices
     }
 
 
+    /**
+     * @param a
+     * @param b
+     * @return
+     */
     public static Vector<DataCsvRow> and(Vector<DataCsvRow> a, Vector<DataCsvRow> b)
     {
         Vector<DataCsvRow> c = new Vector<>();
 
-        for (DataCsvRow d: a)
+        for (DataCsvRow d : a)
         {
             if (b.contains(d))
             {
@@ -214,9 +239,14 @@ public class DataCsvRowServices
         return c;
     }
 
+    /**
+     * @param a
+     * @param b
+     * @return
+     */
     public static Vector<DataCsvRow> or(Vector<DataCsvRow> a, Vector<DataCsvRow> b)
     {
-        for (DataCsvRow d: a)
+        for (DataCsvRow d : a)
         {
             if (!b.contains(d))
             {
@@ -226,13 +256,41 @@ public class DataCsvRowServices
         return b;
     }
 
-
-    public static Vector<DataCsvRow> search(String value)
+    /**
+     * @param result
+     * @param row
+     * @param data
+     * @param value
+     * @param method
+     * @param type
+     * @throws NoSuchMethodException
+     * @throws InvocationTargetException
+     * @throws IllegalAccessException
+     */
+    private static void compareAndAdd(Vector<DataCsvRow> result, DataCsvRow row, String data, String value, String method, Class type) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException
     {
-        System.out.println("aaaa");
-        for (DataCsvRow row: csvData)
+        Method m = String.class.getMethod(method, type);
+        if ((boolean) m.invoke(data.toLowerCase(), value.toLowerCase()))
         {
-            for (String fieldName: DataCsv.dataNames)
+            if (!result.contains(row))
+            {
+                result.add(row);
+            }
+        }
+    }
+
+    /**
+     * @param value
+     * @param param
+     * @param type
+     * @return
+     */
+    static Vector<DataCsvRow> search(String value, String param, Class type)
+    {
+        Vector<DataCsvRow> result = new Vector<>();
+        for (DataCsvRow row : csvData)
+        {
+            for (String fieldName : DataCsv.colNames)
             {
                 try
                 {
@@ -241,21 +299,29 @@ public class DataCsvRowServices
 
                     if (data.getClass() == String.class)
                     {
-
-                    }
-                    else if (data.getClass() == ObjArray.class)
+                        compareAndAdd(result, row, (String) data, value, param, type);
+                    } else if (data.getClass() == String[].class)
                     {
-                        Method getData = data.getClass().getMethod("getData");
-                        Object d = m.invoke(getData);
-
-                        System.out.println(d.getClass().toString());
+                        for (String s : (String[]) data)
+                        {
+                            compareAndAdd(result, row, s, value, param, type);
+                        }
+                    } else if (data.getClass() == UrlWithDescription[].class)
+                    {
+                        for (UrlWithDescription url : (UrlWithDescription[]) data)
+                        {
+                            compareAndAdd(result, row, url.getDescription(), value, param, type);
+                        }
                     }
 
                 }
-                catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException ignored) { }
+                catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException ignored)
+                {
+                    System.out.println(ignored.toString());
+                }
             }
         }
-        return null;
+        return result;
     }
 
 }
