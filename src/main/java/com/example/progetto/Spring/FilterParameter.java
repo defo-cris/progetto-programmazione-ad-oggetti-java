@@ -14,11 +14,11 @@ public class FilterParameter
     private Object value;
 
     /**
-	 * constructor of the parameters
-	 *
-     * @param colName string of the element used for the filter
+     * constructor of the parameters TODO
+     *
+     * @param colName  string of the element used for the filter
      * @param operator string used for the operation that the filter have to do, this may include "==", ">", "<", ecc.
-     * @param value value used to compare all the data in the csv based on the operation to do
+     * @param value    value used to compare all the data in the csv based on the operation to do
      */
     FilterParameter(String colName, String operator, Object value)
     {
@@ -40,7 +40,7 @@ public class FilterParameter
         return colName;
     }
 
-     void setColName(String colName)
+    void setColName(String colName)
     {
         this.colName = colName;
     }
@@ -50,7 +50,7 @@ public class FilterParameter
         return operator;
     }
 
-     void setOperator(String operator)
+    void setOperator(String operator)
     {
         this.operator = operator;
     }
@@ -60,15 +60,16 @@ public class FilterParameter
         return value;
     }
 
-     void setValue(Object value)
+    void setValue(Object value)
     {
         this.value = value;
     }
 
     /**
-	 * method used to retrieve the parameters from the body request of postman
-	 *
+     * method used to retrieve the parameters from the body request of postman
+     *
      * @param body is a JSONObject that contain the parameters fieldName, operator e value, enclosed in a json
+     *
      * @throws JSONException in case the object obtained from postman isn't in JSON format
      */
     void readFields(JSONObject body) throws JSONException

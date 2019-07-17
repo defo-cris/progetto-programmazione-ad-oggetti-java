@@ -3,6 +3,8 @@ package com.example.progetto.csvClasses.dataType;
 import java.util.Arrays;
 
 /**
+ *
+ *
  * @param <T> data object used to describe the type of the data passed at the class. 
  */
 public class ObjArray<T>

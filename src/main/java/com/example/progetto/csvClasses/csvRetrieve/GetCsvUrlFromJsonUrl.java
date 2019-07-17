@@ -16,6 +16,8 @@ public class GetCsvUrlFromJsonUrl
 
 
     /**
+     *
+     *
      * @param url param where we pass the link of the Json
      * @param numCsv param used to indicate the number of the element in the Json
      * @return the link of the csv to download from the Json
@@ -36,6 +38,8 @@ public class GetCsvUrlFromJsonUrl
     class GetJsonFromUrl
     {
         /**
+         *
+         *
          * @param rd param used in a reader of character stream
          * @return the Json in the string format
          * @throws IOException 
@@ -52,6 +56,8 @@ public class GetCsvUrlFromJsonUrl
         }
 
         /**
+         *
+         *
          * @param url contain the Json url
          * @return the Json string with a casting of a JSONObject
          * @throws IOException
@@ -77,6 +83,8 @@ public class GetCsvUrlFromJsonUrl
     class GetCsvLinkFromJson
     {
         /**
+         *
+         *
          * @param json JSONObject of the Json casting of the json url
          * @param number number of the element of the Json
          * @return the string of the link of the csv

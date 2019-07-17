@@ -13,11 +13,16 @@ import java.util.Vector;
 public class DataCsvRowController
 {
 
+    /**
+     *
+     */
     public DataCsvRowController()
     {
     }
 
     /**
+     *
+     *
      * @return
      */
     @GetMapping("/data")
@@ -27,6 +32,8 @@ public class DataCsvRowController
     }
 
     /**
+     *
+     *
      * @return
      */
     @GetMapping("/metadata")
@@ -35,20 +42,11 @@ public class DataCsvRowController
         return DataCsvRowServices.getMetadata();
     }
 
-    /**
-     * @return
-     */
-    @GetMapping("/test")
-    public String retrieveTest()
-    {
-        return "test";
-    }
 
     /**
-     * Gives stats based on the class {@link NumberStats}. <strong>Note:</strong>
-     * the allowed fields are latitude and longitude.
+     * Gives stats based on the class {@link NumberStats}. <strong>Note:</strong> the allowed fields are latitude and longitude.
      *
-     * @param colName allowed: latitude or longitude
+     * @param colName allowed: latitude or longitude TODO what?? su latitudine e longitudine non funziona nulla
      * @return average, minimum, maximum, standard deviation and sum
      */
     @GetMapping("/stats/{colName}")
@@ -59,6 +57,8 @@ public class DataCsvRowController
 
 
     /**
+     *
+     *
      * @param colName
      * @param value
      * @return
@@ -76,6 +76,8 @@ public class DataCsvRowController
     }
 
     /**
+     *
+     *
      * @param fieldName
      * @param value
      * @return
@@ -89,6 +91,8 @@ public class DataCsvRowController
     }
 
     /**
+     *
+     *
      * @param value
      * @param bool
      * @return
@@ -108,6 +112,8 @@ public class DataCsvRowController
     }
 
     /**
+     *
+     *
      * @param param
      * @return
      */
@@ -174,7 +180,7 @@ public class DataCsvRowController
         {
         }
 
-        return null;
+        return null; /* TODO inserire errore */
     }
 
 

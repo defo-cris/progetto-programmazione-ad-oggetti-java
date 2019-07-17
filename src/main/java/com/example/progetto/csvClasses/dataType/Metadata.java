@@ -12,6 +12,8 @@ public class Metadata
     private String type;
 
     /**
+     *
+     *
      * @param alias param's name used in the DataCsvRow class
      * @param sourceField is the param where to pass the element's name from the csv
      * @param type is the param where we pass the type of the element
@@ -54,6 +56,8 @@ public class Metadata
     }
 
     /**
+     *
+     *
      * @return the information of the metadata of the element in form of a string
      */
     @Override
