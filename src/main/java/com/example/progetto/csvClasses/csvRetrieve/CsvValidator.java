@@ -8,14 +8,17 @@ import java.net.URISyntaxException;
 import java.net.URL;
 
 /**
- * class used to validate all the data obtained in the csv
+ * class used to validate all the fields obtained in every csv row
  */
 public class CsvValidator
 {
     /**
-     * @param s string to pass at the parseInt method to return the integer
-     * @param defaultValue value to assign in the case of a null string
-     * @return or the integer value of the string or the default value in case of a null string
+     * function to parse an int and setting a default value if the parsing fails
+     *
+     * @param s            string that will be converted to int
+     * @param defaultValue value to assign in the case of a string that cannot be parsed to an int
+     *
+     * @return the int correspondent to the String s
      */
     private static int validateInt(String s, int defaultValue)
     {
@@ -30,9 +33,11 @@ public class CsvValidator
     }
 
     /**
-     * @param s is the string of the Nid column
-     * @return the result of the validateInt method where the string is the
-     * and the default value is -1.
+     * this method is specific to validate the ID column, that contain a positive int and so if the parse fail the default value will be -1
+     *
+     * @param s the string that will be converted to an int
+     *
+     * @return the result of the {@link CsvValidator#validateInt} method with -1 as default value
      */
     public static int validateID(String s)
     {
@@ -40,9 +45,11 @@ public class CsvValidator
     }
 
     /**
-     * @param s is the string of the euBudgetContribution or the totalProjectBudget column
-     * @return the result of the validateInt method where the string is s
-     * and the default value is 0.
+     * this method is used to validate and parse the columns that contain currency related value, the default value of this type of data is 0.
+     *
+     * @param s the string that will be converted to an int
+     *
+     * @return the result of the {@link CsvValidator#validateInt} method with 0 as default value
      */
     public static int validateCurrency(String s)
     {
@@ -50,8 +57,11 @@ public class CsvValidator
     }
 
     /**
-     * @param s is the string to pass at the method from every string type column
-     * @return the string with some replacement to eliminate strange character, or NULL in case of a null string
+     * this method is used to validate a string, removing unwanted html tags and quotation marks.
+     *
+     * @param s the string that will be validated
+     *
+     * @return the string with some replacement to eliminate strange character, or "NULL" in case of a null string, so the default value of this type of fields is "NULL"
      */
     public static String validateString(String s)
     {
@@ -66,8 +76,11 @@ public class CsvValidator
     }
 
     /**
-     * @param s is the string of the Visual column
-     * @return the url if the string is an url or NULL
+     * in case we need to check if an url is a correctly formatted we use this method, if the validation fail the default value is "NULL"
+     *
+     * @param s the url string that will be checked
+     *
+     * @return the url of "NULL"
      */
     public static String validateUrl(String s)
     {
@@ -84,35 +97,41 @@ public class CsvValidator
     }
 
     /**
+     * this is used to validate the countries abbreviation/acronym (UK, IT, etc..), so the result will be a 2 char string all uppercase or the default value "NULL"
+     *
      * @param s is the string to pass at the validate method
-     * @return the result of the validateString method of string s
+     *
+     * @return the country acronym corresponding to the param <code>s</code>
      */
-    private static String validateCounty(String s)
+    private static String validateCountyAbbreviations(String s)
     {
         s = validateString(s);
         s = s.toUpperCase();
+        if (s.length() != 2)
+        {
+            s = "NULL";
+        }
         return s;
     }
 
 
     /**
-     * @param s is the string to pass at the validate method to obtain how result a String array
+     * TODO hereeee!!!!
+     *
+     * @param s   is the string to pass at the validate method to obtain how result a String array
      * @param sep indicate the string to apply how separator of the split method
+     *
      * @return the String array where the element will be the split string
      */
     private static ObjArray<String> validateStringArray(String s, String sep)
     {
-        /*
-         * TODO
-         *  handle
-         *  --> Maritime House, 25 Marine Parade, null,
-         * */
         s = validateString(s);
         return new ObjArray<>(s.split(sep));
     }
 
     /**
      * @param s string where the separator inside is the ","
+     *
      * @return the String array of the split string.
      */
     public static ObjArray<String> validateStringArrayCommaSeparated(String s)
@@ -122,6 +141,7 @@ public class CsvValidator
 
     /**
      * @param s string where the separator inside is the ";"
+     *
      * @return the String array of tthe split string
      */
     public static ObjArray<String> validateStringArraySemicolonSeparated(String s)
@@ -131,6 +151,7 @@ public class CsvValidator
 
     /**
      * @param s string that contain all the countries and that are separated with ";"
+     *
      * @return the String array of the split string
      */
     public static ObjArray<String> validateCountryArraySemicolonSeparated(String s)
@@ -139,7 +160,7 @@ public class CsvValidator
         String[] fin = new String[split.length];
         for (int i = 0; i < split.length; i++)
         {
-            fin[i] = validateCounty(split[i]);
+            fin[i] = validateCountyAbbreviations(split[i]);
         }
         return new ObjArray<>(fin);
     }
@@ -147,6 +168,7 @@ public class CsvValidator
 
     /**
      * @param s string used to obtain how result a float
+     *
      * @return in case of a correct number the float, or a NaN in case of bad format exception
      */
     private static float validateFloat(String s)
@@ -163,7 +185,8 @@ public class CsvValidator
 
     /**
      * @param s string that is used to obtain how result an array of float
-     * @return the array of float or NaN  
+     *
+     * @return the array of float or NaN
      */
     public static ObjArray<Float> validateFloatArraySemicolonSeparated(String s)
     {
@@ -179,6 +202,7 @@ public class CsvValidator
 
     /**
      * @param s string that contain the url with the anchor of the link
+     *
      * @return an array with two element, the url and the description
      */
     public static ObjArray<UrlWithDescription> validateUrlArraySemicolonSeparated(String s)

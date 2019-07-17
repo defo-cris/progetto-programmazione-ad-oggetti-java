@@ -19,7 +19,8 @@ public class NumberStats
      * @param std is the param where we calculate the standard deviation value of the column
      * @param sum is the param where we calculate the sum value of the column
      */
-    NumberStats(double avg, int min, int max, double std, long sum) {
+    public NumberStats(double avg, int min, int max, double std, long sum)
+    {
         this.avg = avg;
         this.min = min;
         this.max = max;
@@ -27,43 +28,53 @@ public class NumberStats
         this.sum = sum;
     }
 
-     double getAvg() {
+    public double getAvg()
+    {
         return avg;
     }
 
-     void setAvg(double avg) {
+    public void setAvg(double avg)
+    {
         this.avg = avg;
     }
 
-     int getMin() {
+    public int getMin()
+    {
         return min;
     }
 
-     void setMin(int min) {
+    public void setMin(int min)
+    {
         this.min = min;
     }
 
-     int getMax() {
+    public int getMax()
+    {
         return max;
     }
 
-     void setMax(int max) {
+    public void setMax(int max)
+    {
         this.max = max;
     }
 
-     double getStd() {
+    public double getStd()
+    {
         return std;
     }
 
-     void setStd(double std) {
+    public void setStd(double std)
+    {
         this.std = std;
     }
 
-     long getSum() {
+    public long getSum()
+    {
         return sum;
     }
 
-     void setSum(long sum) {
+    void setSum(long sum)
+    {
         this.sum = sum;
     }
 

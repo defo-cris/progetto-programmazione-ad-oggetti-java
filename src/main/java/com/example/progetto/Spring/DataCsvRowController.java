@@ -1,15 +1,11 @@
 package com.example.progetto.Spring;
 
 import com.example.progetto.csvClasses.dataType.Metadata;
-import com.fasterxml.jackson.annotation.JsonValue;
-import jdk.nashorn.internal.parser.JSONParser;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
 
-
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Vector;
 
@@ -158,11 +154,13 @@ public class DataCsvRowController
                 {
                     tmp = (tmp == null ? (new Vector<>()) : tmp);
                     tmp = DataCsvRowServices.or(tmp, DataCsvRowServices.filter(filter));
-                } else if (operator.equals("$and"))
+                }
+                else if (operator.equals("$and"))
                 {
                     tmp = (tmp == null ? DataCsvRowServices.getCsvData() : tmp);
                     tmp = DataCsvRowServices.and(tmp, DataCsvRowServices.filter(filter));
-                } else
+                }
+                else
                 {
                     /* TODO insert errrror */
                     //// errore

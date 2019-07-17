@@ -1,6 +1,6 @@
 package com.example.progetto.Spring;
 
-import com.example.progetto.csvClasses.*;
+import com.example.progetto.csvClasses.DataCsv;
 import com.example.progetto.csvClasses.dataType.Metadata;
 import com.example.progetto.csvClasses.dataType.UrlWithDescription;
 import org.springframework.http.HttpStatus;
@@ -108,8 +108,8 @@ public class DataCsvRowServices
         int count;
 
         double avg = 0;
-        int min = 0;
-        int max = 0;
+        Integer min = null;
+        Integer max = null;
         double std = 0;
         long sum = 0;
 
@@ -124,8 +124,8 @@ public class DataCsvRowServices
                 Method m = item.getClass().getMethod("get" + fieldName);
                 int data = (int) m.invoke(item);
 
-                min = (min < data ? min : data);
-                max = (max > data ? max : data);
+                min = (min == null ? data : (min < data ? min : data));
+                max = (max == null ? data : (max > data ? max : data));
 
                 sum += data;
 
