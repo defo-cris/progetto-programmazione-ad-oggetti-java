@@ -12,7 +12,34 @@ Our program download in ram the data-set of the CSV from the Json URL. This firs
 
 The data are split and parse in a data structure based on the above classes, because every record of the data-set correspond to an object of a class. The data structure are two; one for the data and one for the *Metadata*. Every row of the data-set represent an *Eu founded project* and each field of the columns is the *Metadata.* Every *Eu founded project* have this fields:
 
-- nid...
+- Nid --> nid (Integer)
+- Original ID --> originalId (String)
+- Name --> name (String)
+- Project acronym --> projectAcronym (String)
+- Visual --> visual (String)
+- Project description --> projectDescription (String)
+- Results --> results (String)
+- Coordinators --> coordinators (String)
+- Partners --> partners (ObjArray<String>)
+- Project address(es) --> projectAddresses (ObjArray<String>)
+- Project postal code(s) --> projectPostalCodes (ObjArray<String>)
+- Project town(s) --> projectTowns (ObjArray<String>)
+- Project country(ies) --> projectCountryies (ObjArray<String>)
+- Project location latitude --> projectLocationLatitude (ObjArray<Float>)
+- Project location longitude --> projectLocationLongitude (ObjArray<Float>)
+- Link to a video --> linkToAVideo (String)
+- Timeframe start --> timeframeStart (String)
+- Timeframe end --> timeframeEnd (String)
+- Project webpage --> projectWebpage (String)
+- Related links --> relatedLinks (ObjArray<UrlWithDescription>)
+- EU Budget MFF heading --> euBudgetMffHeading (String)
+- Programme name --> programmeName (String)
+- Funding area --> fundingArea (ObjArray<String>)
+- EC’s priorities --> ecsPriorities (ObjArray<String>)
+- EU Budget contribution --> euBudgetContribution (Integer)
+- Total project budget --> totalProjectBudget (Integer)
+- Author --> author (String)
+- Language --> language (String)
 
 We had some cases where some fields of the row had some HTML tag and some end of line character in the quotation marks. In the first case we resolved the problem creating a method that delete only the tag conserving the URL and the anchor of the link:
 
