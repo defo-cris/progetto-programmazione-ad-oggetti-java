@@ -10,7 +10,7 @@ public class UrlWithDescription
     private String description;
 
     /**
-     *
+     * Constructor of the class UrlWithDescription
      *
      * @param url is the string that contain the url
      * @param description is the string that is contained between the html tag <a> </a>
@@ -22,7 +22,7 @@ public class UrlWithDescription
     }
 
     /**
-     *
+     * default constructor
      */
     public UrlWithDescription()
     {

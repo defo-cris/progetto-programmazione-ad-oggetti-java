@@ -13,7 +13,7 @@ public class NumberStats
     private long sum;
 
     /**
-     *
+     * constructor of the class NumberStats
      *
      * @param avg is the param where we calculate the average value of the column
      * @param min is the param where we insert the minimum value in the column

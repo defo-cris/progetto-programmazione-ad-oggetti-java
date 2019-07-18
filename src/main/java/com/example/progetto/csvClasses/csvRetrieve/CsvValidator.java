@@ -49,7 +49,7 @@ public class CsvValidator
      *
      * @param s the string that will be converted to an int
      *
-     * @return the result of the {@link CsvValidator#validateInt} method with 0 as default value
+     * @return the result of the {@link #validateInt(String, int)} method with 0 as default value
      */
     public static int validateCurrency(String s)
     {
@@ -116,7 +116,7 @@ public class CsvValidator
 
 
     /**
-     * TODO hereeee!!!!
+     * method used to split a single line in more than one line and pass the result in an Object Array
      *
      * @param s   is the string to pass at the validate method to obtain how result a String array
      * @param sep indicate the string to apply how separator of the split method
@@ -142,7 +142,7 @@ public class CsvValidator
     /**
      * @param s string where the separator inside is the ";"
      *
-     * @return the String array of tthe split string
+     * @return the String array of the split string
      */
     public static ObjArray<String> validateStringArraySemicolonSeparated(String s)
     {

@@ -19,7 +19,7 @@ public class ReadLineFromBufferedReader
 
 
     /**
-     *
+     * Constructor of the class ReadLineFromBufferedReader
      *
      * @param in is the param to pass at the reader for the character stream
      * @param endOfLineDelimiter is a string to identify the end of the line of a row
@@ -36,7 +36,7 @@ public class ReadLineFromBufferedReader
 
 
     /**
-     *
+     * Constructor of the class ReadLineFromBufferedReader with the maxLineLength set
      *
      * @param in streamer of character passed at the Reader
      * @param endOfLineDelimiter character that identify the end of the line
@@ -51,7 +51,7 @@ public class ReadLineFromBufferedReader
 
 
     /**
-     *
+     * read the line from the buffered reader
      *
      * @return the line in string format
      * @throws IOException in case of error
@@ -105,7 +105,7 @@ public class ReadLineFromBufferedReader
     }
 
     /**
-     *
+     * method used to mark a position in the buffered reader
      *
      * @param i parameter to assign at the mark
      * @throws IOException in case of error
@@ -116,7 +116,7 @@ public class ReadLineFromBufferedReader
     }
 
     /**
-     *
+     * method used to reset the buffered reader
      *
      * @throws IOException in case of error
      */

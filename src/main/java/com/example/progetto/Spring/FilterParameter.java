@@ -14,7 +14,7 @@ public class FilterParameter
     private Object value;
 
     /**
-     * constructor of the parameters TODO
+     * constructor of the parameters
      *
      * @param colName  string of the element used for the filter
      * @param operator string used for the operation that the filter have to do, this may include "==", ">", "<", ecc.

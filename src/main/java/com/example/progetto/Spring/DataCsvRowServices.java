@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.Vector;
 
 /**
- *
+ * Contains the methods used by the controller or the service itself to manage the filters.
  */
 @Component
 public class DataCsvRowServices
@@ -43,10 +43,10 @@ public class DataCsvRowServices
     }
 
     /**
+     * method used to validate if the column name insert in the url il valid
      *
-     *
-     * @param name
-     * @return
+     * @param name string of the column passed in postman
+     * @return the name of the column or null in case {@param name} isn't correct
      */
     private static String checkColName(String name)
     {
@@ -58,15 +58,15 @@ public class DataCsvRowServices
                 return n;
             }
         }
-        return "NULL"; // ce sta da inventasse qualcosa nel caso non trova il nome
+        return "NULL";
     }
 
     /**
+     * method used to retrieve all the column, both with null values or without them
      *
-     *
-     * @param name
-     * @param excludeNull
-     * @return
+     * @param name string of the column used to retrieve the data,
+     * @param excludeNull boolean param used to specify if the null data will be displayed or not,
+     * @return the vector of the column with or without the null values
      */
     static Vector<Object> retrieveColumn(String name, boolean excludeNull)
     {
@@ -94,18 +94,17 @@ public class DataCsvRowServices
         }
         catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e)
         {
-            /* TODO cambiare messaggio di errore */
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "nome colonna non valido, scrivi uno di questi: " + Arrays.toString(DataCsv.colNames));
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "column name not valid, please write some of them: " + Arrays.toString(DataCsv.colNames));
         }
         return col;
     }
 
 
     /**
+     * method used to calculate the statistics, based on {@link NumberStats}
      *
-     *
-     * @param fieldName
-     * @return
+     * @param fieldName name of the field where to calculate the statistics, the accepted field are:totalProjectBudget and euBudgetContribution
+     * @return all the statistics calculated on the field.
      */
     static NumberStats stats(String fieldName)
     {
@@ -113,7 +112,7 @@ public class DataCsvRowServices
 
         int count;
 
-        double avg = 0;
+        double avg;
         Integer min = null;
         Integer max = null;
         double std = 0;
@@ -135,9 +134,6 @@ public class DataCsvRowServices
 
                 sum += data;
 
-                System.out.println("sum  = " + sum);
-                System.out.println("i  = " + i);
-
                 tmp[i++] = data;
             }
 
@@ -152,19 +148,19 @@ public class DataCsvRowServices
         }
         catch (IllegalAccessException | NoSuchMethodException | SecurityException | ClassCastException | InvocationTargetException e)
         {
-            System.out.println("cazzo di errore"); /* TODO da sistemare il messaggio*/
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error in the declaration of the route");
         }
         return new NumberStats(avg, min, max, std, sum);
     }
 
 
     /**
+     * method used to validate and check the filter
      *
-     *
-     * @param leftValue
-     * @param operator
-     * @param rightValue
-     * @return
+     * @param leftValue value of the column to compare at the value passed from postman
+     * @param operator string that indicate the filter operation to do
+     * @param rightValue value used to compare the data of the data-set
+     * @return a boolean value
      */
     private static boolean checkFilterValidity(Object leftValue, String operator, Object rightValue)
     {
@@ -200,11 +196,12 @@ public class DataCsvRowServices
     }
 
     /**
+     * method used to filter the data-set and return only the row that meet the condition of the input value
+     * and the operation. It use {@link #checkColName(String)} to verify the correctness of the column name
+     * and the {@link #checkFilterValidity(Object, String, Object)} to verify the condition
      *
-     *
-     *
-     * @param parameter
-     * @return
+     * @param parameter an object that contains operator, value and field name
+     * @return vector made by the data that met the conditions
      */
     static Vector<DataCsvRow> filter(FilterParameter parameter)
     {
@@ -224,19 +221,18 @@ public class DataCsvRowServices
         }
         catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e)
         {
-            /* TODO da sistemare */
-            System.out.println("errrrrore");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error in the declaration of the route");
         }
         return out;
     }
 
 
     /**
+     * method used to implement the logical operation AND in the filter
      *
-     *
-     * @param a
-     * @param b
-     * @return
+     * @param a vector that contain or all the data-set or a portion of it
+     * @param b vector that is used to filter the data-set
+     * @return the vector with the filtered data
      */
     public static Vector<DataCsvRow> and(Vector<DataCsvRow> a, Vector<DataCsvRow> b)
     {
@@ -253,11 +249,11 @@ public class DataCsvRowServices
     }
 
     /**
+     * method used to implement the logical operation OR in the filter
      *
-     *
-     * @param a
-     * @param b
-     * @return
+     * @param a vector that contain or all the data-set or a portion of it
+     * @param b vector that is used to filter the data-set
+     * @return the vector with the filtered data
      */
     public static Vector<DataCsvRow> or(Vector<DataCsvRow> a, Vector<DataCsvRow> b)
     {
@@ -272,18 +268,20 @@ public class DataCsvRowServices
     }
 
     /**
+     * method used in {@link #search(String, String, Class)} to add in the vector of the results only one time
+     * the row of the data-set
      *
-     *
-     *
-     * @param result
-     * @param row
-     * @param data
-     * @param value
-     * @param method
-     * @param type
-     * @throws NoSuchMethodException
-     * @throws InvocationTargetException
-     * @throws IllegalAccessException
+     * @param result vector used to store the results
+     * @param row row of the data-set
+     * @param data is the name of the field
+     * @param value is the value of the field
+     * @param method string used to identify the method to use
+     * @param type is the class type
+     * @throws NoSuchMethodException when a particular method cannot be found
+     * @throws InvocationTargetException wraps an exception thrown by an invoked method or constructor
+     * @throws IllegalAccessException when the currently executing method does
+     *                                not have access to the definition of the
+     *                                specified field
      */
     private static void compareAndAdd(Vector<DataCsvRow> result, DataCsvRow row, String data, String value, String method, Class type) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException
     {
@@ -298,12 +296,12 @@ public class DataCsvRowServices
     }
 
     /**
+     * method used to search in the data-set only the elements that contain the {@param value} inside them
      *
-     *
-     * @param value
-     * @param param
-     * @param type
-     * @return
+     * @param value string to research inside all the row
+     * @param param string used to identify if the {@param value} is the exact match of the field
+     * @param type class used to identify if the element is an object or a Char sequence
+     * @return the vector with only the data that contain the {@param value}
      */
     static Vector<DataCsvRow> search(String value, String param, Class type)
     {

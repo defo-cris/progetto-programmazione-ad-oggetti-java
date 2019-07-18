@@ -4,26 +4,29 @@ import com.example.progetto.csvClasses.dataType.Metadata;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Iterator;
 import java.util.Vector;
 
+
+/**
+ * Manages the Spring application and define the filters using GET or POST requests.
+ */
 @RestController
 public class DataCsvRowController
 {
 
-    /**
-     *
-     */
     public DataCsvRowController()
     {
     }
 
     /**
+     * method used to retrieve all the data-set. It use a GET request
      *
-     *
-     * @return
+     * @return the data-set in a vector format
      */
     @GetMapping("/data")
     public Vector<DataCsvRow> retrieveData()
@@ -32,9 +35,10 @@ public class DataCsvRowController
     }
 
     /**
+     * this method retrieve the metadata, that contain the alias, the sourceField and the type of the element
+     * It use a GET request
      *
-     *
-     * @return
+     * @return the metadata of all the element in a vector format
      */
     @GetMapping("/metadata")
     public Vector<Metadata> retrieveMetadata()
@@ -44,9 +48,9 @@ public class DataCsvRowController
 
 
     /**
-     * Gives stats based on the class {@link NumberStats}. <strong>Note:</strong> the allowed fields are latitude and longitude.
+     * Gives stats based on the class {@link NumberStats} using a GET request.
      *
-     * @param colName allowed: latitude or longitude TODO what?? su latitudine e longitudine non funziona nulla
+     * @param colName allowed: euBudgetContribution and totalProjectBudget
      * @return average, minimum, maximum, standard deviation and sum
      */
     @GetMapping("/stats/{colName}")
@@ -57,11 +61,13 @@ public class DataCsvRowController
 
 
     /**
+     * method used to retrieve the data of a single column; both with the null values, or without them
+     * It use a GET request, but with the param excludeNull, used to choose if the null values
+     * will be displayed or not
      *
-     *
-     * @param colName
-     * @param value
-     * @return
+     * @param colName name of the column picked to show
+     * @param value param used to choose if the null values will be displayed or not
+     * @return the data column in a vector format
      */
     @GetMapping("/data/{colName}")
     public Vector<Object> retrieveDataColumn(@PathVariable String colName, @RequestParam(value = "excludeNull", required = false) String value)
@@ -76,11 +82,11 @@ public class DataCsvRowController
     }
 
     /**
+     * method used to count the number of times the string of the specified field repeats itself.
      *
-     *
-     * @param fieldName
-     * @param value
-     * @return
+     * @param fieldName column in where to do the count of the attribute
+     * @param value the string to count
+     * @return the number of unique items
      */
     @GetMapping(value = "/count/{fieldName}", produces = "application/json")
     public String count(@PathVariable String fieldName, @RequestParam(value = "value") String value)
@@ -91,11 +97,13 @@ public class DataCsvRowController
     }
 
     /**
+     * method used to search if the value passed in the {@param value} is contained in the ata-set,
+     * and with the help of the {@param bool} it can identify if the {@param value} corresponds to
+     * the entire line
      *
-     *
-     * @param value
-     * @param bool
-     * @return
+     * @param value string to search in all the data-set
+     * @param bool string to specify if the {@param value} corresponds to the entire line
+     * @return the vector of the results of the search
      */
     @GetMapping(value = "/search")
     public Vector<DataCsvRow> search(@RequestParam(value = "value") String value, @RequestParam(value = "exactMatch", required = false) String bool)
@@ -112,10 +120,16 @@ public class DataCsvRowController
     }
 
     /**
+     * Generic filter using a POST. If the body of the JSON is a single object it
+     * searches for a field, an operator and an input value and returns the filtered
+     * dataset. If it is found an attribute called "$or" or "$and" it applies
+     * multiple filters, using the following array of objects, based on the
+     * attribute. The "$or" filter does a filter for each object and then unites
+     * them without considering multiple elements. The "$and" filter just
+     * recursively filter the result of the previous decimation.
      *
-     *
-     * @param param
-     * @return
+     * @param param SON array with objects composed by a field, an operator and an input value
+     * @return the vector that result from the filter
      */
     @PostMapping(value = "/filter")
     public Vector<DataCsvRow> filter(@RequestBody String param)
@@ -128,11 +142,10 @@ public class DataCsvRowController
         }
         catch (JSONException e)
         {
-            /* TODO inserire errore json formattato male */
-            return null;
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Incorrect JSON body");
         }
 
-        // caso senza operatori
+        //case without operator
         try
         {
             filter.readFields(obj);
@@ -168,8 +181,7 @@ public class DataCsvRowController
                 }
                 else
                 {
-                    /* TODO insert errrror */
-                    //// errore
+                    throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Incorrect JSON body");
                 }
             }
 
@@ -180,8 +192,6 @@ public class DataCsvRowController
         {
         }
 
-        return null; /* TODO inserire errore */
-    }
-
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Incorrect JSON body");    }
 
 }

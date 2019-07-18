@@ -3,7 +3,7 @@ package com.example.progetto.csvClasses.dataType;
 
 /**
  * class used in DataCsv class to generate the information of every element;
- * that information contain the alias of the element, the sourceField and the type of the element 
+ * that information contain the alias, the sourceField and the type of the element
  */
 public class Metadata
 {
@@ -12,7 +12,7 @@ public class Metadata
     private String type;
 
     /**
-     *
+     * Constructor of the class Metadata
      *
      * @param alias param's name used in the DataCsvRow class
      * @param sourceField is the param where to pass the element's name from the csv
@@ -56,7 +56,7 @@ public class Metadata
     }
 
     /**
-     *
+     * Override of the toString method
      *
      * @return the information of the metadata of the element in form of a string
      */
