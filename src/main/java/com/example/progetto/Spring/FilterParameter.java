@@ -17,7 +17,8 @@ public class FilterParameter
      * constructor of the parameters
      *
      * @param colName  string of the element used for the filter
-     * @param operator string used for the operation that the filter have to do, this may include "==", ">", "<", ecc.
+     * @param operator string used for the operation that the filter have to do, this may include "==", "&gt;", "&lt;",
+     *                 ecc.
      * @param value    value used to compare all the data in the csv based on the operation to do
      */
     FilterParameter(String colName, String operator, Object value)

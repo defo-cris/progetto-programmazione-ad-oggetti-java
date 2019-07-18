@@ -2,7 +2,7 @@
 
 title __CSVCLASSES's Class Diagram__\n
 
-  namespace  {
+
     namespace om.example.progetto {
       namespace csvClasses {
         class com.example.progetto.csvClasses.DataCsv {
@@ -20,7 +20,7 @@ title __CSVCLASSES's Class Diagram__\n
         }
       }
     }
-  }
+
   
 
 

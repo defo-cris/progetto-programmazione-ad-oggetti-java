@@ -18,26 +18,26 @@ We had some cases where some fields of the row had some HTML tag and some end of
 
 ```java
 public static ObjArray<UrlWithDescription> validateUrlArraySemicolonSeparated(String s)
+{
+    String[] tmp = s.split(";");
+
+    UrlWithDescription[] urls = new UrlWithDescription[tmp.length];
+
+    for (int i = 0; i < tmp.length; i++)
     {
-        String[] tmp = s.split(";");
-
-        UrlWithDescription[] urls = new UrlWithDescription[tmp.length];
-
-        for (int i = 0; i < tmp.length; i++)
+        urls[i] = new UrlWithDescription();
+        urls[i].setDescription(validateString(tmp[i]));
+        try
         {
-            urls[i] = new UrlWithDescription();
-            urls[i].setDescription(validateString(tmp[i]));
-            try
-            {
-                urls[i].setUrl(tmp[i].replace("\"<a href=\"", "").replace("<a href=\"",                   "").split("\"")[1]);
-            }
-            catch (Exception e)
-            {
-                urls[i].setUrl("NULL");
-            }
+            urls[i].setUrl(tmp[i].replace("\"<a href=\"", "").replace("<a href=\"",                   "").split("\"")[1]);
         }
-        return new ObjArray<>(urls);
+        catch (Exception e)
+        {
+            urls[i].setUrl("NULL");
+        }
     }
+    return new ObjArray<>(urls);
+}
 ```
 
 For the second problem we had to create a new class that simulate the read line of the Buffered Reader, this class read the line character by character,and where the reader find a end of line character it doesn't add it at the string.
@@ -60,7 +60,7 @@ Return all the data-set.
 
 Return the data only of the specified column; and if the parameter excludeNull is true all the null values of the column are excluded, otherwise all the data are retrieved.
 
-```java
+```html 
 localhost:8080/data/nid?excludeNull=false
 ```
 
@@ -87,27 +87,27 @@ The statistics that result from the class are:
 
 And are calculated in this method:
 
-```java
+````java
 for (DataCsvRow item : csvData)
-            {
-                Method m = item.getClass().getMethod("get" + fieldName);
-                int data = (int) m.invoke(item);
-                min = (min == null ? data : (min < data ? min : data));
-                max = (max == null ? data : (max > data ? max : data));
-                sum += data;
-                tmp[i++] = data;
-            }
-            avg = sum / count;
-            for (int xi : tmp)
-            {
-                std += Math.pow(xi - avg, 2);
-            }
-            std = Math.sqrt(std / count);
-```
+{
+    Method m = item.getClass().getMethod("get" + fieldName);
+    int data = (int) m.invoke(item);
+    min = (min == null ? data : (min < data ? min : data));
+    max = (max == null ? data : (max > data ? max : data));
+    sum += data;
+    tmp[i++] = data;
+}
+avg = sum / count;
+for (int xi : tmp)
+{
+    std += Math.pow(xi - avg, 2);
+}
+std = Math.sqrt(std / count);
+````
 
 *example:*
 
-```json
+```html 
 localhost:8080/stats/totalProjectBudget
 ```
 
@@ -129,11 +129,11 @@ localhost:8080/stats/totalProjectBudget
 
 Return only the row where the value is contained into it; if the parameter exactMatch is true only the row where an element as the exact match of the value are returned, otherwise the row that contain into them the value are returned.
 
+```haml
 localhost:8080/filter
+```
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~json
-
-
 {
     "$or": [
         {
@@ -152,11 +152,11 @@ localhost:8080/filter
 
 
 
-
+````html 
 localhost:8080/filter
+````
+
 ```json
-
-
 {
     "$and": [
         {

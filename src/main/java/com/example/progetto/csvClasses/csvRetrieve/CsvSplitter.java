@@ -34,8 +34,7 @@ public class CsvSplitter
      * method used to guess the delimiter of the csv's fields the guessing is made with trying a set of common separator
      * and verify if splitting the first line and the second line result in the same amount of element
      *
-     * @throws IOException         in case that the BufferedReader used in {@link GetCsvDataFromUrl} GetCsvDataFromUrl
-     *                             fails
+     * @throws IOException         in case that the BufferedReader used in {@link GetCsvDataFromUrl} fails
      * @throws DataFormatException in case the csv have a delimiter that are not in commonSeparator
      */
     void guessDelimiter() throws IOException, DataFormatException
@@ -66,7 +65,7 @@ public class CsvSplitter
     /**
      * add another separator to the collection of common separator
      *
-     * @param sep parameter to add at the array with all the elements used to separator
+     * @param sep string that will be used to split every row of the csv
      */
     void addCommonSeparator(String sep)
     {
@@ -74,7 +73,8 @@ public class CsvSplitter
     }
 
     /**
-     * method used to get the first line and to set the separator, this method must be called before the method {@link @splitLine}.
+     * method used to get the first line and to set the separator, this method must be called before the method {@link
+     * CsvSplitter#splitLine()}.
      *
      * @param sep separator to use how a split of the line
      *
@@ -87,7 +87,8 @@ public class CsvSplitter
     }
 
     /**
-     * method used to split the first line with the separator, calling this method does't influence the functionality of {@link @splitLine} because it use a stored first line and it does't re-read it from the csv.
+     * method used to split the first line with the separator, calling this method does't influence the functionality of
+     * {@link CsvSplitter#splitLine()} because it use a stored first line and it does't re-read it from the csv.
      *
      * @return the line how an array where all the element are obtained from the split of the string
      */
@@ -98,7 +99,8 @@ public class CsvSplitter
 
 
     /**
-     * method used to split the every line of the csv other than the first line, this method can be used as iterable that return null at the end
+     * method used to split the every line of the csv other than the first line, this method can be used as iterable
+     * that return null at the end
      *
      * @return the array where every element will be a field of the row. if this method return null it means that the
      * file reached the end or that something went wrong on reading the csv

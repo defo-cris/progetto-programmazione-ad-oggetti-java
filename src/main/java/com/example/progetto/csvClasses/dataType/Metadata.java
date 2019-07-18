@@ -2,8 +2,8 @@ package com.example.progetto.csvClasses.dataType;
 
 
 /**
- * class used in DataCsv class to generate the information of every element;
- * that information contain the alias, the sourceField and the type of the element
+ * class used in DataCsv class to generate the information of every element; that information contain the alias, the
+ * sourceField and the type of the element
  */
 public class Metadata
 {
@@ -14,9 +14,9 @@ public class Metadata
     /**
      * Constructor of the class Metadata
      *
-     * @param alias param's name used in the DataCsvRow class
+     * @param alias       param's name used in the DataCsvRow class
      * @param sourceField is the param where to pass the element's name from the csv
-     * @param type is the param where we pass the type of the element
+     * @param type        is the param where we pass the type of the element
      */
     public Metadata(String alias, String sourceField, String type)
     {

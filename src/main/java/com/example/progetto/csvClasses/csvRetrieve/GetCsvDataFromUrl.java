@@ -24,9 +24,10 @@ public class GetCsvDataFromUrl
 
 
     /**
-	 * method used to catch the first line of the csv from the {@link ReadLineFromBufferedReader} class
-	 *
+     * method used to catch the first line of the csv from the {@link ReadLineFromBufferedReader} class
+     *
      * @return the first line of the csv
+     *
      * @throws IOException in case the file ended too early
      */
     public String getFirstLine() throws IOException
@@ -36,7 +37,7 @@ public class GetCsvDataFromUrl
         URLConnection urlConn = urlCSV.openConnection();
 
         br = new ReadLineFromBufferedReader(new InputStreamReader(urlConn.getInputStream(), StandardCharsets.UTF_8),
-                "\r\n");
+                                            "\r\n");
 
         String line;
 
@@ -49,11 +50,12 @@ public class GetCsvDataFromUrl
     }
 
     /**
-	 * read the next line of the csv 
-	 *
+     * read the next line of the csv
+     *
      * @return all the csv line apart of the first that we read in previous method
-     * @throws IOException in case we reach the the end of the file.
-	 * @throws IllegalStateException if someone call this method before calling {@link @getFirstLine}
+     *
+     * @throws IOException           in case we reach the the end of the file.
+     * @throws IllegalStateException if someone call this method before calling {@link GetCsvDataFromUrl#getFirstLine()}
      */
     String getLine() throws IOException
     {

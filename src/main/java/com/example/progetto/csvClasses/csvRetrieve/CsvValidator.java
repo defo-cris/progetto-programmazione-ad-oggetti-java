@@ -36,7 +36,8 @@ public class CsvValidator
     }
 
     /**
-     * this method is specific to validate the ID column, that contain a positive int and so if the parse fail the default value will be -1
+     * this method is specific to validate the ID column, that contain a positive int and so if the parse fail the
+     * default value will be -1
      *
      * @param s the string that will be converted to an int
      *
@@ -48,7 +49,8 @@ public class CsvValidator
     }
 
     /**
-     * this method is used to validate and parse the columns that contain currency related value, the default value of this type of data is 0.
+     * this method is used to validate and parse the columns that contain currency related value, the default value of
+     * this type of data is 0.
      *
      * @param s the string that will be converted to an int
      *
@@ -64,7 +66,8 @@ public class CsvValidator
      *
      * @param s the string that will be validated
      *
-     * @return the string with some replacement to eliminate strange character, or "NULL" in case of a null string, so the default value of this type of fields is "NULL"
+     * @return the string with some replacement to eliminate strange character, or "NULL" in case of a null string, so
+     * the default value of this type of fields is "NULL"
      */
     public static String validateString(String s)
     {
@@ -79,7 +82,8 @@ public class CsvValidator
     }
 
     /**
-     * in case we need to check if an url is a correctly formatted we use this method, if the validation fail the default value is "NULL"
+     * in case we need to check if an url is a correctly formatted we use this method, if the validation fail the
+     * default value is "NULL"
      *
      * @param s the url string that will be checked
      *
@@ -100,7 +104,8 @@ public class CsvValidator
     }
 
     /**
-     * this is used to validate the countries abbreviation/acronym (UK, IT, etc..), so the result will be a 2 char string all uppercase or the default value "NULL"
+     * this is used to validate the countries abbreviation/acronym (UK, IT, etc..), so the result will be a 2 char
+     * string all uppercase or the default value "NULL"
      *
      * @param s is the string to pass at the validate method
      *
@@ -133,8 +138,8 @@ public class CsvValidator
     }
 
     /**
-	 * function to validate a string array separated by comma.
-	 *
+     * function to validate a string array separated by comma.
+     *
      * @param s string where the separator inside is the ","
      *
      * @return the ObjArray of the splitted string.
@@ -145,8 +150,8 @@ public class CsvValidator
     }
 
     /**
-	 * function to validate a string array separated by semicollon.
-	 * 
+     * function to validate a string array separated by semicollon.
+     *
      * @param s string where the separator inside is the ";"
      *
      * @return the ObjArray of the splitted string
@@ -157,28 +162,27 @@ public class CsvValidator
     }
 
     /**
-	 * this func
-	 *
+     * this func
+     *
      * @param s string that contain all the countries and that are separated with ";"
      *
      * @return the String array of the split string
      */
     public static ObjArray<String> validateCountryArraySemicolonSeparated(String s)
     {
-		/* TODO fin e' inutile al cazzo */
+        /* TODO fin e' inutile al cazzo */
         String[] split = validateStringArray(s, ";").getData();
-        String[] fin = new String[split.length];
         for (int i = 0; i < split.length; i++)
         {
-            fin[i] = validateCountyAbbreviations(split[i]);
+            split[i] = validateCountyAbbreviations(split[i]);
         }
-        return new ObjArray<>(fin);
+        return new ObjArray<>(split);
     }
 
 
     /**
-	 * function to parse a float
-	 *
+     * function to parse a float
+     *
      * @param s string used to be parsed
      *
      * @return in case of a correct number the float, or a NaN in case of bad format exception
@@ -213,8 +217,9 @@ public class CsvValidator
     }
 
     /**
-	 * in the csv we have an url formatted as "<a href="url">"description"</a>" so in this function we split the url and the description.
-	 *
+     * in the csv we have an url formatted as "<a href="url">"description"</a>" so in this function we split the url and
+     * the description.
+     *
      * @param s string that contain the url with the anchor of the link
      *
      * @return an array with two element, the url and the description
@@ -231,7 +236,9 @@ public class CsvValidator
             urls[i].setDescription(validateString(tmp[i]));
             try
             {
-                urls[i].setUrl(tmp[i].replace("\"<a href=\"", "").replace("<a href=\"", "").split("\"")[1]);
+                urls[i].setUrl(validateUrl(tmp[i].replace("\"<a href=\"", "")
+                                                 .replace("<a href=\"", "")
+                                                 .split("\"")[1]));
             }
             catch (Exception e)
             {

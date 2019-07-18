@@ -1,7 +1,6 @@
 package com.example.progetto;
 
-import com.example.progetto.csvClasses.*;
-
+import com.example.progetto.csvClasses.DataCsv;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

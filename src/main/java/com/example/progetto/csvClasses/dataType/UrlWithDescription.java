@@ -1,8 +1,8 @@
 package com.example.progetto.csvClasses.dataType;
 
 /**
- * class used in { DataCsvRow} passed how a type of the class ObjArray,
- * so that every link passed how an element of the array contain its description
+ * class used in { DataCsvRow} passed how a type of the class ObjArray, so that every link passed how an element of the
+ * array contain its description
  */
 public class UrlWithDescription
 {
@@ -12,7 +12,7 @@ public class UrlWithDescription
     /**
      * Constructor of the class UrlWithDescription
      *
-     * @param url is the string that contain the url
+     * @param url         is the string that contain the url
      * @param description is the string that is contained between the html tag <a> </a>
      */
     public UrlWithDescription(String url, String description)

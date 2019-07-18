@@ -8,7 +8,8 @@ import java.io.Reader;
 
 
 /**
- * Class implemented because we couldn't use the method readline of the BufferedReader because in some of the row in some field we had the character \n in the field, so the standard readline fails.
+ * Class implemented because we couldn't use the method readline of the BufferedReader because in some of the row in
+ * some field we had the character \n in the field, so the standard readline fails.
  */
 public class ReadLineFromBufferedReader
 {
@@ -21,9 +22,9 @@ public class ReadLineFromBufferedReader
     /**
      * Constructor of the class ReadLineFromBufferedReader TODO hereee
      *
-     * @param in is the {@link Reader} to pass at the reader for the character stream
+     * @param in                 is the {@link Reader} to pass at the reader for the character stream
      * @param endOfLineDelimiter is a string to identify the end of the line of a row
-     * @param maxLineLength int used in the StringBuilder to identify the dimension of the String
+     * @param maxLineLength      int used in the StringBuilder to identify the dimension of the String
      */
     public ReadLineFromBufferedReader(Reader in, String endOfLineDelimiter, int maxLineLength)
     {
@@ -38,7 +39,7 @@ public class ReadLineFromBufferedReader
     /**
      * Constructor of the class ReadLineFromBufferedReader with the maxLineLength set
      *
-     * @param in streamer of character passed at the Reader
+     * @param in                 streamer of character passed at the Reader
      * @param endOfLineDelimiter character that identify the end of the line
      */
     public ReadLineFromBufferedReader(Reader in, String endOfLineDelimiter)
@@ -54,6 +55,7 @@ public class ReadLineFromBufferedReader
      * read the line from the buffered reader
      *
      * @return the line in string format
+     *
      * @throws IOException in case of error
      */
     String readLine() throws IOException
@@ -64,7 +66,7 @@ public class ReadLineFromBufferedReader
             int tmp = br.read();
             if (tmp != -1)
             {
-                char c = (char)tmp;
+                char c = (char) tmp;
                 buffer.add(c);
 
                 boolean flag = true;
@@ -73,7 +75,7 @@ public class ReadLineFromBufferedReader
 
                 for (int i = 0; i < buff.length; i++)
                 {
-                    if ((char)buff[i] != eol[i])
+                    if ((char) buff[i] != eol[i])
                     {
                         flag = false;
                     }
@@ -108,6 +110,7 @@ public class ReadLineFromBufferedReader
      * method used to mark a position in the buffered reader
      *
      * @param i parameter to assign at the mark
+     *
      * @throws IOException in case of error
      */
     void mark(int i) throws IOException
