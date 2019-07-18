@@ -6,6 +6,8 @@ import java.util.Arrays;
 import java.util.zip.DataFormatException;
 
 
+/* TODO javadoc ok */
+
 /**
  * Class used to split all the row of the csv and to get all the data of the fields from the rows
  */
@@ -72,7 +74,7 @@ public class CsvSplitter
     }
 
     /**
-     * method used to get the first line and to ste the separator
+     * method used to get the first line and to set the separator, this method must be called before the method {@link @splitLine}.
      *
      * @param sep separator to use how a split of the line
      *
@@ -85,7 +87,7 @@ public class CsvSplitter
     }
 
     /**
-     * method used to split the first line with the separator
+     * method used to split the first line with the separator, calling this method does't influence the functionality of {@link @splitLine} because it use a stored first line and it does't re-read it from the csv.
      *
      * @return the line how an array where all the element are obtained from the split of the string
      */
@@ -96,7 +98,7 @@ public class CsvSplitter
 
 
     /**
-     * method used to split the line of the csv other than the first line
+     * method used to split the every line of the csv other than the first line, this method can be used as iterable that return null at the end
      *
      * @return the array where every element will be a field of the row. if this method return null it means that the
      * file reached the end or that something went wrong on reading the csv

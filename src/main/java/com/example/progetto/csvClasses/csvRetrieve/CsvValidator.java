@@ -7,6 +7,9 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 
+
+/* TODO javadoc ok */
+
 /**
  * class used to validate all the fields obtained in every csv row
  */
@@ -116,7 +119,7 @@ public class CsvValidator
 
 
     /**
-     * method used to split a single line in more than one line and pass the result in an Object Array
+     * method used to split a single line in more than one line and pass the result in an Object Array.
      *
      * @param s   is the string to pass at the validate method to obtain how result a String array
      * @param sep indicate the string to apply how separator of the split method
@@ -130,9 +133,11 @@ public class CsvValidator
     }
 
     /**
+	 * function to validate a string array separated by comma.
+	 *
      * @param s string where the separator inside is the ","
      *
-     * @return the String array of the split string.
+     * @return the ObjArray of the splitted string.
      */
     public static ObjArray<String> validateStringArrayCommaSeparated(String s)
     {
@@ -140,9 +145,11 @@ public class CsvValidator
     }
 
     /**
+	 * function to validate a string array separated by semicollon.
+	 * 
      * @param s string where the separator inside is the ";"
      *
-     * @return the String array of the split string
+     * @return the ObjArray of the splitted string
      */
     public static ObjArray<String> validateStringArraySemicolonSeparated(String s)
     {
@@ -150,12 +157,15 @@ public class CsvValidator
     }
 
     /**
+	 * this func
+	 *
      * @param s string that contain all the countries and that are separated with ";"
      *
      * @return the String array of the split string
      */
     public static ObjArray<String> validateCountryArraySemicolonSeparated(String s)
     {
+		/* TODO fin e' inutile al cazzo */
         String[] split = validateStringArray(s, ";").getData();
         String[] fin = new String[split.length];
         for (int i = 0; i < split.length; i++)
@@ -167,7 +177,9 @@ public class CsvValidator
 
 
     /**
-     * @param s string used to obtain how result a float
+	 * function to parse a float
+	 *
+     * @param s string used to be parsed
      *
      * @return in case of a correct number the float, or a NaN in case of bad format exception
      */
@@ -201,6 +213,8 @@ public class CsvValidator
     }
 
     /**
+	 * in the csv we have an url formatted as "<a href="url">"description"</a>" so in this function we split the url and the description.
+	 *
      * @param s string that contain the url with the anchor of the link
      *
      * @return an array with two element, the url and the description

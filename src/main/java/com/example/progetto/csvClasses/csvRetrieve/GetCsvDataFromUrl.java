@@ -7,6 +7,8 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 
+/* javadoc ok */
+
 /**
  * class used to retrieve the data of the csv from the url obtained from the {@link GetCsvUrlFromJsonUrl} class
  */
@@ -47,9 +49,11 @@ public class GetCsvDataFromUrl
     }
 
     /**
+	 * read the next line of the csv 
+	 *
      * @return all the csv line apart of the first that we read in previous method
-     * @throws IOException in case we attempt to read the rest of the csv before e read the first line,
-     * or in case we reach the the end of the file.
+     * @throws IOException in case we reach the the end of the file.
+	 * @throws IllegalStateException if someone call this method before calling {@link @getFirstLine}
      */
     String getLine() throws IOException
     {

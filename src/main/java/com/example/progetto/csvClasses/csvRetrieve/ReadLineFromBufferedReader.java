@@ -8,7 +8,7 @@ import java.io.Reader;
 
 
 /**
- * Class implemented because we couldn't use the method readline of the BufferedReader because in some of the row in some field we had the character \n in the field.
+ * Class implemented because we couldn't use the method readline of the BufferedReader because in some of the row in some field we had the character \n in the field, so the standard readline fails.
  */
 public class ReadLineFromBufferedReader
 {
@@ -19,9 +19,9 @@ public class ReadLineFromBufferedReader
 
 
     /**
-     * Constructor of the class ReadLineFromBufferedReader
+     * Constructor of the class ReadLineFromBufferedReader TODO hereee
      *
-     * @param in is the param to pass at the reader for the character stream
+     * @param in is the {@link Reader} to pass at the reader for the character stream
      * @param endOfLineDelimiter is a string to identify the end of the line of a row
      * @param maxLineLength int used in the StringBuilder to identify the dimension of the String
      */

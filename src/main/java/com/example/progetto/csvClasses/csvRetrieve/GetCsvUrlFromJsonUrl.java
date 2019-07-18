@@ -8,6 +8,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.Charset;
 
+/* TODO javadoc ok */
+
 /**
  * class that from the url of the json retrieve the link of the url of csv
  */
@@ -38,9 +40,9 @@ public class GetCsvUrlFromJsonUrl
     class GetJsonFromUrl
     {
         /**
-         * method used to read a stream of character
+         * method used to read all the character from a {@link java.io.Reader}
          *
-         * @param rd param used in a reader of character stream
+         * @param the reader
          * @return the Json in the string format
          * @throws IOException 
          */
@@ -56,12 +58,12 @@ public class GetCsvUrlFromJsonUrl
         }
 
         /**
-         * method used to read the Json from the url
+         * method to get the {@link JSONObject} from the url
          *
          * @param url contain the Json url
          * @return the Json string with a casting of a JSONObject
-         * @throws IOException
-         * @throws JSONException
+         * @throws IOException in case the reading from url fail
+         * @throws JSONException in case the parsing of the json fail
          */
         JSONObject readJsonFromUrl(String url) throws IOException, JSONException
         {
