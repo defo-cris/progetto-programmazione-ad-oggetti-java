@@ -2,24 +2,7 @@
 
 title __PROGETTO's Class Diagram__\n
 
-
-    namespace com.example.progetto {
-      class com.example.progetto.csvClasses.dataType.Metadata {
-          - alias : String
-          - sourceField : String
-          - type : String
-          + Metadata()
-          + getAlias()
-          + getSourceField()
-          + getType()
-          + setAlias()
-          + setSourceField()
-          + setType()
-          + toString()
-      }
-    }
-
-    namespace com.example.progetto {
+    namespace om.example.progetto {
       class com.example.progetto.ProgettoApplication {
           {static} + main()
       }

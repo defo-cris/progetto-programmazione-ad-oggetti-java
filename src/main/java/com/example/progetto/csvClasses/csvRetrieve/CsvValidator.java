@@ -238,8 +238,6 @@ public class CsvValidator
                 urls[i].setUrl("NULL");
             }
         }
-
         return new ObjArray<>(urls);
     }
-
 }

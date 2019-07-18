@@ -3,14 +3,22 @@
 title __DATATYPE's Class Diagram__\n
 
   namespace  {
-    namespace svClasses {
-      namespace dataType {
-        class com.example.progetto.csvClasses.dataType.FloatArray {
-            - data : float[]
-            + FloatArray()
-            + getData()
-            + setData()
-            + toString()
+    namespace om.example.progetto {
+      namespace csvClasses {
+        namespace dataType {
+          class com.example.progetto.csvClasses.dataType.Metadata {
+              - alias : String
+              - sourceField : String
+              - type : String
+              + Metadata()
+              + getAlias()
+              + getSourceField()
+              + getType()
+              + setAlias()
+              + setSourceField()
+              + setType()
+              + toString()
+          }
         }
       }
     }
@@ -18,14 +26,16 @@ title __DATATYPE's Class Diagram__\n
   
 
   namespace  {
-    namespace svClasses {
-      namespace dataType {
-        class com.example.progetto.csvClasses.dataType.PrintClass {
-            ~ PrintClass()
-            {static} ~ print()
-            {static} ~ printArrayList()
-            {static} ~ printFormatted()
-            {static} ~ printVector()
+    namespace om.example.progetto {
+      namespace csvClasses {
+        namespace dataType {
+          class com.example.progetto.csvClasses.dataType.ObjArray {
+              - data : T[]
+              + ObjArray()
+              + getData()
+              + setData()
+              + toString()
+          }
         }
       }
     }
@@ -33,14 +43,37 @@ title __DATATYPE's Class Diagram__\n
   
 
   namespace  {
-    namespace svClasses {
-      namespace dataType {
-        class com.example.progetto.csvClasses.dataType.StringArray {
-            - data : String[]
-            + StringArray()
-            + getData()
-            + setData()
-            + toString()
+    namespace om.example.progetto {
+      namespace csvClasses {
+        namespace dataType {
+          class com.example.progetto.csvClasses.dataType.PrintClass {
+              ~ PrintClass()
+              {static} ~ print()
+              {static} ~ printArrayList()
+              {static} ~ printFormatted()
+              {static} ~ printVector()
+          }
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.progetto {
+      namespace csvClasses {
+        namespace dataType {
+          class com.example.progetto.csvClasses.dataType.UrlWithDescription {
+              - description : String
+              - url : String
+              + UrlWithDescription()
+              + UrlWithDescription()
+              + getDescription()
+              + getUrl()
+              + setDescription()
+              + setUrl()
+              + toString()
+          }
         }
       }
     }

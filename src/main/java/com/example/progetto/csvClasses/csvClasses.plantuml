@@ -2,190 +2,27 @@
 
 title __CSVCLASSES's Class Diagram__\n
 
-    namespace svClasses {
-      class com.example.progetto.csvClasses.csvRetrieve.CsvSplitter {
-          - commonSeparator : ArrayList<String>
-          - firstline : String
-          - sep : String
-          + setDelimiter()
-          ~ CsvSplitter()
-          ~ addCommonSeparator()
-          ~ guessDelimiter()
-          ~ splitFirstLine()
-          ~ splitLine()
+  namespace  {
+    namespace om.example.progetto {
+      namespace csvClasses {
+        class com.example.progetto.csvClasses.DataCsv {
+            {static} + colNames : String[]
+            {static} + dataNames : String[]
+            {static} + dataType : String[]
+            - csvData : Vector<DataCsvRow>
+            - firstLine : String[]
+            - metadata : Vector<Metadata>
+            - url : String
+            + DataCsv()
+            + readAndStore()
+            + setServicesData()
+            - createMetadata()
+        }
       }
     }
-
-    namespace svClasses {
-      class com.example.progetto.csvClasses.csvRetrieve.CsvValidator {
-          {static} + validateCurrency()
-          {static} + validateFloat()
-          {static} + validateFloatArraySemicolonSeparated()
-          {static} + validateID()
-          {static} + validateString()
-          {static} + validateStringArrayCommaSeparated()
-          {static} + validateStringArraySemicolonSeparated()
-          {static} + validateUrl()
-          {static} + validateUrlArraySemicolonSeparated()
-          {static} - validateInt()
-          {static} - validateStringArray()
-      }
-    }
-
-    namespace svClasses {
-      class com.example.progetto.csvClasses.DataCsv {
-          - colNames : String[]
-          - csvData : Vector<DataCsvRow>
-          - dataNames : String[]
-          - dataType : String[]
-          - firstLine : String[]
-          - metadata : Vector<Metadata>
-          - url : String
-          + createMetadata()
-          + readAndStore()
-      }
-    }
-
-    namespace svClasses {
-      class com.example.progetto.Spring.DataCsvRow {
-          - author : String
-          - coordinators : String
-          - ecsPriorities : String[]
-          - euBudgetContribution : int
-          - euBudgetMffHeading : String
-          - fundingArea : String[]
-          - language : String
-          - linkToAVideo : String
-          - name : String
-          - nid : int
-          - originalId : String
-          - partners : String[]
-          - programmeName : String
-          - projectAcronym : String
-          - projectAddresses : String[]
-          - projectCountryies : String[]
-          - projectDescription : String
-          - projectLocationLatitude : float[]
-          - projectLocationLongitude : float[]
-          - projectPostalCodes : String[]
-          - projectTowns : String[]
-          - projectWebpage : String
-          - relatedLinks : String[]
-          - results : String
-          - timeframeEnd : String
-          - timeframeStart : String
-          - totalProjectBudget : int
-          - visual : String
-          + getAuthor()
-          + getCoordinators()
-          + getEcsPriorities()
-          + getEuBudgetContribution()
-          + getEuBudgetMffHeading()
-          + getFundingArea()
-          + getLanguage()
-          + getLinkToAVideo()
-          + getName()
-          + getNid()
-          + getOriginalId()
-          + getPartners()
-          + getProgrammeName()
-          + getProjectAcronym()
-          + getProjectAddresses()
-          + getProjectCountryies()
-          + getProjectDescription()
-          + getProjectLocationLatitude()
-          + getProjectLocationLongitude()
-          + getProjectPostalCodes()
-          + getProjectTowns()
-          + getProjectWebpage()
-          + getRelatedLinks()
-          + getResults()
-          + getTimeframeEnd()
-          + getTimeframeStart()
-          + getTotalProjectBudget()
-          + getVisual()
-          + setAuthor()
-          + setCoordinators()
-          + setEcsPriorities()
-          + setEuBudgetContribution()
-          + setEuBudgetMffHeading()
-          + setFundingArea()
-          + setLanguage()
-          + setLinkToAVideo()
-          + setName()
-          + setNid()
-          + setOriginalId()
-          + setPartners()
-          + setProgrammeName()
-          + setProjectAcronym()
-          + setProjectAddresses()
-          + setProjectCountryies()
-          + setProjectDescription()
-          + setProjectLocationLatitude()
-          + setProjectLocationLongitude()
-          + setProjectPostalCodes()
-          + setProjectTowns()
-          + setProjectWebpage()
-          + setRelatedLinks()
-          + setResults()
-          + setTimeframeEnd()
-          + setTimeframeStart()
-          + setTotalProjectBudget()
-          + setVisual()
-          + toString()
-      }
-    }
-
-
-    namespace svClasses {
-      class com.example.progetto.csvClasses.csvRetrieve.GetCsvDataFromUrl {
-          - url : String
-          + GetCsvDataFromUrl()
-          + getFirstLine()
-          + getLine()
-          + resetPosition()
-      }
-    }
-
-    namespace svClasses {
-      class com.example.progetto.csvClasses.csvRetrieve.GetCsvUrlFromJsonUrl {
-          + getLink()
-      }
-    }
-
-    namespace svClasses {
-      class com.example.progetto.csvClasses.csvRetrieve.GetCsvUrlFromJsonUrl.GetCsvLinkFromJson {
-          ~ getLink()
-      }
-    }
-
-    namespace svClasses {
-      class com.example.progetto.csvClasses.csvRetrieve.GetCsvUrlFromJsonUrl.GetJsonFromUrl {
-          ~ readJsonFromUrl()
-          - readAll()
-      }
-    }
-
-    namespace svClasses {
-      class com.example.progetto.csvClasses.csvRetrieve.ReadLineFromBufferedReader {
-          ~ buffer : CircularFifoBuffer
-          - br : BufferedReader
-          - endOfLineDelimiter : String
-          - maxLineLength : int
-          + ReadLineFromBufferedReader()
-          + ReadLineFromBufferedReader()
-          + mark()
-          + readLine()
-          + reset()
-      }
-    }
-
+  }
   
 
-  com.example.progetto.csvClasses.csvRetrieve.CsvSplitter o-- com.example.progetto.csvClasses.csvRetrieve.GetCsvDataFromUrl : csv
-  com.example.progetto.csvClasses.csvRetrieve.GetCsvDataFromUrl o-- com.example.progetto.csvClasses.csvRetrieve.ReadLineFromBufferedReader : br
-  com.example.progetto.csvClasses.csvRetrieve.GetCsvUrlFromJsonUrl +-down- com.example.progetto.csvClasses.csvRetrieve.GetCsvUrlFromJsonUrl.GetCsvLinkFromJson
-  com.example.progetto.csvClasses.csvRetrieve.GetCsvUrlFromJsonUrl +-down- com.example.progetto.csvClasses.csvRetrieve.GetCsvUrlFromJsonUrl.GetJsonFromUrl
 
 
 right footer

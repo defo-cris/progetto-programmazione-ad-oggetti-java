@@ -75,7 +75,7 @@ public class NumberStats
         return sum;
     }
 
-    void setSum(long sum)
+    public void setSum(long sum)
     {
         this.sum = sum;
     }

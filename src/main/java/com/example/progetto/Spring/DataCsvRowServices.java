@@ -21,6 +21,8 @@ public class DataCsvRowServices
     static private Vector<Metadata> metadata;
     static private Vector<DataCsvRow> csvData;
 
+    /* TODO mettere un if per vedere se i dati ci sono davvero o sono null */
+
 
     static Vector<Metadata> getMetadata()
     {

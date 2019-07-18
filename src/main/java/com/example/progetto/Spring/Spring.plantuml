@@ -1,0 +1,190 @@
+@startuml
+
+title __SPRING's Class Diagram__\n
+
+
+    namespace om.example.progetto {
+      namespace Spring {
+        class com.example.progetto.Spring.DataCsvRow {
+            - author : String
+            - coordinators : String
+            - ecsPriorities : ObjArray<String>
+            - euBudgetContribution : int
+            - euBudgetMffHeading : String
+            - fundingArea : ObjArray<String>
+            - language : String
+            - linkToAVideo : String
+            - name : String
+            - nid : int
+            - originalId : String
+            - partners : ObjArray<String>
+            - programmeName : String
+            - projectAcronym : String
+            - projectAddresses : ObjArray<String>
+            - projectCountryies : ObjArray<String>
+            - projectDescription : String
+            - projectLocationLatitude : ObjArray<Float>
+            - projectLocationLongitude : ObjArray<Float>
+            - projectPostalCodes : ObjArray<String>
+            - projectTowns : ObjArray<String>
+            - projectWebpage : String
+            - relatedLinks : ObjArray<UrlWithDescription>
+            - results : String
+            - timeframeEnd : String
+            - timeframeStart : String
+            - totalProjectBudget : int
+            - visual : String
+            + getAuthor()
+            + getCoordinators()
+            + getEcsPriorities()
+            + getEuBudgetContribution()
+            + getEuBudgetMffHeading()
+            + getFundingArea()
+            + getLanguage()
+            + getLinkToAVideo()
+            + getName()
+            + getNid()
+            + getOriginalId()
+            + getPartners()
+            + getProgrammeName()
+            + getProjectAcronym()
+            + getProjectAddresses()
+            + getProjectCountryies()
+            + getProjectDescription()
+            + getProjectLocationLatitude()
+            + getProjectLocationLongitude()
+            + getProjectPostalCodes()
+            + getProjectTowns()
+            + getProjectWebpage()
+            + getRelatedLinks()
+            + getResults()
+            + getTimeframeEnd()
+            + getTimeframeStart()
+            + getTotalProjectBudget()
+            + getVisual()
+            + setAuthor()
+            + setCoordinators()
+            + setEcsPriorities()
+            + setEuBudgetContribution()
+            + setEuBudgetMffHeading()
+            + setFundingArea()
+            + setLanguage()
+            + setLinkToAVideo()
+            + setName()
+            + setNid()
+            + setOriginalId()
+            + setPartners()
+            + setProgrammeName()
+            + setProjectAcronym()
+            + setProjectAddresses()
+            + setProjectCountryies()
+            + setProjectDescription()
+            + setProjectLocationLatitude()
+            + setProjectLocationLongitude()
+            + setProjectPostalCodes()
+            + setProjectTowns()
+            + setProjectWebpage()
+            + setRelatedLinks()
+            + setResults()
+            + setTimeframeEnd()
+            + setTimeframeStart()
+            + setTotalProjectBudget()
+            + setVisual()
+            + toString()
+        }
+      }
+    }
+
+    namespace om.example.progetto {
+      namespace Spring {
+        class com.example.progetto.Spring.DataCsvRowController {
+            + DataCsvRowController()
+            + count()
+            + filter()
+            + retrieveData()
+            + retrieveDataColumn()
+            + retrieveMetadata()
+            + search()
+            + stats()
+        }
+      }
+    }
+
+    namespace om.example.progetto {
+      namespace Spring {
+        class com.example.progetto.Spring.DataCsvRowServices {
+            {static} - csvData : Vector<DataCsvRow>
+            {static} - metadata : Vector<Metadata>
+            {static} + and()
+            {static} + or()
+            {static} + setCsvData()
+            {static} + setMetadata()
+            {static} ~ filter()
+            {static} ~ getCsvData()
+            {static} ~ getMetadata()
+            {static} ~ retrieveColumn()
+            {static} ~ search()
+            {static} ~ stats()
+            {static} - checkColName()
+            {static} - checkFilterValidity()
+            {static} - compareAndAdd()
+        }
+      }
+    }
+
+    namespace om.example.progetto {
+      namespace Spring {
+        class com.example.progetto.Spring.FilterParameter {
+            - colName : String
+            - operator : String
+            - value : Object
+            + toString()
+            ~ FilterParameter()
+            ~ FilterParameter()
+            ~ getColName()
+            ~ getOperator()
+            ~ getValue()
+            ~ readFields()
+            ~ setColName()
+            ~ setOperator()
+            ~ setValue()
+        }
+      }
+    }
+
+    namespace om.example.progetto {
+      namespace Spring {
+        class com.example.progetto.Spring.NumberStats {
+            - avg : double
+            - max : int
+            - min : int
+            - std : double
+            - sum : long
+            + NumberStats()
+            + getAvg()
+            + getMax()
+            + getMin()
+            + getStd()
+            + getSum()
+            + setAvg()
+            + setMax()
+            + setMin()
+            + setStd()
+            + toString()
+            ~ setSum()
+        }
+      }
+    }
+
+  
+
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml
