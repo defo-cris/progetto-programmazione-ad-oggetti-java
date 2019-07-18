@@ -87,10 +87,11 @@ The statistics that result from the class are:
 
 And are calculated in this method:
 
-````java
+```java
 for (DataCsvRow item : csvData)
 {
-    Method m = item.getClass().getMethod("get" + fieldName);
+    Method m = item.getCl
+        ass().getMethod("get" + fieldName);
     int data = (int) m.invoke(item);
     min = (min == null ? data : (min < data ? min : data));
     max = (max == null ? data : (max > data ? max : data));
@@ -103,7 +104,7 @@ for (int xi : tmp)
     std += Math.pow(xi - avg, 2);
 }
 std = Math.sqrt(std / count);
-````
+```
 
 *example:*
 
@@ -178,5 +179,156 @@ localhost:8080/filter
 }
 ```
 
+```puml
+@startuml
 
+title __PROGETTO's Class Diagram__\n
+
+
+    class MavenWrapperDownloader {
+    }
+
+    namespace com.example.progetto {
+      class com.example.progetto.ProgettoApplication {
+      }
+    }
+
+    namespace com.example.progetto {
+      namespace Spring {
+        class com.example.progetto.Spring.DataCsvRow {
+        }
+      }
+    }
+ 
+    namespace com.example.progetto {
+      namespace Spring {
+        class com.example.progetto.Spring.DataCsvRowController {
+        }
+      }
+    }
+
+    namespace com.example.progetto {
+      namespace Spring {
+        class com.example.progetto.Spring.DataCsvRowServices {
+        }
+      }
+    }
+
+    namespace com.example.progetto {
+      namespace Spring {
+        class com.example.progetto.Spring.FilterParameter {
+        }
+      }
+    }
+
+    namespace com.example.progetto {
+      namespace Spring {
+        class com.example.progetto.Spring.NumberStats {
+        }
+      }
+    }
+
+    namespace com.example.progetto {
+      namespace csvClasses {
+        class com.example.progetto.csvClasses.DataCsv {
+        }
+      }
+    }
+
+    namespace com.example.progetto {
+      namespace csvClasses {
+        namespace csvRetrieve {
+          class com.example.progetto.csvClasses.csvRetrieve.CsvSplitter {
+          }
+        }
+      }
+    }
+ 
+    namespace com.example.progetto {
+      namespace csvClasses {
+        namespace csvRetrieve {
+          class com.example.progetto.csvClasses.csvRetrieve.CsvValidator {
+          }
+        }
+      }
+    }
+
+    namespace com.example.progetto {
+      namespace csvClasses {
+        namespace csvRetrieve {
+          class com.example.progetto.csvClasses.csvRetrieve.GetCsvDataFromUrl {
+          }
+        }
+      }
+    }
+ 
+    namespace com.example.progetto {
+      namespace csvClasses {
+        namespace csvRetrieve {
+          class com.example.progetto.csvClasses.csvRetrieve.GetCsvUrlFromJsonUrl {
+          }
+        }
+      }
+    }
+
+    namespace com.example.progetto {
+      namespace csvClasses {
+        namespace csvRetrieve {
+          class com.example.progetto.csvClasses.csvRetrieve.ReadLineFromBufferedReader {
+          }
+        }
+      }
+    }
+
+    namespace com.example.progetto {
+      namespace csvClasses {
+        namespace dataType {
+          class com.example.progetto.csvClasses.dataType.Metadata {
+          }
+        }
+      }
+    }
+
+    namespace com.example.progetto {
+      namespace csvClasses {
+        namespace dataType {
+          class com.example.progetto.csvClasses.dataType.ObjArray {
+          }
+        }
+      }
+    }
+
+    namespace com.example.progetto {
+      namespace csvClasses {
+        namespace dataType {
+          class com.example.progetto.csvClasses.dataType.PrintClass {
+          }
+        }
+      }
+    }
+
+    namespace com.example.progetto {
+      namespace csvClasses {
+        namespace dataType {
+          class com.example.progetto.csvClasses.dataType.UrlWithDescription {
+          }
+        }
+      }
+    }
+  
+  
+
+  com.example.progetto.csvClasses.csvRetrieve.CsvSplitter o-- com.example.progetto.csvClasses.csvRetrieve.GetCsvDataFromUrl : csv
+  com.example.progetto.csvClasses.csvRetrieve.GetCsvDataFromUrl o-- com.example.progetto.csvClasses.csvRetrieve.ReadLineFromBufferedReader : br
+
+
+right footer
+
+
+
+endfooter
+
+@enduml
+
+```
 

@@ -1,9 +1,11 @@
 package com.example.progetto.Spring;
 
+/* TODO javadoc ok */
 
 /**
  * class used in {@link DataCsvRowServices} for numerical statistic of a column
  */
+@SuppressWarnings("unused")
 public class NumberStats
 {
     private double avg;

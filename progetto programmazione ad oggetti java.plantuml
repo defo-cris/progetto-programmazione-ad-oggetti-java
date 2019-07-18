@@ -2,82 +2,70 @@
 
 title __PROGETTO PROGRAMMAZIONE AD OGGETTI JAVA's Class Diagram__\n
 
-  namespace  {
+
     class MavenWrapperDownloader {
     }
-  }
+
   
 
-  namespace  {
-    namespace om.example.progetto {
+    namespace com.example.progetto {
       class com.example.progetto.ProgettoApplication {
       }
     }
-  }
+
   
 
-  namespace  {
-    namespace om.example.progetto {
+    namespace com.example.progetto {
       namespace Spring {
         class com.example.progetto.Spring.DataCsvRow {
         }
       }
     }
-  }
+
   
 
-  namespace  {
-    namespace om.example.progetto {
+
+    namespace com.example.progetto {
       namespace Spring {
         class com.example.progetto.Spring.DataCsvRowController {
         }
       }
     }
-  }
+
   
 
-  namespace  {
-    namespace om.example.progetto {
+
+    namespace com.example.progetto {
       namespace Spring {
         class com.example.progetto.Spring.DataCsvRowServices {
         }
       }
     }
-  }
+
   
 
-  namespace  {
-    namespace om.example.progetto {
+    namespace com.example.progetto {
       namespace Spring {
         class com.example.progetto.Spring.FilterParameter {
         }
       }
     }
-  }
-  
 
-  namespace  {
-    namespace om.example.progetto {
+    namespace com.example.progetto {
       namespace Spring {
         class com.example.progetto.Spring.NumberStats {
         }
       }
     }
-  }
-  
 
-  namespace  {
-    namespace om.example.progetto {
+    namespace com.example.progetto {
       namespace csvClasses {
         class com.example.progetto.csvClasses.DataCsv {
         }
       }
     }
-  }
-  
 
-  namespace  {
-    namespace om.example.progetto {
+    namespace com.example.progetto {
       namespace csvClasses {
         namespace csvRetrieve {
           class com.example.progetto.csvClasses.csvRetrieve.CsvSplitter {
@@ -85,11 +73,8 @@ title __PROGETTO PROGRAMMAZIONE AD OGGETTI JAVA's Class Diagram__\n
         }
       }
     }
-  }
-  
 
-  namespace  {
-    namespace om.example.progetto {
+    namespace com.example.progetto {
       namespace csvClasses {
         namespace csvRetrieve {
           class com.example.progetto.csvClasses.csvRetrieve.CsvValidator {
@@ -97,11 +82,8 @@ title __PROGETTO PROGRAMMAZIONE AD OGGETTI JAVA's Class Diagram__\n
         }
       }
     }
-  }
-  
 
-  namespace  {
-    namespace om.example.progetto {
+    namespace com.example.progetto {
       namespace csvClasses {
         namespace csvRetrieve {
           class com.example.progetto.csvClasses.csvRetrieve.GetCsvDataFromUrl {
@@ -109,11 +91,8 @@ title __PROGETTO PROGRAMMAZIONE AD OGGETTI JAVA's Class Diagram__\n
         }
       }
     }
-  }
-  
 
-  namespace  {
-    namespace om.example.progetto {
+    namespace com.example.progetto {
       namespace csvClasses {
         namespace csvRetrieve {
           class com.example.progetto.csvClasses.csvRetrieve.GetCsvUrlFromJsonUrl {
@@ -121,11 +100,8 @@ title __PROGETTO PROGRAMMAZIONE AD OGGETTI JAVA's Class Diagram__\n
         }
       }
     }
-  }
-  
 
-  namespace  {
-    namespace om.example.progetto {
+    namespace com.example.progetto {
       namespace csvClasses {
         namespace csvRetrieve {
           class com.example.progetto.csvClasses.csvRetrieve.ReadLineFromBufferedReader {
@@ -133,11 +109,8 @@ title __PROGETTO PROGRAMMAZIONE AD OGGETTI JAVA's Class Diagram__\n
         }
       }
     }
-  }
-  
 
-  namespace  {
-    namespace om.example.progetto {
+    namespace com.example.progetto {
       namespace csvClasses {
         namespace dataType {
           class com.example.progetto.csvClasses.dataType.Metadata {
@@ -145,11 +118,8 @@ title __PROGETTO PROGRAMMAZIONE AD OGGETTI JAVA's Class Diagram__\n
         }
       }
     }
-  }
-  
 
-  namespace  {
-    namespace om.example.progetto {
+    namespace com.example.progetto {
       namespace csvClasses {
         namespace dataType {
           class com.example.progetto.csvClasses.dataType.ObjArray {
@@ -157,11 +127,8 @@ title __PROGETTO PROGRAMMAZIONE AD OGGETTI JAVA's Class Diagram__\n
         }
       }
     }
-  }
-  
 
-  namespace  {
-    namespace om.example.progetto {
+    namespace com.example.progetto {
       namespace csvClasses {
         namespace dataType {
           class com.example.progetto.csvClasses.dataType.PrintClass {
@@ -169,11 +136,8 @@ title __PROGETTO PROGRAMMAZIONE AD OGGETTI JAVA's Class Diagram__\n
         }
       }
     }
-  }
-  
 
-  namespace  {
-    namespace om.example.progetto {
+    namespace com.example.progetto {
       namespace csvClasses {
         namespace dataType {
           class com.example.progetto.csvClasses.dataType.UrlWithDescription {
@@ -181,7 +145,7 @@ title __PROGETTO PROGRAMMAZIONE AD OGGETTI JAVA's Class Diagram__\n
         }
       }
     }
-  }
+
   
 
   com.example.progetto.csvClasses.csvRetrieve.CsvSplitter o-- com.example.progetto.csvClasses.csvRetrieve.GetCsvDataFromUrl : csv

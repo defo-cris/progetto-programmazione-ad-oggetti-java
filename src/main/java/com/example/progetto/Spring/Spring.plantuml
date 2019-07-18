@@ -3,7 +3,7 @@
 title __SPRING's Class Diagram__\n
 
 
-    namespace om.example.progetto {
+    namespace com.example.progetto {
       namespace Spring {
         class com.example.progetto.Spring.DataCsvRow {
             - author : String
@@ -95,10 +95,9 @@ title __SPRING's Class Diagram__\n
       }
     }
 
-    namespace om.example.progetto {
+    namespace com.example.progetto {
       namespace Spring {
         class com.example.progetto.Spring.DataCsvRowController {
-            + DataCsvRowController()
             + count()
             + filter()
             + retrieveData()
@@ -110,7 +109,7 @@ title __SPRING's Class Diagram__\n
       }
     }
 
-    namespace om.example.progetto {
+    namespace com.example.progetto {
       namespace Spring {
         class com.example.progetto.Spring.DataCsvRowServices {
             {static} - csvData : Vector<DataCsvRow>
@@ -132,7 +131,7 @@ title __SPRING's Class Diagram__\n
       }
     }
 
-    namespace om.example.progetto {
+    namespace com.example.progetto {
       namespace Spring {
         class com.example.progetto.Spring.FilterParameter {
             - colName : String
@@ -152,7 +151,7 @@ title __SPRING's Class Diagram__\n
       }
     }
 
-    namespace om.example.progetto {
+    namespace com.example.progetto {
       namespace Spring {
         class com.example.progetto.Spring.NumberStats {
             - avg : double
@@ -170,8 +169,8 @@ title __SPRING's Class Diagram__\n
             + setMax()
             + setMin()
             + setStd()
+            + setSum()
             + toString()
-            ~ setSum()
         }
       }
     }

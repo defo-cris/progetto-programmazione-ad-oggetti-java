@@ -13,6 +13,7 @@ import java.net.URL;
 /**
  * class used to validate all the fields obtained in every csv row
  */
+@SuppressWarnings("WeakerAccess")
 public class CsvValidator
 {
     /**
@@ -41,7 +42,7 @@ public class CsvValidator
      *
      * @param s the string that will be converted to an int
      *
-     * @return the result of the {@link CsvValidator#validateInt} method with -1 as default value
+     * @return the result of the parsing with -1 as default value
      */
     public static int validateID(String s)
     {
@@ -87,7 +88,7 @@ public class CsvValidator
      *
      * @param s the url string that will be checked
      *
-     * @return the url of "NULL"
+     * @return the url or "NULL"
      */
     public static String validateUrl(String s)
     {
@@ -142,7 +143,7 @@ public class CsvValidator
      *
      * @param s string where the separator inside is the ","
      *
-     * @return the ObjArray of the splitted string.
+     * @return the ObjArray of the split string.
      */
     public static ObjArray<String> validateStringArrayCommaSeparated(String s)
     {
@@ -150,11 +151,11 @@ public class CsvValidator
     }
 
     /**
-     * function to validate a string array separated by semicollon.
+     * function to validate a string array separated by semicolon.
      *
      * @param s string where the separator inside is the ";"
      *
-     * @return the ObjArray of the splitted string
+     * @return the ObjArray of the split string
      */
     public static ObjArray<String> validateStringArraySemicolonSeparated(String s)
     {
@@ -162,7 +163,7 @@ public class CsvValidator
     }
 
     /**
-     * this func
+     * this function is used to validate a string composed by an array of countries string separated by a semicolon
      *
      * @param s string that contain all the countries and that are separated with ";"
      *
@@ -170,7 +171,6 @@ public class CsvValidator
      */
     public static ObjArray<String> validateCountryArraySemicolonSeparated(String s)
     {
-        /* TODO fin e' inutile al cazzo */
         String[] split = validateStringArray(s, ";").getData();
         for (int i = 0; i < split.length; i++)
         {
@@ -217,7 +217,7 @@ public class CsvValidator
     }
 
     /**
-     * in the csv we have an url formatted as "<a href="url">"description"</a>" so in this function we split the url and
+     * in the csv we have an url formatted as <code><a href="url">"description"</a></code> so in this function we split the url and
      * the description.
      *
      * @param s string that contain the url with the anchor of the link

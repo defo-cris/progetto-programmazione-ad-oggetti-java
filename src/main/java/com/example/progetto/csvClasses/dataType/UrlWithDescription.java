@@ -1,8 +1,10 @@
 package com.example.progetto.csvClasses.dataType;
 
+/* TODO javadoc ok */
+
 /**
- * class used in { DataCsvRow} passed how a type of the class ObjArray, so that every link passed how an element of the
- * array contain its description
+ * class used in {@link com.example.progetto.Spring.DataCsvRow} to host a field of our csv where the data is reprehended
+ * with an url and a description
  */
 public class UrlWithDescription
 {

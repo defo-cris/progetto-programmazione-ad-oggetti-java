@@ -2,7 +2,8 @@
 
 title __PROGETTO's Class Diagram__\n
 
-    namespace om.example.progetto {
+
+    namespace com.example.progetto {
       class com.example.progetto.ProgettoApplication {
           {static} + main()
       }

@@ -3,18 +3,13 @@ package com.example.progetto.csvClasses.dataType;
 import java.util.ArrayList;
 import java.util.Vector;
 
+/* TODO javadoc ok */
+
 /**
- * class used to print in the console the formatted csv, a vector, an array list or an array
+ * class used to print in the console the formatted csv, a vector, an array list or an array. only debug
  */
 public class PrintClass
 {
-    /**
-     *
-     */
-    PrintClass()
-    {
-
-    }
 
     /**
      * @param col is the param used to stamp the field name of the csv

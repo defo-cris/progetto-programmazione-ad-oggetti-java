@@ -11,6 +11,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.Iterator;
 import java.util.Vector;
 
+/* TODO javadoc ok */
 
 /**
  * Manages the Spring application and define the filters using GET or POST requests.
@@ -19,12 +20,8 @@ import java.util.Vector;
 public class DataCsvRowController
 {
 
-    public DataCsvRowController()
-    {
-    }
-
     /**
-     * method used to retrieve all the data-set. It use a GET request
+     * used to retrieve all the data-set. It use a GET request
      *
      * @return the data-set in a vector format
      */
@@ -35,7 +32,7 @@ public class DataCsvRowController
     }
 
     /**
-     * this method retrieve the metadata, that contain the alias, the sourceField and the type of the element It use a
+     * retrieve the metadata, that contain the alias, the sourceField and the type of the element It use a
      * GET request
      *
      * @return the metadata of all the element in a vector format
@@ -62,7 +59,7 @@ public class DataCsvRowController
 
 
     /**
-     * method used to retrieve the data of a single column; both with the null values, or without them It use a GET
+     * used to retrieve the data of a single column; both with the null values, or without them It use a GET
      * request, but with the param excludeNull, used to choose if the null values will be displayed or not
      *
      * @param colName name of the column picked to show
@@ -82,8 +79,9 @@ public class DataCsvRowController
         return DataCsvRowServices.retrieveColumn(colName.replace("\"", ""), excludeNull);
     }
 
+
     /**
-     * method used to count the number of times the string of the specified field repeats itself.
+     * used to count the number of times the string of the specified field repeats itself.
      *
      * @param fieldName column in where to do the count of the attribute
      * @param value     the string to count
@@ -98,8 +96,9 @@ public class DataCsvRowController
         return "{ \"count\": " + count + "}";
     }
 
+
     /**
-     * method used to search if the value passed in the <code>value</code> is contained in the ata-set, and with the
+     * used to search if the value passed in the <code>value</code> is contained in the ata-set, and with the
      * help of the <code>bool</code> it can identify if the <code>value</code> corresponds to the entire line
      *
      * @param value string to search in all the data-set
@@ -121,6 +120,7 @@ public class DataCsvRowController
         return DataCsvRowServices.search(value.replace("\"", ""), param, type);
     }
 
+
     /**
      * Generic filter using a POST. If the body of the JSON is a single object it searches for a field, an operator and
      * an input value and returns the filtered dataset. If it is found an attribute called "$or" or "$and" it applies
@@ -128,9 +128,9 @@ public class DataCsvRowController
      * for each object and then unites them without considering multiple elements. The "$and" filter just recursively
      * filter the result of the previous decimation.
      *
-     * @param param SON array with objects composed by a field, an operator and an input value
+     * @param param JSON with objects composed by a field, an operator and an input value
      *
-     * @return the vector that result from the filter
+     * @return the vector of data that satisfy the filter
      */
     @PostMapping(value = "/filter")
     public Vector<DataCsvRow> filter(@RequestBody String param)
@@ -167,8 +167,8 @@ public class DataCsvRowController
             JSONArray filters = (JSONArray) obj.get(operator);
             for (int i = 0; i < filters.length(); i++)
             {
-                JSONObject objin = filters.getJSONObject(i);
-                filter.readFields(objin);
+                JSONObject objIn = filters.getJSONObject(i);
+                filter.readFields(objIn);
 
                 if (operator.equals("$or"))
                 {

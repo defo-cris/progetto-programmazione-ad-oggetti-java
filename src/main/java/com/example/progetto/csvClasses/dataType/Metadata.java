@@ -1,10 +1,12 @@
 package com.example.progetto.csvClasses.dataType;
 
+/* TODO javadoc ok */
 
 /**
  * class used in DataCsv class to generate the information of every element; that information contain the alias, the
  * sourceField and the type of the element
  */
+@SuppressWarnings("unused")
 public class Metadata
 {
     private String alias;
@@ -55,11 +57,7 @@ public class Metadata
         this.type = type;
     }
 
-    /**
-     * Override of the toString method
-     *
-     * @return the information of the metadata of the element in form of a string
-     */
+
     @Override
     public String toString()
     {

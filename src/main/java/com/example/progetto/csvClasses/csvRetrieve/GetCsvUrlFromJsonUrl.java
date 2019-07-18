@@ -11,14 +11,15 @@ import java.nio.charset.Charset;
 /* TODO javadoc ok */
 
 /**
- * class that from the url of the json retrieve the link of the url of csv
+ * retrieve the url of the csv from the url of the json, reading all the json, parsing it and following a path to get
+ * the url of the csv containing the data
  */
 public class GetCsvUrlFromJsonUrl
 {
 
 
     /**
-     * method used to get the link of the csv from the json url
+     * used to get the link of the csv from the json url
      *
      * @param url    param where we pass the link of the Json
      * @param numCsv param used to indicate the number of the element in the Json
@@ -42,9 +43,9 @@ public class GetCsvUrlFromJsonUrl
     class GetJsonFromUrl
     {
         /**
-         * method used to read all the character from a {@link java.io.Reader}
+         * used to read all the character from a {@link java.io.Reader}
          *
-         * @param rd the reader
+         * @param rd the {@link java.io.Reader}
          *
          * @return the Json in the string format
          *
@@ -62,7 +63,7 @@ public class GetCsvUrlFromJsonUrl
         }
 
         /**
-         * method to get the {@link JSONObject} from the url
+         * used to get the {@link JSONObject} from the url
          *
          * @param url contain the Json url
          *

@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
 
+/* TODO javadoc ok */
 
 /**
  * Class implemented because we couldn't use the method readline of the BufferedReader because in some of the row in
@@ -20,9 +21,9 @@ public class ReadLineFromBufferedReader
 
 
     /**
-     * Constructor of the class ReadLineFromBufferedReader TODO hereee
+     * Constructor of the class
      *
-     * @param in                 is the {@link Reader} to pass at the reader for the character stream
+     * @param in                 is the {@link java.io.Reader} to pass at the reader for the character stream
      * @param endOfLineDelimiter is a string to identify the end of the line of a row
      * @param maxLineLength      int used in the StringBuilder to identify the dimension of the String
      */
@@ -37,7 +38,7 @@ public class ReadLineFromBufferedReader
 
 
     /**
-     * Constructor of the class ReadLineFromBufferedReader with the maxLineLength set
+     * Constructor of the class with maxLineLength set to the default value.
      *
      * @param in                 streamer of character passed at the Reader
      * @param endOfLineDelimiter character that identify the end of the line

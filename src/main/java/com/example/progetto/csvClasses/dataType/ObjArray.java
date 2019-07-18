@@ -2,10 +2,12 @@ package com.example.progetto.csvClasses.dataType;
 
 import java.util.Arrays;
 
+/* TODO javadoc ok */
+
 /**
  * class used to define an array of object
  *
- * @param <T> data object used to describe the type of the data passed at the class.
+ * @param <T> the type used to make the array
  */
 public class ObjArray<T>
 {

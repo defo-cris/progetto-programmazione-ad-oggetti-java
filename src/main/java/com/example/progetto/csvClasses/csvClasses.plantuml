@@ -3,7 +3,7 @@
 title __CSVCLASSES's Class Diagram__\n
 
 
-    namespace om.example.progetto {
+    namespace com.example.progetto {
       namespace csvClasses {
         class com.example.progetto.csvClasses.DataCsv {
             {static} + colNames : String[]

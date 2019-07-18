@@ -16,24 +16,32 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Vector;
 
+/* TODO javadoc ok */
+
 /**
  * Class used to read, validate and store all the row of the csv in a vector; and from every field of the row with the
  * method createMetadata we retrieve the class type of every element.
  */
+@SuppressWarnings("WeakerAccess")
 public class DataCsv
 {
     /**
-     * those arrays are used by the whole program to correctly use the reflect technique to validate, set and get data
-     * from the class {@link DataCsvRow}
+     * contains all the validation type for every column of the csv
      */
     public static final String[] dataNames = {"ID", "String", "String", "String", "Url", "String", "String", "String", "StringArraySemicolonSeparated", "StringArrayCommaSeparated", "StringArraySemicolonSeparated", "StringArraySemicolonSeparated", "CountryArraySemicolonSeparated", "FloatArraySemicolonSeparated", "FloatArraySemicolonSeparated", "Url", "String", "String", "Url", "UrlArraySemicolonSeparated", "String", "String", "StringArraySemicolonSeparated", "StringArraySemicolonSeparated", "Currency", "Currency", "String", "String"};
+    /**
+     * contain the name of the fields in {@link DataCsvRow} with the first letter uppercase
+     */
     public static final String[] colNames = {"Nid", "OriginalId", "Name", "ProjectAcronym", "Visual", "ProjectDescription", "Results", "Coordinators", "Partners", "ProjectAddresses", "ProjectPostalCodes", "ProjectTowns", "ProjectCountryies", "ProjectLocationLatitude", "ProjectLocationLongitude", "LinkToAVideo", "TimeframeStart", "TimeframeEnd", "ProjectWebpage", "RelatedLinks", "EuBudgetMffHeading", "ProgrammeName", "FundingArea", "EcsPriorities", "EuBudgetContribution", "TotalProjectBudget", "Author", "Language"};
+    /**
+     * contain the type of the fields in {@link DataCsvRow}
+     */
     public static final String[] dataType = {"java.lang.Integer", "java.lang.String", "java.lang.String", "java.lang.String", "java.lang.String", "java.lang.String", "java.lang.String", "java.lang.String", "com.example.progetto.csvClasses.dataType.ObjArray", "com.example.progetto.csvClasses.dataType.ObjArray", "com.example.progetto.csvClasses.dataType.ObjArray", "com.example.progetto.csvClasses.dataType.ObjArray", "com.example.progetto.csvClasses.dataType.ObjArray", "com.example.progetto.csvClasses.dataType.ObjArray", "com.example.progetto.csvClasses.dataType.ObjArray", "java.lang.String", "java.lang.String", "java.lang.String", "java.lang.String", "com.example.progetto.csvClasses.dataType.ObjArray", "java.lang.String", "java.lang.String", "com.example.progetto.csvClasses.dataType.ObjArray", "com.example.progetto.csvClasses.dataType.ObjArray", "java.lang.Integer", "java.lang.Integer", "java.lang.String", "java.lang.String"};
 
+    /**
+     * contain the link of the json used for this project
+     */
     private final String url = "http://data.europa.eu/euodp/data/api/3/action/package_show?id=eu-results-projects";
-    //url = "https://www.dati.gov.it/api/3/action/package_show?id=3c68b286-09fd-447a-b8e3-1b8430f70969";
-    //url = "http://data.europa.eu/euodp/data/api/3/action/package_show?id=eu-cohesion-policy-historic-eu-payments-regionalised-and-modelled";
-    //url = "http://data.europa.eu/euodp/data/api/3/action/package_show?id=jrc-abcis-ap-dmpspc-2016";
 
     private Vector<Metadata> metadata;
     private Vector<DataCsvRow> csvData;
@@ -52,7 +60,7 @@ public class DataCsv
     /**
      * In this method form the json url we retrieve the csv url, we read it and download in ram it. From the Csv data we
      * read and split the first line, and for every row of the Csv we read, validate and set the element of every
-     * column.
+     * column. this method use {@link GetCsvUrlFromJsonUrl}, {@link GetCsvDataFromUrl} and {@link CsvSplitter}.
      */
     public void readAndStore()
     {
@@ -105,7 +113,7 @@ public class DataCsv
     }
 
     /**
-     * In this method, from the data of every field of the row, we retrieve the type of the element
+     * create the metadata of our csv
      */
     private void createMetadata()
     {
@@ -128,8 +136,8 @@ public class DataCsv
     }
 
     /**
-     * In this method we set the data and the metadata in the {@link DataCsvRowServices} class with the vector used in
-     * this class
+     * In this method we set the data and the metadata in the {@link DataCsvRowServices}, spring will use that data to
+     * answer the get/post request
      */
     public void setServicesData()
     {

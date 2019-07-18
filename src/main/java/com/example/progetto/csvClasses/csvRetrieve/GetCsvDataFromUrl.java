@@ -7,14 +7,19 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 
-/* javadoc ok */
+/* TODO javadoc ok */
 
 /**
  * class used to retrieve the data of the csv from the url obtained from the {@link GetCsvUrlFromJsonUrl} class
  */
+@SuppressWarnings("WeakerAccess")
 public class GetCsvDataFromUrl
 {
     private String url;
+
+    /**
+     * a {@link java.io.BufferedReader} wrap that provide methods to set the EOL delimiter and a revisited readLine()
+     */
     private ReadLineFromBufferedReader br;
 
     public GetCsvDataFromUrl(String url)
@@ -24,11 +29,11 @@ public class GetCsvDataFromUrl
 
 
     /**
-     * method used to catch the first line of the csv from the {@link ReadLineFromBufferedReader} class
+     * used to catch the first line of the csv from the {@link ReadLineFromBufferedReader} class
      *
      * @return the first line of the csv
      *
-     * @throws IOException in case the file ended too early
+     * @throws IOException in case the file ended on the first line
      */
     public String getFirstLine() throws IOException
     {
@@ -50,7 +55,7 @@ public class GetCsvDataFromUrl
     }
 
     /**
-     * read the next line of the csv
+     * used to read the next line of the csv
      *
      * @return all the csv line apart of the first that we read in previous method
      *
@@ -72,7 +77,7 @@ public class GetCsvDataFromUrl
     }
 
     /**
-     * reset the position of the BufferReader
+     * reset the position of the BufferReader to te last marked position
      *
      * @throws IOException in case of an error
      */

@@ -3,9 +3,12 @@ package com.example.progetto.Spring;
 import com.example.progetto.csvClasses.dataType.ObjArray;
 import com.example.progetto.csvClasses.dataType.UrlWithDescription;
 
+/* TODO javadoc ok */
+
 /**
- * Class used to transform the csv ddata in an object where every element have is own type data
+ * Class used to transform every row of the csv in an object where every element have is own type data
  */
+@SuppressWarnings("unused")
 public class DataCsvRow
 {
     private int nid;

@@ -3,10 +3,14 @@ package com.example.progetto.Spring;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/* TODO javadoc ok */
 
 /**
- * Class used to describe the element used for the description of the parameters used in the filter
+ * Class used to describe an elemental filter with a left value, represented by the name of the column that will be used
+ * for the filter, an operator, such "==", and a right value that will be compared with every element of the column
+ * corresponding to the name passed by the left value.
  */
+@SuppressWarnings("unused")
 public class FilterParameter
 {
     private String colName;
@@ -29,11 +33,10 @@ public class FilterParameter
     }
 
     /**
-     * default constructor of the class, always used because the parameters are passed away postman
+     * default constructor
      */
     FilterParameter()
     {
-
     }
 
     String getColName()
@@ -67,7 +70,7 @@ public class FilterParameter
     }
 
     /**
-     * method used to retrieve the parameters from the body request of postman
+     * used to retrieve the parameters from the body request of postman formatted in JSON
      *
      * @param body is a JSONObject that contain the parameters fieldName, operator e value, enclosed in a json
      *

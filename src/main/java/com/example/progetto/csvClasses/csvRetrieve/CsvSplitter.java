@@ -21,7 +21,7 @@ public class CsvSplitter
     /**
      * Constructor of the class CsvSplitter
      *
-     * @param csv the csv reader object that wrap a BufferedReader that read the csv data from the url
+     * @param csv the csv reader object that wrap a {@link java.io.BufferedReader} that read the csv data from the url
      */
     public CsvSplitter(GetCsvDataFromUrl csv)
     {
@@ -31,10 +31,10 @@ public class CsvSplitter
     }
 
     /**
-     * method used to guess the delimiter of the csv's fields the guessing is made with trying a set of common separator
+     * method used to guess the delimiter of the csv fields, the guessing is made with trying a set of common separator
      * and verify if splitting the first line and the second line result in the same amount of element
      *
-     * @throws IOException         in case that the BufferedReader used in {@link GetCsvDataFromUrl} fails
+     * @throws IOException         in case that the {@link java.io.BufferedReader} used in {@link GetCsvDataFromUrl} fails
      * @throws DataFormatException in case the csv have a delimiter that are not in commonSeparator
      */
     void guessDelimiter() throws IOException, DataFormatException
@@ -90,7 +90,7 @@ public class CsvSplitter
      * method used to split the first line with the separator, calling this method does't influence the functionality of
      * {@link CsvSplitter#splitLine()} because it use a stored first line and it does't re-read it from the csv.
      *
-     * @return the line how an array where all the element are obtained from the split of the string
+     * @return the first line split in form of a string array
      */
     public String[] splitFirstLine()
     {
