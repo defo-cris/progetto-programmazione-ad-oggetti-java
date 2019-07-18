@@ -114,10 +114,5 @@ title __CSVRETRIEVE's Class Diagram__\n
   com.example.progetto.csvClasses.csvRetrieve.GetCsvUrlFromJsonUrl +-down- com.example.progetto.csvClasses.csvRetrieve.GetCsvUrlFromJsonUrl.GetJsonFromUrl
 
 
-right footer
-
-
-
-endfooter
 
 @enduml
