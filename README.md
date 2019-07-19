@@ -3,9 +3,11 @@
 progetto-programmazione-ad-oggetti-java
 =======================================
 
-The purpose of this project is to read and analyze a data-set and to create a set of classes to represent it.
+The purpose of this project is to read and analyze a data-set and to create a set of classes to represent it and expose them to the user with API rest get/post.
 
-Our data-set is a Examples of EU funded projects. Our Java projects consist in this features:
+Our data-set is a Examples of EU funded projects. 
+
+Our Java projects consist in this features:
 
 ###### At the start of the program:
 
@@ -107,8 +109,6 @@ localhost:8080/data/nid?excludeNull=true
 ##### /metadata
 
 Return all the field with the alias, the source field and the type of every field.
-
-
 
 ##### /stats/{colName}
 
@@ -332,7 +332,7 @@ In case of a wrong field name in the Json body will appear this message:
 ```
 
 ```html
-message= "Error in the declaration of the fieldname"
+message = "Error in the declaration of the fieldname"
 ```
 
 
