@@ -224,7 +224,7 @@ Since it is a POST Request it must have a body, this body must be a JSON format,
 {
     "fieldName": "projectAcronym",
     "operator": "==",
-	"value": "SONO"
+    "value": "SONO"
 }
 ```
 
