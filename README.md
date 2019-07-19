@@ -394,18 +394,3 @@ message = "Incorrect JSON body"
   message = "column name not valid, please write some of them: [Nid, OriginalId, Name, ProjectAcronym, Visual, ProjectDescription, Results, Coordinators, Partners, ProjectAddresses, ProjectPostalCodes, ProjectTowns, ProjectCountryies, ProjectLocationLatitude, ProjectLocationLongitude, LinkToAVideo, TimeframeStart, TimeframeEnd, ProjectWebpage, RelatedLinks, EuBudgetMffHeading, ProgrammeName, FundingArea, EcsPriorities, EuBudgetContribution, TotalProjectBudget, Author, Language]"
   ```
 
-------
-
-### UML
-
-[UML Class diagram](https://github.com/defo-cris/progetto-programmazione-ad-oggetti/blob/master/uml/progetto_programmazione_ad_oggetti_java.png) 
-
- - [UML Spring Class diagram](https://github.com/defo-cris/progetto-programmazione-ad-oggetti/blob/master/uml/src/Spring/Spring.png)
- - [UML csvClasses Class diagram](https://github.com/defo-cris/progetto-programmazione-ad-oggetti/blob/master/uml/src/csvClasses/csvClasses.png)
-    - [UML csvRetrieve Class diagram](https://github.com/defo-cris/progetto-programmazione-ad-oggetti/blob/master/uml/src/csvClasses/csvRetrieve/csvRetrieve.png)
-    - [UML dataType Class diagram](https://github.com/defo-cris/progetto-programmazione-ad-oggetti/blob/master/uml/src/csvClasses/dataType/dataType.png)
- - [UML progetto Class diagram ](https://github.com/defo-cris/progetto-programmazione-ad-oggetti/blob/master/uml/src/progetto.png)
-
-[UML Use Case diagram]()
-
-[UML Sequence diagram]()
