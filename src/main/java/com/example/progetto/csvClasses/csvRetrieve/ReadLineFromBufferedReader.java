@@ -6,7 +6,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
 
-/* TODO javadoc ok */
 
 /**
  * Class implemented because we couldn't use the method readline of the BufferedReader because in some of the row in

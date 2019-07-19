@@ -7,7 +7,6 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 
-/* TODO javadoc ok */
 
 /**
  * class used to retrieve the data of the csv from the url obtained from the {@link GetCsvUrlFromJsonUrl} class

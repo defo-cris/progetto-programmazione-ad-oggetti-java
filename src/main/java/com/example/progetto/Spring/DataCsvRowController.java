@@ -11,7 +11,6 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.Iterator;
 import java.util.Vector;
 
-/* TODO javadoc ok */
 
 /**
  * Manages the Spring application and define the filters using GET or POST requests.

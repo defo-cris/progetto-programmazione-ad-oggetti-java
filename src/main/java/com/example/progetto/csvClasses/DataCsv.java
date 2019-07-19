@@ -16,7 +16,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Vector;
 
-/* TODO javadoc ok */
 
 /**
  * Class used to read, validate and store all the row of the csv in a vector; and from every field of the row with the

@@ -8,7 +8,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.Charset;
 
-/* TODO javadoc ok */
 
 /**
  * retrieve the url of the csv from the url of the json, reading all the json, parsing it and following a path to get

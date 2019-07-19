@@ -3,7 +3,6 @@ package com.example.progetto.Spring;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/* TODO javadoc ok */
 
 /**
  * Class used to describe an elemental filter with a left value, represented by the name of the column that will be used

@@ -8,7 +8,6 @@ import java.net.URISyntaxException;
 import java.net.URL;
 
 
-/* TODO javadoc ok */
 
 /**
  * class used to validate all the fields obtained in every csv row

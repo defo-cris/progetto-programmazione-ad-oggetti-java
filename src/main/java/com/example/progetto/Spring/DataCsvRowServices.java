@@ -12,7 +12,6 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Vector;
 
-/* TODO javadoc ok */
 
 /**
  * Contains the methods used by the controller or the service itself to manage the filters.
@@ -168,7 +167,7 @@ public class DataCsvRowServices
         }
         catch (IllegalAccessException | NoSuchMethodException | SecurityException | ClassCastException | InvocationTargetException e)
         {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error in the declaration of the route");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error in the declaration of the route, the right parameter to use are totalProjectBudge and euBudgetContribution");
         }
         return new NumberStats(avg, min, max, std, sum);
     }
@@ -203,6 +202,8 @@ public class DataCsvRowServices
                     return (int) leftValue == (int) rightValue;
                 case "!=":
                     return (int) leftValue != (int) rightValue;
+                default:
+                    throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Error in the operator, please use ==,<,<=,>,>= or !=");
             }
         }
         else if ((leftValue.getClass() == String.class) && (rightValue.getClass() == String.class))
@@ -215,6 +216,10 @@ public class DataCsvRowServices
             {
                 return !leftValue.equals(rightValue);
             }
+            else
+                {
+                    throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Error in the operator, please use == or !=");
+                }
         }
         return false;
     }
@@ -251,7 +256,7 @@ public class DataCsvRowServices
         }
         catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e)
         {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error in the declaration of the route");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error in the declaration of the fieldname");
         }
         return out;
     }

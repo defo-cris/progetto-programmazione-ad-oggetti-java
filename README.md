@@ -1,5 +1,8 @@
+
+
 progetto-programmazione-ad-oggetti-java
 =======================================
+
 The purpose of this project is to read and analyze a data-set and to create a set of classes to represent it.
 
 Our data-set is a Examples of EU funded projects. Our Java projects consist in this features:
@@ -83,12 +86,20 @@ Afterwards the various requests that can be carried out with relevant examples w
 
 Return all the data-set.
 
+
+
 ##### /data/{colName}?excludeNull={true | false}
 
 Return the data only of the specified column; and if the parameter excludeNull is true all the null values of the column are excluded, otherwise all the data are retrieved.
 
-```html 
+*example:*
+
+```http 
 localhost:8080/data/nid?excludeNull=false
+```
+
+```http
+localhost:8080/data/nid?excludeNull=true
 ```
 
 
@@ -96,6 +107,8 @@ localhost:8080/data/nid?excludeNull=false
 ##### /metadata
 
 Return all the field with the alias, the source field and the type of every field.
+
+
 
 ##### /stats/{colName}
 
@@ -135,7 +148,7 @@ std = Math.sqrt(std / count);
 
 *example:*
 
-```html 
+```http
 localhost:8080/stats/totalProjectBudget
 ```
 
@@ -157,9 +170,67 @@ localhost:8080/stats/totalProjectBudget
 
 Return only the row where the value is contained into it; if the parameter exactMatch is true only the row where an element as the exact match of the value are returned, otherwise the row that contain into them the value are returned.
 
+*example:*
+
+1. ```http
+   localhost:8080/search?value="UK"&exactMatch="true"
+   ```
+
+2. ```http
+   localhost:8080/search?value="Sparking"&exactMatch="false"
+   ```
+
+
+
+##### /count/{fieldName}?value={"String" | int}
+
+Return an integer value of the number of times the parameter value is contained in the fieldName.
+
+*example:*
+
+```http
+localhost:8080/count/euBudgetContribution?value=1000000
+```
+
+*response:*
+
+```json
+{
+    "count": 16
+}
+```
+
+
+
+------
+
+#### POST Request
+
+##### /filter
+
+Used to indicate a generic command of filter through a POST Request. 
+
+*example:*
+
 ```haml
 localhost:8080/filter
 ```
+
+Since it is a POST Request it must have a body, this body must be a JSON format, inside this JSON it must have a field where to operate the filter operation, the operation to do, and a value to use how comparator. The returned body is the row of the data-set that respect the condition of the filter.
+
+*body example:*
+
+```json
+{
+    "fieldName": "projectAcronym",
+    "operator": "==",
+	"value": "SONO"
+}
+```
+
+The response body will be only the row of the data-set where in the column "projectAcronym" is contained the string "SONO". If a logical operator is found ("$or" or "$and") and inside it I have an Array of Json request, it filter them multiple times. The two logical operation work the opposite, the $and catch only the row of the CSV that respect all the parameters. The $or catch all the row that respect at least one of the them.
+
+*example of a filter with the "$or" logical condition:* 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~json
 {
@@ -178,11 +249,7 @@ localhost:8080/filter
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
-
-````html 
-localhost:8080/filter
-````
+*example of a filter with the "$and" logical condition:*
 
 ```json
 {
@@ -207,3 +274,138 @@ localhost:8080/filter
 ```
 
 
+
+------
+
+#### Error Handling
+
+In case of an incorrect route or a request has a bad format, the application return an error message
+
+- filter features
+
+  In case of a wrong operator in the Json body will appear this message:
+
+  - int : 
+
+    *example:*
+
+    ```json
+    {
+    	"fieldName": "euBudgetContribution",
+        "operator": "=<",
+        "value": "1000"
+    }
+    ```
+
+    ```html
+    message = "Error in the operator, please use ==,<,<=,>,>= or !="
+    ```
+
+    
+
+  - string : 
+
+    *example:*
+
+    ```json
+    {
+        "fieldName": "name",
+        "operator": "=<",
+    	"value": "The INOV Contacto Programme"
+    }
+    ```
+
+    ```html
+    message = "Error in the operator, please use == or !="
+    ```
+
+In case of a wrong field name in the Json body will appear this message:
+
+*example:*
+
+```json
+{
+    "fieldName": "nome",
+    "operator": "==",
+    "value": "The INOV Contacto Programme"
+}
+```
+
+```html
+message= "Error in the declaration of the fieldname"
+```
+
+
+
+In case you write the logical operator wrong will appear this message:
+
+*example:*
+
+```json
+{
+    "and": [
+        {
+            "fieldName": "euBudgetContribution",
+            "operator": "==",
+            "value": "1000"
+        },
+        {
+            "fieldName": "name",
+            "operator": "=<",
+            "value": "The INOV Contacto Programme"
+        }
+    ]
+}
+```
+
+```html
+message = "Incorrect JSON body"
+```
+
+
+
+- stats feature
+
+  In case of a wrong field name in the route will appear this message:
+
+  *example:*
+
+  ```http
+  localhost:8080/stats/nidd
+  ```
+
+  ```html
+  message = "Error in the declaration of the route, the right parameter to use are totalProjectBudge and euBudgetContribution"
+  ```
+
+
+
+- data feature
+
+  In case you want to retrieve a data from an inexistent field will appear this error message:
+
+  *example:*
+
+  ```http
+  localhost:8080/data/nird?excludeNull=false
+  ```
+
+  ```html
+  message = "column name not valid, please write some of them: [Nid, OriginalId, Name, ProjectAcronym, Visual, ProjectDescription, Results, Coordinators, Partners, ProjectAddresses, ProjectPostalCodes, ProjectTowns, ProjectCountryies, ProjectLocationLatitude, ProjectLocationLongitude, LinkToAVideo, TimeframeStart, TimeframeEnd, ProjectWebpage, RelatedLinks, EuBudgetMffHeading, ProgrammeName, FundingArea, EcsPriorities, EuBudgetContribution, TotalProjectBudget, Author, Language]"
+  ```
+
+------
+
+### UML
+
+[UML Class diagram](https://github.com/defo-cris/progetto-programmazione-ad-oggetti/blob/master/uml/progetto_programmazione_ad_oggetti_java.png) 
+
+ - [UML Spring Class diagram](https://github.com/defo-cris/progetto-programmazione-ad-oggetti/blob/master/uml/src/Spring/Spring.png)
+ - [UML csvClasses Class diagram](https://github.com/defo-cris/progetto-programmazione-ad-oggetti/blob/master/uml/src/csvClasses/csvClasses.png)
+    - [UML csvRetrieve Class diagram](https://github.com/defo-cris/progetto-programmazione-ad-oggetti/blob/master/uml/src/csvClasses/csvRetrieve/csvRetrieve.png)
+    - [UML dataType Class diagram](https://github.com/defo-cris/progetto-programmazione-ad-oggetti/blob/master/uml/src/csvClasses/dataType/dataType.png)
+ - [UML progetto Class diagram ](https://github.com/defo-cris/progetto-programmazione-ad-oggetti/blob/master/uml/src/progetto.png)
+
+[UML Use Case diagram]()
+
+[UML Sequence diagram]()

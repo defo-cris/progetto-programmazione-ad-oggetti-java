@@ -1,6 +1,5 @@
 package com.example.progetto.csvClasses.dataType;
 
-/* TODO javadoc ok */
 
 /**
  * class used in {@link com.example.progetto.Spring.DataCsvRow} to host a field of our csv where the data is reprehended

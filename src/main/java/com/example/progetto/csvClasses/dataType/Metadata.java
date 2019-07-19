@@ -1,6 +1,5 @@
 package com.example.progetto.csvClasses.dataType;
 
-/* TODO javadoc ok */
 
 /**
  * class used in DataCsv class to generate the information of every element; that information contain the alias, the

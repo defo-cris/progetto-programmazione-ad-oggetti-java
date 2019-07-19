@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.zip.DataFormatException;
 
 
-/* TODO javadoc ok */
 
 /**
  * Class used to split all the row of the csv and to get all the data of the fields from the rows

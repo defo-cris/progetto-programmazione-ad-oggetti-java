@@ -2,7 +2,6 @@ package com.example.progetto.csvClasses.dataType;
 
 import java.util.Arrays;
 
-/* TODO javadoc ok */
 
 /**
  * class used to define an array of object
