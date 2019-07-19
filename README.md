@@ -61,7 +61,7 @@ public static ObjArray<UrlWithDescription> validateUrlArraySemicolonSeparated(St
         urls[i].setDescription(validateString(tmp[i]));
         try
         {
-            urls[i].setUrl(tmp[i].replace("\"<a href=\"", "").replace("<a href=\"",                   "").split("\"")[1]);
+            urls[i].setUrl(tmp[i].replace("\"<a href=\"", "").replace("<a href=\"","").split("\"")[1]);
         }
         catch (Exception e)
         {
